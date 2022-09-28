@@ -1,21 +1,21 @@
-import Navbar from "./componnets/Navbar/Navbar";
-import Hero from "./componnets/Hero/Hero";
-import AboutUS from "./componnets/AboutUs/AboutUS";
-import Contact from "./componnets/Contact/Contact";
-import Footer from "./componnets/Footer/Footer";
-import Form from "./componnets/Form/Form";
+import React from 'react';
+import HomePage from './pages/Home';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Hero/>
-      <AboutUS/>
-      <Contact/>
+      <HomePage/>
+      <Login/>
+      <Register/>
       <Footer/>
-      {/* <Form form = "signup"/> */}
     </div>
   );
 }
 
 export default App;
+  

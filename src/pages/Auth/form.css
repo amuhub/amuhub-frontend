@@ -1,0 +1,220 @@
+a {
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  img {
+    width: 100%;
+  }
+
+  .form-body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+  }
+  
+  .form-container-outer {
+    max-width: 1000px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    -webkit-box-shadow: 4px 8px 15px #dfe1e2,
+                      -4px -8px 15px #dfe1e2;
+          box-shadow: 4px 8px 15px #dfe1e2,
+                      -4px -8px 15px #dfe1e2;
+  }
+  
+  .form-container-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .signin {
+    padding : 40px 0
+  }
+  .signup {
+    padding : 0;
+  }
+  
+  
+  form {
+    width: 60%;
+    padding: 70px;
+    font-size: 13px;
+    background-color: #fff;
+  }
+  
+  form .input-div {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  form .input-div p {
+    color: #ff7a7a;
+    position: absolute;
+    right: 8px;
+    bottom: -23px;
+    display: block;
+  }
+  
+  form .input-div img {
+    width: 20px;
+    height : 20px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    right: 30px;
+  }
+  
+  form .input-div:last-child {
+    margin-bottom: 0px;
+  }
+  
+  form .input-div input {
+    width: 100%;
+    padding: 15px 0 15px 30px;
+    outline: none;
+    border: 1px solid #b9b6d3;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  form .options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  form .options label {
+    color: #3e3c49;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  form .options a {
+    color: #848c94;
+    font-weight: bold;
+  }
+  
+  form .options a:hover {
+    color: black;
+  }
+  
+  form .horizontal-rule {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background-color: grey;
+    margin: 30px 0;
+  }
+  
+  form .horizontal-rule::before {
+    content: 'OR USE';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    padding: 0 15px;
+    background-color: #fff;
+    font-weight: bold;
+  }
+  
+  form .error p, form .form-area .error img {
+    display: block;
+  }
+  
+  form .error input {
+    border: 3px solid #ff7a7a;
+  }
+  
+  .soc-media {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .soc-media li {
+    list-style-type: none;
+    width: 40px;
+    height: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 50%;
+    line-height: 0;
+    margin: 0 15px;
+  }
+  
+  .soc-media li:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  
+  .soc-media i {
+    color: #fff;
+  }
+  
+  .fab {
+    font-size: 20px;
+  }
+  
+  .fb {
+    background-color: #4267b2;
+  }
+  
+  .twit {
+    background-color: #1da1f2;
+  }
+  
+  .google {
+    background-color: #ff7a7a;
+  }
+  
+  @media (max-width: 800px) {
+    .form-container-inner {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    .form-container-inner .form-desc {
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+      height: 400px;
+    }
+    .form-container-inner .form-desc-content {
+      text-align: center;
+    }
+    .form-container-inner form {
+      width: 100%;
+    }
+  }
