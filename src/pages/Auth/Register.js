@@ -33,9 +33,9 @@ const Register = () => {
                             <input type="checkbox" name="remerber-me" id="remember-me"/>
                             <label for="remerber-me">Remember Me!</label>
                         </div>
-                        <a href="#">Forgot Password? </a>
+                        <a href="#">Forgot Password ? </a>
                     </div>
-                    <input type="submit" value="Sign in" className="btn"/>
+                    <input type="submit" value="Register" className="btn"/>
                     <div className="horizontal-rule"></div>
                     <ul className="soc-media">
                         <li className= "fb"><a href="#" ><i className="fab fa-facebook-f"></i></a></li>
