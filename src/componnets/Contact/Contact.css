@@ -1,0 +1,84 @@
+.form-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    max-width: 1000px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto 50px;
+  }
+  
+  form {
+    width: 60%;
+    padding: 0 70px;
+    font-size: 13px;
+    background-color: #fff;
+  }
+  
+  form .input-div {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  form .input-div p {
+    color: #ff7a7a;
+    position: absolute;
+    right: 8px;
+    bottom: -23px;
+    
+  }
+  
+  form .input-div img {
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    right: 30px;
+  }
+  
+  form .input-div input {
+    width: 100%;
+    padding: 15px 0 15px 30px;
+    outline: none;
+    border: 1px solid #b9b6d3;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  form .input-div textarea {
+    width: 100%;
+    padding: 15px 30px 15px 30px;
+    font-weight: bold;
+  }
+  
+  form .btn {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+  }
+  
+  form .error p, form .form-area .error img {
+    display: block;
+  }
+  
+  form .error input {
+    border: 3px solid #ff7a7a;
+  }
+  
+  @media (max-width: 800px) {
+    .form-container {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    .form-container form {
+      width: 100%;
+    }
+  }

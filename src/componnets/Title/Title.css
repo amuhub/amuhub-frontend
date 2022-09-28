@@ -1,0 +1,21 @@
+.title {
+    text-align: center;
+    margin: 50px 0;
+  }
+  
+  .title span {
+    position: relative;
+  }
+  
+  .title span::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 50%;
+    height: 4px;
+    border-radius: 10px;
+    background-color: red;
+  }

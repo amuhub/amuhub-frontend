@@ -1,0 +1,20 @@
+.btn {
+    display: inline-block;
+    min-width: 30px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #2046a4;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .btn_block{
+    display: block !important;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    opacity: 0.85;
+  }
