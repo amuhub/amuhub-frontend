@@ -35,7 +35,7 @@ const Register = () => {
                         </div>
                         <a href="#">Forgot Password? </a>
                     </div>
-                    <input type="submit" value="Sign in" className="btn"/>
+                    <input type="submit" value="Register" className="btn"/>
                     <div className="horizontal-rule"></div>
                     <ul className="soc-media">
                         <li className= "fb"><a href="#" ><i className="fab fa-facebook-f"></i></a></li>
