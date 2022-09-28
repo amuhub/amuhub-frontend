@@ -33,7 +33,7 @@ const Register = () => {
                             <input type="checkbox" name="remerber-me" id="remember-me"/>
                             <label for="remerber-me">Remember Me!</label>
                         </div>
-                        <a href="#">Forgot Password? </a>
+                        <a href="#">Forgot Password ? </a>
                     </div>
                     <input type="submit" value="Register" className="btn"/>
                     <div className="horizontal-rule"></div>
