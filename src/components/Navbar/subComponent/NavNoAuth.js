@@ -22,7 +22,7 @@ const NavNoAuth = (props) => {
                     </div>
                 </div>
                 <ul className="nav-links-list-b">
-                    <li><a href="">Signin</a></li>
+                    <li><a href="#">Signin</a></li>
                     <li><Button text='Sign up' /></li>
                 </ul>
                 <label for="check" onClick={navToggle} className='burger_btn'>

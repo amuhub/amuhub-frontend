@@ -42,14 +42,14 @@ const Form = ({form}) => {
                             <input type="checkbox" name="remerber-me" id="remember-me"/>
                             <label for="remerber-me">Remember Me!</label>
                         </div>
-                        <a href="">Forgot Password? </a>
+                        <a href="#">Forgot Password? </a>
                     </div>
                     <input type="submit" value="Sign in" className="btn"/>
                     <div className="horizontal-rule"></div>
                     <ul className="soc-media">
-                        <li className= "fb"><a href="" ><i className="fab fa-facebook-f"></i></a></li>
-                        <li className= "twit"><a href="" ><i className="fab fa-twitter"></i></a></li>
-                        <li className= "google"><a href="" ><i className="fab fa-google-plus-g"></i></a></li> 
+                        <li className= "fb"><a href="#" ><i className="fab fa-facebook-f"></i></a></li>
+                        <li className= "twit"><a href="#" ><i className="fab fa-twitter"></i></a></li>
+                        <li className= "google"><a href="#" ><i className="fab fa-google-plus-g"></i></a></li> 
                     </ul>
                 </form>
             </div>

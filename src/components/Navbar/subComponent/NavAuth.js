@@ -15,9 +15,9 @@ const NavAuth = () => {
                     <div className='mobile-style-wrapper'>
                         <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
                         <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a href="">Feed</a></li>
-                            <li><a href="">Questions</a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Feed</a></li>
+                            <li><a href="#">Questions</a></li>
                         </ul>
                     </div>
                     <div className="search-div">
