@@ -1,0 +1,143 @@
+.post_container {
+    border: 1px solid #d8dee9;
+    max-width: 400px;
+    border-radius: 8px;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  
+  .post_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 5px 15px;
+  }
+  
+  .post_header .user_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .post_header .user_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #000;
+    margin-right: 10px;
+  }
+  
+  .post_header i {
+    font-size: 1.2rem;
+  }
+  
+  .post_content {
+    border-top: 1px solid #d8dee9;
+    border-bottom: 1px solid #d8dee9;
+    padding: 5px 7px;
+  }
+  
+  .post_content .post {
+    width: 100%;
+  }
+  
+  .post_content .post_stats {
+    padding: 0 8px;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  
+  .post_stats_likes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .post_stats_likes svg {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 2;
+    overflow: visible;
+  }
+  
+  .post_stats_likes span {
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 8px;
+  }
+  
+  .post_stats_comments {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer;
+  }
+  
+  .post_stats_comments a {
+    font-size: 13px;
+    margin-left: 8px;
+    color: #767676;
+  }
+  
+  .post_stats_comments a:hover {
+    color: black;
+  }
+  
+  .post_stats_comments i {
+    font-size: 22px;
+  }
+  
+  .post_stats_comments i:hover {
+    color: #767676;
+  }
+  
+  .post_comment {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 15px;
+  }
+  
+  .post_comment input {
+    height: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    padding: 15px 8px 15px 0;
+    outline: none;
+    border: none;
+  }
+  
+  .post_comment .post_btn {
+    color: skyblue;
+    font-weight: bold;
+  }

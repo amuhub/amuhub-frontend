@@ -21,7 +21,7 @@
             align-items: center;
   }
   
-  .hero .content {
+  .hero .hero-content {
     padding-right: 1rem;
   }
   
@@ -33,7 +33,7 @@
             animation: x-axis-bounce 0.9s;
   }
   
-  .hero .wrapper {
+  .hero .hero-title-wrapper {
     -webkit-animation: y-axis-bounce 1.3s;
             animation: y-axis-bounce 1.3s;
   }
@@ -146,7 +146,7 @@
     .hero {
       height: 80vh;
     }
-    .hero .content h1 {
+    .hero .hero-content h1 {
       font-size: 2.5rem;
     }
     .hero p {
@@ -176,7 +176,7 @@
       width: 100%;
       margin-top: 2rem;
     }
-    .hero .content h1 {
+    .hero .hero-content h1 {
       font-size: 2.5rem;
       color: #19212e;
     }

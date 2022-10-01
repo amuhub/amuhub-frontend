@@ -1,0 +1,9 @@
+.news-container{
+    width: 30%;
+}
+
+@media(max-width : 1000px){
+    .news-container{
+        display: none;
+    }
+}

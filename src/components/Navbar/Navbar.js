@@ -4,7 +4,7 @@ import NavNoAuth from './subComponent/NavNoAuth';
 import React, { useState } from 'react';
 
 const Navbar = () => {
-    const [auth, setauth] = useState(false);
+    const [auth, setauth] = useState(true);
 
     return (
         <nav className="fixed-nav">
