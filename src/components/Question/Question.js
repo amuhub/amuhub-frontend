@@ -25,8 +25,16 @@ const Question = () => {
                 <input type="radio" name="upvote_downvote" id="downvote">
                 <label for="downvote">Downvote</label> --> */}
 
-                <a href="">Upvote</a>
-                <a href="">Downvote </a>
+                
+
+                <a href="" className='upvote'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 24 24"><path d="M24 12l-12-8v5h-12v6h12v5z"/></svg>
+                    <span>14</span>
+                </a>
+                <a href="" className='downvote'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 24 24"><path d="M24 12l-12-8v5h-12v6h12v5z"/></svg>
+                    <span>14</span>
+                </a>
             </div>
         </div>
      </div>

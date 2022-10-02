@@ -12,7 +12,13 @@ const Feed = () => {
       </div>
       <div className = "feed-ques-page">
         <Wrapper/>
-        <News/>
+        <div className="event-container">
+          <News/>
+          <News/>
+          <News/>
+          <News/>
+        </div>
+        
       </div>
     </div>
 

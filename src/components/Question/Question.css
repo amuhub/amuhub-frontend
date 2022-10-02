@@ -85,3 +85,32 @@
   .question_stats .stats_list_a a i {
     margin-right: 8px;
   }
+
+  .stats_list_b{
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .stats_list_b a{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .stats_list_b a span{
+    padding-top: 4px;
+  }
+  .stats_list_b svg{
+    overflow: visible;
+    fill: transparent;
+    stroke: black;
+  }
+  .upvote svg{
+    transform: rotate(-90deg);
+  }
+  .downvote svg{
+    transform: rotate(90deg);
+    overflow: visible;
+  }
+
+  

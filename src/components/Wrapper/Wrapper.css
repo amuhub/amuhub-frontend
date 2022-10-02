@@ -1,5 +1,5 @@
 .wrapper{
-    width: 70%;
+    flex-grow: 1;
     height: 90vh;
     overflow-y: scroll;
     /* display: flex;
@@ -15,7 +15,7 @@
 }
 
 .wrapper::-webkit-scrollbar {
-    width: none;               
+    width: 0;               
 }
   
 .wrapper::-webkit-scrollbar-thumb {
