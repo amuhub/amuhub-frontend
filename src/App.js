@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css'
 import HomePage from './pages/Home';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';

@@ -5,15 +5,15 @@ import './Wrapper.css'
 const Wrapper = () => {
   return (
     <div className = "wrapper">
-        {/* <Post/>
         <Post/>
-        <Post/> */}
+        <Post/>
+        <Post/>
+        {/* <Question/>
         <Question/>
         <Question/>
         <Question/>
         <Question/>
-        <Question/>
-        <Question/>
+        <Question/> */}
     </div> 
   )
 }
