@@ -27,17 +27,17 @@ const Feed = () => {
   
 
   return ( 
-    <div className = "feed-ques-container">
+    <div className = "common-container">
       <div className='feed-ques-header'>
         <h1>See What's New</h1>
         <Button text = "Create New Post"/>
       </div>
-      <div className = "feed-ques-page">
+      <div className = "grid-container">
       <div className = "wrapper">
         {posts.map((post) => (
           <Post key = {post.id} data={post}/>
         ))}
-    </div>
+      </div>
         
         <div className="event-container">
           <News/>

@@ -44,12 +44,12 @@ const QuestionListPage = () => {
   
 
   return ( 
-    <div className = "feed-ques-container">
+    <div className = "common-container">
       <div className='feed-ques-header'>
         <h1>Latest Questions</h1>
         <Button text = "Ask a question"/>
       </div>
-      <div className = "feed-ques-page">
+      <div className = "grid-container">
       <div className = "wrapper">
         {question.map((question) => (
             <Question key = {question.id} data={question}/>

@@ -2,7 +2,7 @@ import './Button.css';
 
 const Button = ({text,btnClass}) => {
   return (
-    <><a href="www.gooogle.com" className={`btn ${btnClass}`}>{text}</a></>
+    <><a href="#" className={`btn ${btnClass}`}>{text}</a></>
   )
 }
 
