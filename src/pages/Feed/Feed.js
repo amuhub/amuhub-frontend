@@ -1,17 +1,30 @@
-import {React,useState} from 'react'
+import {React} from 'react';
 // import Wrapper from '../../components/Wrapper/Wrapper'
 import Post from '../../components/Post/Post'
 import News from '../../components/News/News'
 import Button from '../../components/Button/Button'
-import PostOverlay from '../Post_Overlay/PostOverlay';
+import './Feed.css';
 
-import './Feed.css'
+const posts = [
+  {
+    id: 1,
+    likes: 100,
+    author: "Falana",
+  },
+  {
+    id: 2,
+    likes: 200,
+    author: "Damilola",
+  },
+  {
+    id: 3,
+    likes: 300,
+    author: "Oluwaseun",
+  },
+]
+
 const Feed = () => {
-  const [togglePostOverlay, setTogglePostOverlay] = useState(false)
-
-  const postOverlaytoggler=() => {
-    togglePostOverlay===true?setTogglePostOverlay(false):setTogglePostOverlay(true);
-};
+  
 
   return ( 
     <div className = "feed-ques-container">
@@ -21,15 +34,10 @@ const Feed = () => {
       </div>
       <div className = "feed-ques-page">
       <div className = "wrapper">
-        <Post postOverlaytoggler={postOverlaytoggler}/>
-        {/* <Question/>
-        <Question/>
-        <Question/>
-        <Question/>
-        <Question/>
-        <Question/> */}
-    </div> 
-        {togglePostOverlay && <PostOverlay postOverlaytoggler={postOverlaytoggler}/>}
+        {posts.map((post) => (
+          <Post key = {post.id} data={post}/>
+        ))}
+    </div>
         
         <div className="event-container">
           <News/>

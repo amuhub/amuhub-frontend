@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../../Button/Button';
+import { Link } from "react-router-dom";
 
 const NavNoAuth = (props) => {
 
@@ -15,7 +16,7 @@ const NavNoAuth = (props) => {
                     <div className='mobile-style-wrapper'>
                         <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
                         <ul>
-                            <li><a href="#home">home</a></li>
+                            <li><Link to="/">Home</Link></li>
                             <li><a href="#about-us">about</a></li>
                             <li><a href="#contact">contact</a></li>
                         </ul>
