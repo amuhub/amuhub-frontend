@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Feed from './pages/Feed/Feed';
 import QuestionListPage from './pages/QuestionListPage/QuestionListPage';
-import Answers from './pages/Answers/Answers';
+import QuestionDetailsPage from './pages/QuestionDetailsPage/QuestionDetailsPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
       <Route path="/register" element={<Register/>} />
       <Route path="/feed" element={<Feed/>} />
       <Route path="/question" element={<QuestionListPage/>} />
-      <Route path="/answer" element={<Answers/>} />
+      <Route path="/question/:id" element={<QuestionDetailsPage/>} />
       </Routes>
       <Footer/>
     </div>

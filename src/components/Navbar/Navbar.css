@@ -111,7 +111,7 @@ nav {
   margin: 0 10px;
 }
 
-.nav-links-list-b .profile-div {
+.profile-div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -184,19 +184,18 @@ nav {
  }
  
  
- span:nth-of-type(1){
+ .burger_btn span:nth-of-type(1){
    width:50%;
    
  }
  
- span:nth-of-type(2){
+ .burger_btn span:nth-of-type(2){
    width:100%;
  }
  
  
- span:nth-of-type(3){
+ .burger_btn span:nth-of-type(3){
    width:75%;
-  
  }
 
 @media (max-width : 1100px){

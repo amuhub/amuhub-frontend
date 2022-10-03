@@ -1,17 +1,16 @@
 import News from '../../components/News/News'
-import Button from '../../components/Button/Button'
-import Wrapper from '../../components/Wrapper/Wrapper'
+import Answer from '../../components/Answer/Answer'
+import './QuestionDetailsPage.css'
 import { useState } from 'react'
-import './Answers.css'
 
 const Answers = () => {
     const answerBox = ()=>{
         setTextArea(!textArea)
     }
-  const [textArea, setTextArea] = useState(true) 
+  const [textArea, setTextArea] = useState(false) 
   
   return (
-    
+
     <div className='common-container'>
         <div className="answer-page grid-container">
             <div className = "ques-ans-container">
@@ -33,7 +32,8 @@ const Answers = () => {
                                 <a href="" className="answers_count"><i className="fas fa-comment-alt"></i>14 answers</a>
                                 <a href="" className="views_count"><i className="fas fa-eye"></i> 412 views</a>
                             </div>
-                            <Button text = "Answer" onClick={answerBox}/>
+                            <a href = "#" className = "btn" onClick = {answerBox}>Answer</a>
+                            
                         </div>
                         <form className={textArea ? "answer-form activeAnswerForm" : "answer-form"}>
                             <div class="input-div">
@@ -44,7 +44,11 @@ const Answers = () => {
                         
                     </div>
                 </div>
-                <Wrapper/>
+                <div className='wrapper'>
+                    <Answer/>
+                    <Answer/>
+                    <Answer/>
+                </div>
             </div>
 
             <div className="event-container">

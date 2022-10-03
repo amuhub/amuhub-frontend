@@ -20,6 +20,9 @@
 .upvote-downvote-panel .up{
     transform: rotate(-180deg);
 }
+.upvote-downvote-panel svg{
+    fill: #767676;
+}
 .answer-page .question-header{
     flex-grow: 1;
     /* padding: 0 20px;   */
