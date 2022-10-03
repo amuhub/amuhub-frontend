@@ -1,6 +1,5 @@
 import News from '../../components/News/News'
 import Button from '../../components/Button/Button'
-import Wrapper from '../../components/Wrapper/Wrapper'
 import { useState } from 'react'
 import './Answers.css'
 
@@ -44,7 +43,6 @@ const Answers = () => {
                         
                     </div>
                 </div>
-                <Wrapper/>
             </div>
 
             <div className="event-container">
