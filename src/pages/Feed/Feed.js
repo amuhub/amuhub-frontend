@@ -1,9 +1,9 @@
-import {React} from 'react';
+import { React } from "react";
 // import Wrapper from '../../components/Wrapper/Wrapper'
-import Post from '../../components/Post/Post'
-import News from '../../components/News/News'
-import Button from '../../components/Button/Button'
-import './Feed.css';
+import Post from "../../components/Post/Post";
+import News from "../../components/News/News";
+import Button from "../../components/Button/Button";
+import "./Feed.css";
 
 const posts = [
   {
@@ -21,36 +21,31 @@ const posts = [
     likes: 300,
     author: "Oluwaseun",
   },
-]
+];
 
 const Feed = () => {
-  
-
-  return ( 
-    <div className = "common-container">
-      <div className='feed-ques-header'>
+  return (
+    <div className="common-container">
+      <div className="feed-ques-header">
         <h1>See What's New</h1>
-        <Button text = "Create New Post"/>
+        <Button text="Create New Post" />
       </div>
-      <div className = "grid-container">
-      <div className = "wrapper">
-        {posts.map((post) => (
-          <Post key = {post.id} data={post}/>
-        ))}
-      </div>
-        
-        <div className="event-container">
-          <News/>
-          <News/>
-          <News/>
-          <News/>
+      <div className="grid-container">
+        <div className="wrapper">
+          {posts.map((post) => (
+            <Post key={post.id} data={post} />
+          ))}
         </div>
-        
+
+        <div className="event-container">
+          <News />
+          <News />
+          <News />
+          <News />
+        </div>
       </div>
     </div>
+  );
+};
 
-    
-  )
-}
-
-export default Feed
+export default Feed;

@@ -1,9 +1,13 @@
-import './Button.css';
+import "./Button.css";
 
-const Button = ({text,btnClass}) => {
+const Button = ({ text, btnClass }) => {
   return (
-    <><a href="#" className={`btn ${btnClass}`}>{text}</a></>
-  )
-}
+    <>
+      <a href="#" className={`btn ${btnClass}`}>
+        {text}
+      </a>
+    </>
+  );
+};
 
-export default Button
+export default Button;

@@ -1,16 +1,16 @@
-import React from 'react';
-import Hero from '../components/Hero/Hero';
-import AboutUS from '../components/AboutUs/AboutUS';
-import Contact from '../components/Contact/Contact';
+import React from "react";
+import Hero from "../components/Hero/Hero";
+import AboutUS from "../components/AboutUs/AboutUS";
+import Contact from "../components/Contact/Contact";
 
-const  HomePage = () => {
-    return ( 
+const HomePage = () => {
+  return (
     <>
-        <Hero/>
-        <AboutUS/>
-        <Contact/>
+      <Hero />
+      <AboutUS />
+      <Contact />
     </>
-    );
-}
- 
+  );
+};
+
 export default HomePage;
