@@ -1,25 +1,25 @@
 import News from '../../components/News/News'
 import Answer from '../../components/Answer/Answer'
-import './QuestionDetailsPage.css'
 import { useState } from 'react'
-
+import {useParams} from 'react-router-dom'
+import './QuestionDetailsPage.css'
 const Answers = () => {
     const answerBox = ()=>{
         setTextArea(!textArea)
     }
   const [textArea, setTextArea] = useState(false) 
-  
+  const {id} = useParams();
   return (
 
     <div className='common-container'>
         <div className="answer-page grid-container">
-            <div className = "ques-ans-container">
+                  <div className = "ques-ans-container">
                 <div className = "ques-container">
                     <div className ="upvote-downvote-panel">
                         <button className='up'>
                             <svg aria-hidden="true" class="svg-icon iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 11h32L18 27 2 11Z"></path></svg>
-                        </button>
-                        <p className='vote-count'>125</p>
+                  </button>
+                        <p className='vote-count'>{id}</p>
                         <button className='down'>
                             <svg aria-hidden="true" class="svg-icon iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 11h32L18 27 2 11Z"></path></svg>
                         </button>
@@ -41,14 +41,14 @@ const Answers = () => {
                             </div>
                             <input type = 'submit' value='Post Answer' className = 'btn'/>
                         </form>
-                        
                     </div>
                 </div>
-                <div className='wrapper'>
-                    <Answer/>
-                    <Answer/>
-                    <Answer/>
-                </div>
+                    <div className='wrapper'>
+                        <Answer/>
+                        <Answer/>
+                        <Answer/>
+                        <Answer/>
+                    </div>
             </div>
 
             <div className="event-container">

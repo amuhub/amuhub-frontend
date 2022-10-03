@@ -28,7 +28,13 @@ const Answer = () => {
 
                     This file describes some of the features that might be relevant to Django usage. It is not intended as a replacement for server-specific documentation or reference manuals.
                 </p>
-                
+                <div className="author-details">
+                    <div className="profile-div">
+                        <div className="profile-img"></div>
+                        <p className="username"><span className = "answered-by">Answered By</span> Hasan Faraz</p>
+                    </div>
+                    <p className = 'answered-on'>Answered <span>2 hours ago</span></p>
+                </div>
             </div>
         </div>
   )
