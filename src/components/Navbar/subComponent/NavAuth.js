@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Button from '../../Button/Button';
 
 const NavAuth = () => {
@@ -16,9 +16,9 @@ const NavAuth = () => {
                 <div className='mobile-style-wrapper'>
                     <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
                     <ul>
-                        <li><a href="#"> <Link to="/">Home</Link></a></li>
-                        <li><a href="#"><Link to="/feed">Feed</Link></a></li>
-                        <li><a href="#">Questions</a></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/feed">Feed</Link></li>
+                        <li><Link to="/question">Questions</Link></li>
                     </ul>
                 </div>
                 <div className="search-div">

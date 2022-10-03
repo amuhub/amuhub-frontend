@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React} from 'react';
 // import Wrapper from '../../components/Wrapper/Wrapper'
 import Post from '../../components/Post/Post'
 import News from '../../components/News/News'
@@ -37,12 +37,6 @@ const Feed = () => {
         {posts.map((post) => (
           <Post key = {post.id} data={post}/>
         ))}
-        {/* <Question/>
-        <Question/>
-        <Question/>
-        <Question/>
-        <Question/>
-        <Question/> */}
     </div>
         
         <div className="event-container">

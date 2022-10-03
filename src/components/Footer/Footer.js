@@ -9,7 +9,7 @@ const Footer = () => {
             <li><a href="#" ><i class="fab fa-twitter"></i></a></li>
             <li><a href="#" ><i class="fab fa-instagram"></i></a></li> 
         </ul>
-        <p class = "attribute">Developed by <span>Hasan Faraz Khan</span> and <span>Hamdan Zaheer</span></p>
+        <p class = "attribute">	&copy; AMUHUB | 2022 <span></span></p>
     </div>
   )
 }

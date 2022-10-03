@@ -1,6 +1,8 @@
 import './Question.css'
 
-const Question = () => {
+const Question = (props) => {
+
+  const {ques, answers, views, upvote, downvote} = props.data;
   return (
     <div className="question_container">
         <div className="question_header">
@@ -10,13 +12,13 @@ const Question = () => {
                     <p>Asked : <span className="timestamp">March 28, 2018</span></p>
                     <p>Tags : <span className="tags">Movies, Series</span></p>
                 </div>
-                <p className="question">How to get placed in google without learning DSA?</p>
+                <p className="question">{ques}</p>
             </div>
         </div>
         <div className="question_stats">
             <div className="stats_list_a">
-                <a href="" className="answers_count"><i className="fas fa-comment-alt"></i>14 answers</a>
-                <a href="" className="views_count"><i className="fas fa-eye"></i> 412 views</a>
+                <a href="" className="answers_count"><i className="fas fa-comment-alt"></i>{answers} answers</a>
+                <a href="" className="views_count"><i className="fas fa-eye"></i> {views} views</a>
             </div>
             <div className="stats_list_b">
                 {/* <!-- <input type="radio" name="upvote_downvote" id="upvote">
@@ -29,11 +31,11 @@ const Question = () => {
 
                 <a href="" className='upvote'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 24 24"><path d="M24 12l-12-8v5h-12v6h12v5z"/></svg>
-                    <span>14</span>
+                    <span>{upvote}</span>
                 </a>
                 <a href="" className='downvote'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 24 24"><path d="M24 12l-12-8v5h-12v6h12v5z"/></svg>
-                    <span>14</span>
+                    <span>{downvote}</span>
                 </a>
             </div>
         </div>
