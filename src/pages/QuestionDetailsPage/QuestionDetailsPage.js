@@ -1,14 +1,21 @@
 import News from "../../components/News/News";
 import Answer from "../../components/Answer/Answer";
+import useFetch from "../../utils/useFetch";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
 import "./QuestionDetailsPage.css";
+
 const Answers = () => {
   const answerBox = () => {
     setTextArea(!textArea);
   };
   const [textArea, setTextArea] = useState(false);
   const { id } = useParams();
+  const { data, pending, error } = useFetch(
+    `https://api.amu.ac.in/api/v1/home-events?lang=en`
+  );
+
   return (
     <div className="common-container">
       <div className="answer-page grid-container">
@@ -85,11 +92,13 @@ const Answers = () => {
           </div>
         </div>
 
+        {pending && <InfinitySpin width="300" color="#6495ED" />}
+
         <div className="event-container">
-          <News />
-          <News />
-          <News />
-          <News />
+          {data &&
+            data.data.map((singleEvent) => (
+              <News key={singleEvent.id} data={singleEvent} />
+            ))}
         </div>
       </div>
     </div>
