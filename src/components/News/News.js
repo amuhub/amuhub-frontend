@@ -1,5 +1,5 @@
-import parseFormat from '../../utils/parseDate';
-import fetchDate from '../../utils/fetchDate';
+import {fetchDate, convertDate} from '../../utils/parseDate';
+// import fetchDate from '../../utils/fetchDate';
 import "./News.css";
 
 const News = (props) => {
@@ -19,10 +19,10 @@ const News = (props) => {
       <div className="event-details">
         <p className="event-detail-header">Details</p>
         <p className="details">
-          Start :<span className="detail-value">{parseFormat(data.start_date)}</span>
+          Start :<span className="detail-value">{convertDate(data.start_date)}</span>
         </p>
         <p className="details">
-          End :<span className="detail-value">{parseFormat(data.end_date)}</span>
+          End :<span className="detail-value">{convertDate(data.end_date)}</span>
         </p>
         <p className="details">
           Venue :<span className="detail-value">{data.venue}</span>
