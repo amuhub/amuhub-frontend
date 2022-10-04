@@ -1,5 +1,5 @@
 import { React } from "react";
-// import Wrapper from '../../components/Wrapper/Wrapper'
+import useFetch from '../../utils/useFetch'
 import Post from "../../components/Post/Post";
 import News from "../../components/News/News";
 import Button from "../../components/Button/Button";
@@ -24,6 +24,9 @@ const posts = [
 ];
 
 const Feed = () => {
+
+  const { data, pending, error } = useFetch(`https://api.amu.ac.in/api/v1/home-events?lang=en`)
+  console.log(data);
   return (
     <div className="common-container">
       <div className="feed-ques-header">
@@ -38,10 +41,12 @@ const Feed = () => {
         </div>
 
         <div className="event-container">
-          <News />
-          <News />
-          <News />
-          <News />
+
+          {data && data.data.map((singleEvent)=> <News key = {singleEvent.id} data = {singleEvent}/>)}
+          {/* // <News />
+          // <News />
+          // <News />
+          // <News /> */}
         </div>
       </div>
     </div>
