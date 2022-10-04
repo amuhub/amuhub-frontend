@@ -1,10 +1,10 @@
 import { React } from "react";
 // import Wrapper from '../../components/Wrapper/Wrapper'
-import useFetch from '../../utils/useFetch'
+import useFetch from "../../utils/useFetch";
 import Question from "../../components/Question/Question";
 import News from "../../components/News/News";
 import Button from "../../components/Button/Button";
-import { InfinitySpin } from  'react-loader-spinner';
+import { InfinitySpin } from "react-loader-spinner";
 import "../Feed/Feed.css";
 
 const question = [
@@ -43,7 +43,9 @@ const question = [
 ];
 
 const QuestionListPage = () => {
-  const { data, pending, error } = useFetch(`https://api.amu.ac.in/api/v1/home-events?lang=en`)
+  const { data, pending, error } = useFetch(
+    `https://api.amu.ac.in/api/v1/home-events?lang=en`
+  );
 
   return (
     <div className="common-container">
@@ -58,12 +60,12 @@ const QuestionListPage = () => {
           ))}
         </div>
 
-        {pending && <InfinitySpin 
-          width='300'
-          color="#6495ED"
-        />}
+        {pending && <InfinitySpin width="300" color="#6495ED" />}
         <div className="event-container">
-          {data && data.data.map((singleEvent)=> <News key = {singleEvent.id} data = {singleEvent}/>)}
+          {data &&
+            data.data.map((singleEvent) => (
+              <News key={singleEvent.id} data={singleEvent} />
+            ))}
         </div>
       </div>
     </div>
