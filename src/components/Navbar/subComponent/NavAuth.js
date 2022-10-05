@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import Button from '../../Button/Button';
 
-const NavAuth = () => {
+const NavAuth = ({setHeight}) => {
   const [menu, setmenu] = useState(false);
 
   const navToggle = (e) => {
@@ -16,19 +16,21 @@ const NavAuth = () => {
           <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={navToggle}>Home</Link>
             </li>
             <li>
-              <Link to="/feed">Feed</Link>
+              <Link to="/feed" onClick={navToggle}>Feed</Link>
             </li>
             <li>
-              <Link to="/question">Questions</Link>
+              <Link to="/question" onClick={navToggle}>Questions</Link>
             </li>
           </ul>
         </div>
-        <div className="search-div">
-          <input type="text" className="input" placeholder="Search" />
-          <i className="fa fa-search" aria-hidden="true"></i>
+        <div class="search-div" onClick={setHeight}>
+            <div class="search-icon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <input type="text" placeholder="Search"/>
         </div>
       </div>
       <div className="nav-links-list-b">

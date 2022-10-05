@@ -1,10 +1,9 @@
-.wrapper{
+.wrapper {
     flex-grow: 1;
     height: 90vh;
     overflow-y: scroll;
-    /* display: flex;
-    flex-direction: column;
-    align-items: flex-end;*/
+    max-width: 708px;
+    margin: 0 auto;
     scrollbar-width: none;
 }
 .wrapper > div{

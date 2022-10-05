@@ -56,10 +56,10 @@ const Answers = () => {
               <div className="question_stats">
                 <div className="stats_list_a">
                   <a href="" className="answers_count">
-                    <i className="fas fa-comment-alt"></i>14 answers
+                    <i className="fas fa-comment-alt"></i>14 <span>answers</span>
                   </a>
                   <a href="" className="views_count">
-                    <i className="fas fa-eye"></i> 412 views
+                    <i className="fas fa-eye"></i> 412 <span>views</span>
                   </a>
                 </div>
                 <a href="#" className="btn" onClick={answerBox}>

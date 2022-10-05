@@ -16,13 +16,13 @@ const NavNoAuth = (props) => {
           <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={navToggle}>Home</Link>
             </li>
             <li>
-              <a href="#about-us">about</a>
+              <a href="#about-us" onClick={navToggle}>about</a>
             </li>
             <li>
-              <a href="#contact">contact</a>
+              <a href="#contact" onClick={navToggle}>contact</a>
             </li>
           </ul>
         </div>

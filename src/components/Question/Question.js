@@ -22,10 +22,10 @@ const Question = (props) => {
         <div className="stats_list_a">
           <a href="" className="answers_count">
             <i className="fas fa-comment-alt"></i>
-            {answers} answers
+            {answers} <span>answers</span>
           </a>
           <a href="" className="views_count">
-            <i className="fas fa-eye"></i> {views} views
+            <i className="fas fa-eye"></i> {views} <span>views</span>
           </a>
         </div>
         <div className="stats_list_b">
