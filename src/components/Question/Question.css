@@ -1,8 +1,12 @@
+/* .ques_ans_container{
+  max-width: 708px;
+} */
 .question_container {
     background-color: #fff;
     padding: 20px;
     width: 100%;
     border: 1px solid #d8dee9;
+    
   }
   
   .question_header {
@@ -113,4 +117,11 @@
     overflow: visible;
   }
 
+
+
+  @media (max-width : 610px){
+    .question_stats .stats_list_a a span{
+      display: none;
+    }
+  }
   

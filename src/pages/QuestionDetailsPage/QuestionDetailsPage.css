@@ -1,3 +1,7 @@
+.ques-ans-container{
+    max-width: 708px;
+    margin: 0 auto;
+}
 .ques-container{
     display: flex;
     align-items: start;
@@ -56,3 +60,5 @@
     width: 100%;
     max-width: 650px;
 }
+
+

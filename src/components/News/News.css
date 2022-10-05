@@ -55,7 +55,14 @@
     margin-left: 8px;
 }
 
+
+@media(max-width : 1200px){
+    .event-component-header .start-event{
+        display: none;
+    }
+}
 @media(max-width : 1000px){
+    
     .event-container{
         display: none;
     }
