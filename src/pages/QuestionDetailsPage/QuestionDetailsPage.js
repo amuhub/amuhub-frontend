@@ -1,5 +1,6 @@
 import News from "../../components/News/News";
 import Answer from "../../components/Answer/Answer";
+import RichTextEditor from "../../components/RichTextEditor/RichTextEditor"
 import useFetch from "../../utils/useFetch";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,6 +11,41 @@ const Answers = () => {
   const answerBox = () => {
     setTextArea(!textArea);
   };
+
+  const richHtml = (text)=>{
+    setHtmlText(text);
+    console.log(htmlText);
+  }
+  const addAnswer = ()=>{
+    const updatedAnswerList = [
+      ...answerList,
+      {
+        id : answerList.length + 1,
+        answerText : htmlText
+      }
+    ]
+    setAnswerList(updatedAnswerList)
+    console.log(answerList);
+  }
+
+  const [htmlText, setHtmlText] = useState("");
+  const [answerList, setAnswerList] = useState([
+    {
+      id : 1,
+      answerText : "<p>Django officially supports the following databases:</p> <ul></li>PostgreSQL</li><li> MariaDB</li><li> MySQL</li> <li>Oracle</li><li> SQLite</li></ul> There are also a number of database backends provided by third parties. Django attempts to support as many features  as possible on all database backends. However, not all database backends are alike, and we’ve had to make design decisions on which features to support and which assumptions we can make safely."
+    },
+
+    {
+      id : 2,
+      answerText : "Django officially supports the following databases: PostgreSQL MariaDB MySQL Oracle SQLite There are also a number of database backends provided by third parties. Django attempts to support as many features  as possible on all database backends. However, not all database backends are alike, and we’ve had to make design decisions on which features to support and which assumptions we can make safely."
+    },
+    {
+      id : 3,
+      answerText : "Django officially supports the following databases: PostgreSQL MariaDB MySQL Oracle SQLite There are also a number of database backends provided by third parties. Django attempts to support as many features  as possible on all database backends. However, not all database backends are alike, and we’ve had to make design decisions on which features to support and which assumptions we can make safely."
+    }
+  ]);
+
+
   const [textArea, setTextArea] = useState(false);
   const { id } = useParams();
   const { data, pending, error } = useFetch(
@@ -66,29 +102,38 @@ const Answers = () => {
                   Answer
                 </a>
               </div>
-              <form
+              <form onSubmit={(e)=>{
+                e.preventDefault();
+                addAnswer();
+              }
+
+              }
                 className={
                   textArea ? "answer-form activeAnswerForm" : "answer-form"
                 }
               >
                 <div class="input-div">
-                  <textarea
+                  {/* <textarea
                     name=""
                     id=""
                     cols="30"
                     rows="5 "
                     placeholder="Your Answer Goes Here"
-                  ></textarea>
+                  ></textarea> */}
+                  <RichTextEditor onChangeOfEditor = {richHtml}/>
                 </div>
                 <input type="submit" value="Post Answer" className="btn" />
               </form>
             </div>
           </div>
           <div className="wrapper">
+            {answerList.map((answer) => (
+              <Answer key={answer.id} data = {answer}/>
+            ))}
+            {/* <Answer />
             <Answer />
             <Answer />
-            <Answer />
-            <Answer />
+            <Answer /> */}
           </div>
         </div>
 

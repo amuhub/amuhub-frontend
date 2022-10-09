@@ -1,6 +1,6 @@
 import "./Answer.css";
 
-const Answer = () => {
+const Answer = ({data}) => {
   return (
     <div className="ques-container">
       <div className="upvote-downvote-panel">
@@ -29,17 +29,7 @@ const Answer = () => {
         </button>
       </div>
       <div className="question-header">
-        <p className="answer">
-          Django officially supports the following databases: PostgreSQL MariaDB
-          MySQL Oracle SQLite There are also a number of database backends
-          provided by third parties. Django attempts to support as many features
-          as possible on all database backends. However, not all database
-          backends are alike, and we’ve had to make design decisions on which
-          features to support and which assumptions we can make safely. This
-          file describes some of the features that might be relevant to Django
-          usage. It is not intended as a replacement for server-specific
-          documentation or reference manuals.
-        </p>
+        <div  dangerouslySetInnerHTML={{__html : data.answerText}}></div>
         <div className="author-details">
           <div className="profile-div">
             <div className="profile-img"></div>
