@@ -33,6 +33,7 @@
   
   .footer_soc_links li {
     margin: 0 25px;
+    list-style-type: none;
   }
   
   .footer_soc_links li i {
