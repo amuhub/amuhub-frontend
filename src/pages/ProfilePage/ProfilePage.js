@@ -4,6 +4,7 @@ import { Outlet, Link, NavLink } from 'react-router-dom'
 import Tag from '../../components/Tag/Tag'
 import ProfileEditForm from '../../components/ProfileEditForm/ProfileEditForm'
 import profileImg from '../Post_Overlay/images/img.png' 
+
  
 
 const ProfilePage = () => {
@@ -32,13 +33,15 @@ const ProfilePage = () => {
                     </div>
                     <div className='profile-info'>
                         <p className='profile-name'>hamdan zaheer</p>
+                        <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
+                            {isFollowed ? 'Unfollow' : 'Follow'}
+                        </Link>
+                        
                         <div className='profile-stats'>
                             <p className='followers'><span>0</span>followers</p>
                             <p className='following'><span>0</span>following</p>
                         </div>
-                        <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
-                            {isFollowed ? 'Unfollow' : 'Follow'}
-                        </Link>
+                        
                     </div>
                 </div>
                 <div className='profile-links'>

@@ -16,7 +16,7 @@
 }
 
 .profile-edit-form{
-    max-width: 400px;
+    max-width: 500px;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -24,6 +24,7 @@
 .form-control {
     position: relative;
     margin-bottom: 30px;
+    width: 100%;
 }
 .form-control label{
     display: block;
@@ -38,4 +39,8 @@
     outline: none;
     border-radius: 3px;
     border: 1px solid grey;
+}
+
+.profile-edit-form .btn{
+    margin-top: 30px;
 }
