@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import "./QuestionDetailsPage.css";
+import { Link } from "react-router-dom";
 
 const Answers = () => {
   const answerBox = () => {
@@ -91,16 +92,16 @@ const Answers = () => {
               </p>
               <div className="question_stats">
                 <div className="stats_list_a">
-                  <a href="" className="answers_count">
+                  <Link to="" className="answers_count">
                     <i className="fas fa-comment-alt"></i>14 <span>answers</span>
-                  </a>
-                  <a href="" className="views_count">
+                  </Link>
+                  <Link to="" className="views_count">
                     <i className="fas fa-eye"></i> 412 <span>views</span>
-                  </a>
+                  </Link>
                 </div>
-                <a href="#" className="btn" onClick={answerBox}>
+                <Link to="#" className="btn" onClick={answerBox}>
                   Answer
-                </a>
+                </Link>
               </div>
               <form onSubmit={(e)=>{
                 e.preventDefault();
@@ -113,13 +114,6 @@ const Answers = () => {
                 }
               >
                 <div class="input-div">
-                  {/* <textarea
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="5 "
-                    placeholder="Your Answer Goes Here"
-                  ></textarea> */}
                   <RichTextEditor onChangeOfEditor = {richHtml}/>
                 </div>
                 <input type="submit" value="Post Answer" className="btn" />
@@ -130,10 +124,6 @@ const Answers = () => {
             {answerList.map((answer) => (
               <Answer key={answer.id} data = {answer}/>
             ))}
-            {/* <Answer />
-            <Answer />
-            <Answer />
-            <Answer /> */}
           </div>
         </div>
 
