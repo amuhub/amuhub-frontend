@@ -32,17 +32,28 @@ const ProfilePage = () => {
                         </div>
                     </div>
                     <div className='profile-info'>
-                        <p className='profile-name'>hamdan zaheer</p>
-                        <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
-                            {isFollowed ? 'Unfollow' : 'Follow'}
-                        </Link>
-                        
-                        <div className='profile-stats'>
-                            <p className='followers'><span>0</span>followers</p>
-                            <p className='following'><span>0</span>following</p>
+                        <div className='info-inner'>
+                            <p className='profile-name'>hamdan zaheer</p>
+                            <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
+                                {isFollowed ? 'Unfollow' : 'Follow'}
+                            </Link>
                         </div>
                         
+                        <p className='bio'>Falana Dhimakana</p>
+                        {/* add location icon with location */}
+                        <div className='location'>
+                            <p><i class="fas fa-map-marker-alt"></i>Lahore, Pakistan</p>
+                            <p><i class="fas fa-graduation-cap"></i>Department Of Computer sc.</p>
+                        </div>
+                        
+                        
+                        {/* <div className='profile-stats'>
+                            <p className='followers'><span>0</span>followers</p>
+                            <p className='following'><span>0</span>following</p>
+                        </div> */}
+                        
                     </div>
+                    <div className='profile-options'><i class="fas fa-ellipsis-v"></i></div>
                 </div>
                 <div className='profile-links'>
                     <NavLink to = "/profile" className= "links">Profile</NavLink>

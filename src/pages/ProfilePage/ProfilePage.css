@@ -1,5 +1,7 @@
 .profile-container .profile-div{
     margin-bottom: 30px;
+    /* flex-grow: 1; */
+
 }
 .profile-img{
     position: relative;
@@ -32,12 +34,13 @@
     font-size: 25px;
     margin-left: 5px;
 }
-
+.profile-info{
+    flex-grow: 1;
+}
 .profile-info .profile-name{
     font-size: 26px;
     font-weight: bold;
     text-transform: capitalize;
-    line-height: 1.2;
 }
 .profile-stats > p{
     display: inline;
@@ -53,11 +56,11 @@
    border-bottom: 1px solid grey;
 }
 .follow-btn{
-    display: block;
-    padding: 3px;
+    display: inline-block;
+    padding: 5px 25px;
     max-width: 300px;
     text-align: center;
-    margin-top: 10px;
+    margin-left: 20px;
     font-size: 13px;
     border: 1px solid white;
 }
@@ -113,3 +116,44 @@
     cursor: pointer;
 }
 
+.profile-info .info-inner{
+    display: flex;
+    align-items: center;
+}
+.bio{
+    font-size: 14px;
+}
+.location{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+    color: grey;
+}
+.location i{
+    margin-right: 10px;
+}
+
+.profile-options{
+    height: 30px;
+    width: 30px;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 23px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-bottom: 5px;
+    transition: all 0.4s;
+
+}
+.profile-options i{
+    font-size: 15px;
+}
+.profile-options:hover{
+    transform: scale(1.1);
+}
