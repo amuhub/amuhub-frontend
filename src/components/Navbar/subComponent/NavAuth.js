@@ -35,10 +35,12 @@ const NavAuth = ({setHeight}) => {
       </div>
       <div className="nav-links-list-b">
         {/* <Button text='Ask Question' /> */}
-        <div className="profile-div">
-          <div className="profile-img"></div>
-          <p className="username">Hasan Faraz</p>
-        </div>
+        <Link to = "profile">
+          <div className="profile-div">
+            <div className="profile-img"></div>
+            <p className="username">Hasan Faraz</p>
+          </div>
+        </Link>
       </div>
       <label for="check" onClick={navToggle} className="burger_btn">
         <span></span>
