@@ -3,9 +3,15 @@ import NavAuth from "./subComponent/NavAuth";
 import NavNoAuth from "./subComponent/NavNoAuth";
 import cross from "../../assets/navbar/multiply-svgrepo-com.svg"
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { isExpired, decodeToken } from "react-jwt";
+import { useNavigate } from "react-router-dom";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 
 const Navbar = () => {
-  const [auth, setauth] = useState(true);
+  const navigate = useNavigate();
+  const [auth, setauth] = useState(false);
+  const [ usertext, setusertext ] = useState('')
   const [dropDownSearchHeight, setDropDownSearchHeight] = useState(false);
 
   const setHeight = ()=>{
@@ -16,13 +22,30 @@ const Navbar = () => {
     setDropDownSearchHeight(false)
   }
 
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      const decoded_token = decodeToken(token);
+      const is_espired = isExpired(token);
+      if(!decoded_token && is_espired){
+            localStorage.removeItem('token')
+        } else {
+            setauth(true)
+            setusertext(decoded_token.user.username)
+        } 
+    }else{
+      // navigate to login
+      return navigate('/login')
+    }
+  })
+
   return (
     <>
       <nav className="fixed-nav">
         <h1 className="nav_logo">
           amu<span>hub</span>
         </h1>
-        {auth ? <NavAuth setHeight = {setHeight}/> : <NavNoAuth />}
+        {auth ? <NavAuth usertext={usertext} setHeight = {setHeight}/> : <NavNoAuth />}
       </nav>
 
 

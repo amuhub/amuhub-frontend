@@ -49,6 +49,24 @@ a {
     font-size: 13px;
     background-color: #fff;
   }
+
+  form .input-div-error {
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  form .input-div-error p {
+    color: #ff7a7a;
+    display: inline;
+  }
+  
+  form .input-div-error img {
+    width: 20px;
+    height : 20px;
+    display: inline;
+  }
   
   form .input-div {
     position: relative;

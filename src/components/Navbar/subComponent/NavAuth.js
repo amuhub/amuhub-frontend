@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import Button from '../../Button/Button';
 
-const NavAuth = ({setHeight}) => {
+const NavAuth = ({usertext, setHeight}) => {
   const [menu, setmenu] = useState(false);
 
   const navToggle = (e) => {
@@ -38,7 +38,7 @@ const NavAuth = ({setHeight}) => {
         <Link to = "profile">
           <div className="profile-div">
             <div className="profile-img"></div>
-            <p className="username">Hasan Faraz</p>
+            <p className="username">{usertext}</p>
           </div>
         </Link>
       </div>

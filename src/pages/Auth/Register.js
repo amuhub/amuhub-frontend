@@ -1,8 +1,34 @@
 import Title from "../../components/Title/Title";
 import errorIcon from "../../assets/form/icon-error.svg";
 import "./form.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import isAuthenticated from "../../utils/isAuth";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [username, setusername] = useState('')
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+
+  if(isAuthenticated()){
+    window.location.href ='/';
+  }
+
+  async function registerUser(event) {
+      event.preventDefault()
+      const user = { username, email , password }
+      const response = await fetch('http://127.0.0.1:8000/auth/register',{
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user)
+      });
+
+      const data = await response.json()
+      console.log(data)
+      return navigate('/login')
+  }
+  
   return (
     <div className="form-body">
       <div className="form-container-outer">
@@ -16,10 +42,11 @@ const Register = () => {
             />
           </div>
 
-          <form>
+          <form onSubmit={registerUser} >
             <div className="input-div">
               <input
                 type="text"
+                value={username} onChange={(e) => setusername(e.target.value)}
                 placeholder="Username"
                 id="username"
                 name="username"
@@ -28,13 +55,14 @@ const Register = () => {
               <img src={errorIcon} alt="" />
             </div>
             <div className="input-div">
-              <input type="email" placeholder="Email" id="email" name="email" />
+              <input type="email" value={email} onChange={(e) => setemail(e.target.value)} placeholder="Email" id="email" name="email" />
               <p>This is error</p>
               <img src={errorIcon} alt="" />
             </div>
             <div className="input-div">
               <input
                 type="password"
+                value={password} onChange={(e) => setpassword(e.target.value)}
                 placeholder="Password"
                 id="password"
                 name="password"

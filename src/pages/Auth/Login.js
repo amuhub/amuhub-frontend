@@ -1,8 +1,41 @@
 import Title from "../../components/Title/Title";
 import errorIcon from "../../assets/form/icon-error.svg";
 import "./form.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import isAuthenticated from "../../utils/isAuth";
 
 const Login = () => {
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
+  const [error, seterror ] = useState('')
+  const [msg, setmsg] = useState(false)
+  const navigate = useNavigate();
+
+  if(isAuthenticated()){
+    window.location.href ='/';
+  }
+
+  async function loginUser(event) {
+    event.preventDefault()
+    const user = { username , password }
+    const response = await fetch('http://127.0.0.1:8000/auth/login',{
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    });
+
+    const resp = await response.json()
+    if(resp.data.token){
+      localStorage.setItem('token',resp.data.token)
+      window.location.href ='/';
+    } else {
+      setmsg(true);
+      seterror(resp.message)
+    }
+    console.log(resp.data)
+  }
+
   return (
     <div className="form-body">
       <div className="form-container-outer">
@@ -16,26 +49,29 @@ const Login = () => {
             />
           </div>
 
-          <form>
+          <form onSubmit={loginUser}>
+            <div className="input-div-error">
+              {msg && <div><img src={errorIcon} alt="" /><p>{error}</p></div>}
+            </div>
             <div className="input-div">
               <input
                 type="text"
+                value={username} onChange={(e)=>setusername(e.target.value)}
                 placeholder="Username"
                 id="username"
                 name="username"
               />
-              <p>This is error</p>
-              <img src={errorIcon} alt="" />
             </div>
             <div className="input-div">
               <input
                 type="password"
+                value={password} onChange={(e)=>setpassword(e.target.value)}
                 placeholder="Password"
                 id="password"
                 name="password"
               />
-              <p>This is also an error</p>
-              <img src={errorIcon} alt="" />
+              {/* <p>This is also an error</p>
+              <img src={errorIcon} alt="" /> */}
             </div>
             <div className="options">
               <div className="option-list">
