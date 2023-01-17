@@ -29,7 +29,7 @@ const Register = () => {
       const resp = await response.json()
       if(resp.data!=null){
         console.log(resp.data)
-        return navigate('/login')
+        window.location.href ='/login';
       } else {
         setmsg(true);
         seterror(resp.message)
