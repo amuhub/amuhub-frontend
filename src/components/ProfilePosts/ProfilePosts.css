@@ -25,7 +25,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     visibility: hidden;
     transition: all 0.2s;
     cursor: pointer;
@@ -33,7 +33,7 @@
     transition: all 0.1s;
     color: #fff;
     gap: 5px;
-    padding: 0 25 px;
+    padding: 0 25px;
 }
 /* .profile-post-overlay span{
     margin
@@ -42,4 +42,13 @@
     font-size: 18px;
     color: #fff;
     margin: 0 8px;
+}
+
+@media (max-width: 1200px){
+    .profile-post-overlay{
+        text-align: center;
+    }
+    .profile-post-overlay i{
+        display: block;
+    }
 }
