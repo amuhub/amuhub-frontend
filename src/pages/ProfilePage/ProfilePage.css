@@ -1,4 +1,7 @@
-.profile-container .profile-div{
+.profile-container .profile-section{
+    display: flex;
+    align-items: center;
+    gap: 30px;
     margin-bottom: 30px;
     /* flex-grow: 1; */
 
@@ -9,8 +12,8 @@
     height: 120px;
     border-radius: 50%;
     background-color: black;
-    margin-right: 30px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 .profile-img:hover .img-edit-overlay{
     visibility: visible;
@@ -156,4 +159,37 @@
 }
 .profile-options:hover{
     transform: scale(1.1);
+}
+
+@media(max-width: 1200px){
+    .profile-info .profile-name{
+        font-size: 16px;
+    }
+    .profile-img{
+        width: 80px;
+        height: 80px;
+        align-self: start;
+    }
+    .follow-btn{
+        display: block;
+        margin-left: 0;
+        font-size: 12px;
+        width: 100%;
+        max-width: 300px;
+        padding-block: 2px;
+        margin: 5px 0;
+        
+    }
+    .profile-info .info-inner{
+        align-items: start;
+        flex-direction: column;
+    }
+    .location{
+        gap: 5px;
+        align-items: start;
+        flex-direction: column;
+    }
+    .profile-options{
+        margin-top: 0;
+    }
 }

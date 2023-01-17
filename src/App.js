@@ -12,6 +12,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Questions from "./components/Questions";
 import ProfilePosts from "./components/ProfilePosts/ProfilePosts";
+import ProfileAnswer from "./components/ProfileAnswer/ProfileAnswer.js"
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
           <Route path = "/profile" element = {<ProfilePage/>}>
-            <Route path = "answers" element = {<ProfilePage/>}/>
+            <Route path = "answers" element = {<ProfileAnswer/>}/>
             <Route path = "questions" element = {<Questions/>}/>
             <Route path = "posts" element = {<ProfilePosts/>}/>
           </Route>

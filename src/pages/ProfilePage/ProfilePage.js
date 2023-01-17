@@ -18,13 +18,14 @@ const ProfilePage = () => {
     const follow = ()=>{
         setIsFollowed(!isFollowed)
     }
+
     
   return (
     <>
     <div className = "common-container">
         <div className = "grid-container">
             <div className='profile-container'>
-                <div className='profile-div'>
+                <div className='profile-section'>
                     <div className='profile-img'>
                         <img src={profileImg} alt = "xy"/>
                         <div className='img-edit-overlay'>
