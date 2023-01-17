@@ -10,6 +10,8 @@ const Register = () => {
   const [username, setusername] = useState('')
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
+  const [error, seterror ] = useState('')
+  const [msg, setmsg] = useState(false)
 
   if(isAuthenticated()){
     window.location.href ='/';
@@ -24,9 +26,14 @@ const Register = () => {
         body: JSON.stringify(user)
       });
 
-      const data = await response.json()
-      console.log(data)
-      return navigate('/login')
+      const resp = await response.json()
+      if(resp.data!=null){
+        console.log(resp.data)
+        return navigate('/login')
+      } else {
+        setmsg(true);
+        seterror(resp.message)
+      }
   }
   
   return (
@@ -43,6 +50,9 @@ const Register = () => {
           </div>
 
           <form onSubmit={registerUser} >
+            <div className="input-div-error">
+              {msg && <div><img src={errorIcon} alt="" /><p>{error}</p></div>}
+            </div>
             <div className="input-div">
               <input
                 type="text"
@@ -51,13 +61,9 @@ const Register = () => {
                 id="username"
                 name="username"
               />
-              <p>This is error</p>
-              <img src={errorIcon} alt="" />
             </div>
             <div className="input-div">
               <input type="email" value={email} onChange={(e) => setemail(e.target.value)} placeholder="Email" id="email" name="email" />
-              <p>This is error</p>
-              <img src={errorIcon} alt="" />
             </div>
             <div className="input-div">
               <input
@@ -67,8 +73,6 @@ const Register = () => {
                 id="password"
                 name="password"
               />
-              <p>This is also an error</p>
-              <img src={errorIcon} alt="" />
             </div>
             <div className="options">
               <div className="option-list">

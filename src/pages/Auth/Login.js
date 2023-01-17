@@ -2,7 +2,7 @@ import Title from "../../components/Title/Title";
 import errorIcon from "../../assets/form/icon-error.svg";
 import "./form.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
 
 const Login = () => {
@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setpassword] = useState('')
   const [error, seterror ] = useState('')
   const [msg, setmsg] = useState(false)
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   if(isAuthenticated()){
     window.location.href ='/';
@@ -26,14 +26,15 @@ const Login = () => {
     });
 
     const resp = await response.json()
-    if(resp.data.token){
+    if(resp.data!=null){
+      console.log('null nhi hai')
       localStorage.setItem('token',resp.data.token)
       window.location.href ='/';
     } else {
       setmsg(true);
       seterror(resp.message)
     }
-    console.log(resp.data)
+    console.log(resp)
   }
 
   return (

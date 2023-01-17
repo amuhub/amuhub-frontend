@@ -12,7 +12,6 @@ const Hero = () => {
           <p>
             Ask away all your queries and get answers from all around the world.
           </p>
-          <Button text="Register Now" />
         </div>
       </div>
       <img src={require("./images/hero-img.jpg")} alt="" />

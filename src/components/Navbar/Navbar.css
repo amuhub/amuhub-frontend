@@ -209,6 +209,12 @@ nav {
    transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
  
  }
+ .desktop-logout{
+  display: inline-block;
+}
+.mobile-logout{
+  display: none;
+}
  
  
  .burger_btn span:nth-of-type(1){
@@ -226,6 +232,12 @@ nav {
  }
 
 @media (max-width : 1100px){
+  .desktop-logout{
+    display: none;
+  }
+  .mobile-logout{
+    display: inline-block;
+  }
   .nav_logo{
     margin-right: 0;
   }

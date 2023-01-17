@@ -32,10 +32,9 @@ const Navbar = () => {
         } else {
             setauth(true)
             setusertext(decoded_token.user.username)
-        } 
+        }
     }else{
-      // navigate to login
-      return navigate('/login')
+      // nothing
     }
   })
 
