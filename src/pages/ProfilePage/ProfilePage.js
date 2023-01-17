@@ -11,12 +11,16 @@ const ProfilePage = () => {
     const [isFollowed, setIsFollowed] = useState(true)
     const [tags, setTags] = useState(["Css", "Computer Sc.", "Electrical Engineering", "Management Studies"])
     const [formToggler, setFormToggler] = useState(false)
+    const [dropdownToggle, setDropdownToggle] = useState(false)
 
     const formToggle = ()=>{
         setFormToggler(!formToggler)
     }
     const follow = ()=>{
         setIsFollowed(!isFollowed)
+    }
+    const dropdown = ()=>{
+        setDropdownToggle(!dropdownToggle)
     }
 
     
@@ -54,7 +58,19 @@ const ProfilePage = () => {
                         </div> */}
                         
                     </div>
-                    <div className='profile-options'><i class="fas fa-ellipsis-v"></i></div>
+                    <div className = "profile-options-container">
+                    <div className='profile-options' onClick={dropdown}>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                    <ul className = {`drop-down ${dropdownToggle ? 'drop-down-active' : ''}`}>
+                            <li className='drop-down-item'>
+                                Edit
+                            </li>
+                            <li className='drop-down-item'>
+                                Logout
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='profile-links'>
                     <NavLink to = "/profile" className= "links">Profile</NavLink>

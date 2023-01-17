@@ -6,6 +6,8 @@ import News from "../../components/News/News";
 import Button from "../../components/Button/Button";
 import { InfinitySpin } from "react-loader-spinner";
 import "../Feed/Feed.css";
+import { useState } from "react";
+import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 
 const question = [
   {
@@ -46,13 +48,40 @@ const QuestionListPage = () => {
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/home-events?lang=en`
   );
-
+  const [textArea, setTextArea] = useState(true);
+  const [htmlText, setHtmlText] = useState("");
+  
+  const answerBox = () => {
+    setTextArea(!textArea);
+  }; 
+  const richHtml = (text)=>{
+    setHtmlText(text);
+    console.log(htmlText);
+  }
   return (
+
+    
     <div className="common-container">
       <div className="feed-ques-header">
         <h1>Latest Questions</h1>
-        <Button text="Ask a question" />
+        <Button text="Ask a question"/>
       </div>
+
+      <form onSubmit={(e)=>{
+                e.preventDefault();
+                // addAnswer();
+              }
+
+              }
+                className={
+                  textArea ? "answer-form activeAnswerForm" : "answer-form"
+                }
+              >
+                <div class="input-div">
+                  <RichTextEditor onChangeOfEditor = {richHtml}/>
+                </div>
+                <input type="submit" value="Post Answer" className="btn" />
+              </form>
       <div className="grid-container">
         <div className="wrapper">
           {question.map((question) => (
