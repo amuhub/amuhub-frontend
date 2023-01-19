@@ -8,6 +8,7 @@ import isAuthenticated from "../../utils/isAuth";
 const Register = () => {
   const navigate = useNavigate();
   const [username, setusername] = useState('')
+  const [name, setname] = useState('')
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [error, seterror ] = useState('')
@@ -19,7 +20,7 @@ const Register = () => {
 
   async function registerUser(event) {
       event.preventDefault()
-      const user = { username, email , password }
+      const user = { username, name, email , password }
       const response = await fetch('http://127.0.0.1:8000/auth/register',{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -60,6 +61,15 @@ const Register = () => {
                 placeholder="Username"
                 id="username"
                 name="username"
+              />
+            </div>
+            <div className="input-div">
+              <input
+                type="text"
+                value={name} onChange={(e) => setname(e.target.value)}
+                placeholder="Full Name"
+                id="name"
+                name="name"
               />
             </div>
             <div className="input-div">
