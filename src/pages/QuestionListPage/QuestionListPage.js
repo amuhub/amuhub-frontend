@@ -8,6 +8,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import "../Feed/Feed.css";
 import { useState } from "react";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
+import Select from 'react-select'
 
 const question = [
   {
@@ -45,12 +46,19 @@ const question = [
 ];
 
 const QuestionListPage = () => {
+  const options = [
+    { value: 'css', label: 'CSS' },
+    { value: 'electrical-enginnering', label: 'Electrical Engineering' },
+    { value: 'computer-scince', label: 'Computer Sc' },
+    { value: 'management', label: 'Management Studies' }
+    
+  ]
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/home-events?lang=en`
   );
-  const [textArea, setTextArea] = useState(true);
+  const [textArea, setTextArea] = useState(false);
   const [htmlText, setHtmlText] = useState("");
-  
+
   const answerBox = () => {
     setTextArea(!textArea);
   }; 
@@ -64,24 +72,27 @@ const QuestionListPage = () => {
     <div className="common-container">
       <div className="feed-ques-header">
         <h1>Latest Questions</h1>
-        <Button text="Ask a question"/>
+        <Button text="Ask a question" onClick={answerBox}/>
       </div>
 
       <form onSubmit={(e)=>{
-                e.preventDefault();
-                // addAnswer();
-              }
+        e.preventDefault();
+        // addAnswer();
+      }
 
-              }
-                className={
-                  textArea ? "answer-form activeAnswerForm" : "answer-form"
-                }
-              >
-                <div class="input-div">
-                  <RichTextEditor onChangeOfEditor = {richHtml}/>
-                </div>
-                <input type="submit" value="Post Answer" className="btn" />
-              </form>
+      }
+        className={
+          textArea ? "answer-form activeAnswerForm" : "answer-form"
+        }
+      >
+        <div class="input-div">
+          <RichTextEditor onChangeOfEditor = {richHtml}/>
+        </div><div className='form-control'>
+              <Select options={options} isMulti isClearable />
+        </div>
+
+        <input type="submit" value="Post Question" className="btn" />
+      </form>
       <div className="grid-container">
         <div className="wrapper">
           {question.map((question) => (
