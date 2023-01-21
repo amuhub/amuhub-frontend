@@ -26,7 +26,7 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
-          <Route path = "/profile" element = {<ProfilePage/>}>
+          <Route path = "/profile/:username" element = {<ProfilePage/>}>
             <Route path = "answers" element = {<ProfileAnswer/>}/>
             <Route path = "questions" element = {<Questions/>}/>
             <Route path = "posts" element = {<ProfilePosts/>}/>
