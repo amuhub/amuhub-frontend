@@ -51,7 +51,7 @@ const NavAuth = ({usertext, setHeight}) => {
       </div>
       <div className="nav-links-list-b">
         {/* <Button text='Ask Question' /> */}
-        <Link to = "profile">
+        <Link to = {`profile/${usertext}`}>
           <div className="profile-div">
             <div className="profile-img"></div>
             <p className="username">{usertext}</p>

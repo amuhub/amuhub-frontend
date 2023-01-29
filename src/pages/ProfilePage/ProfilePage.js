@@ -44,7 +44,7 @@ const ProfilePage = () => {
                     </div>
                     <div className='profile-info'>
                         <div className='info-inner'>
-                            <p className='profile-name'>{data.data.name}</p>
+                            <p className='profile-name'>{data.data.username}</p>
                             <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
                                 {isFollowed ? 'Unfollow' : 'Follow'}
                             </Link>

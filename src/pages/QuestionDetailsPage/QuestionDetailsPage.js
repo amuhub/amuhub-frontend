@@ -8,7 +8,9 @@ import { InfinitySpin } from "react-loader-spinner";
 import "./QuestionDetailsPage.css";
 import { Link } from "react-router-dom";
 
+
 const Answers = () => {
+
   const answerBox = () => {
     setTextArea(!textArea);
   };
@@ -30,6 +32,7 @@ const Answers = () => {
   }
 
   const [htmlText, setHtmlText] = useState("");
+  
   const [answerList, setAnswerList] = useState([
     {
       id : 1,
@@ -48,10 +51,14 @@ const Answers = () => {
 
 
   const [textArea, setTextArea] = useState(false);
+  
   const { id } = useParams();
+
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/home-events?lang=en`
   );
+
+  
 
   return (
     <div className="common-container">
@@ -103,12 +110,7 @@ const Answers = () => {
                   Answer
                 </Link>
               </div>
-              <form onSubmit={(e)=>{
-                e.preventDefault();
-                addAnswer();
-              }
-
-              }
+              <form onSubmit={addAnswer}
                 className={
                   textArea ? "answer-form activeAnswerForm" : "answer-form"
                 }
