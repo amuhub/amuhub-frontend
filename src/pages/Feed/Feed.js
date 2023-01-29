@@ -1,5 +1,5 @@
 import { React } from "react";
-import useFetch from "../../utils/useFetch";
+import { useFetch, useFetchToken } from "../../utils/useFetch";
 import Post from "../../components/Post/Post";
 import News from "../../components/News/News";
 import Button from "../../components/Button/Button";

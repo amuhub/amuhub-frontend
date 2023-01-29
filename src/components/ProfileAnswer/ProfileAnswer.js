@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import useFetch from '../../utils/useFetch';
+import { useFetch, useFetchToken } from "../../utils/useFetch";
 import { InfinitySpin } from "react-loader-spinner";
 import QuesAns from './QuesAns';
 
