@@ -3,18 +3,23 @@ import './ProfilePage.css'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import Tag from '../../components/Tag/Tag'
 import ProfileEditForm from '../../components/ProfileEditForm/ProfileEditForm'
-import profileImg from '../Post_Overlay/images/img.png' 
+import profileImg from '../Post_Overlay/images/img.png'
+import SocialOverlay from '../../components/SocialOverlay/SocialOverlay' 
 import { useParams } from 'react-router-dom'
 import { useFetch, useFetchToken } from "../../utils/useFetch.js";
 import { InfinitySpin } from "react-loader-spinner";
+import { decodeToken } from 'react-jwt'
  
 
 const ProfilePage = () => {
+    const token = localStorage.getItem('token')
     const {username} = useParams();
     const [isFollowed, setIsFollowed] = useState(true)
     const [tags, setTags] = useState(["Css", "Computer Sc.", "Electrical Engineering", "Management Studies"])
     const [formToggler, setFormToggler] = useState(false)
     const [dropdownToggle, setDropdownToggle] = useState(false)
+    const [socialToggler, setSocialToggler] = useState(false)
+    const [overlayId, setOverlayId] = useState("")
 
     const formToggle = ()=>{
         setFormToggler(!formToggler)
@@ -25,9 +30,20 @@ const ProfilePage = () => {
     const dropdown = ()=>{
         setDropdownToggle(!dropdownToggle)
     }
+    const socialToggle = (e)=>{
+        e.preventDefault()
+        setOverlayId(e.currentTarget.id)
+        console.log(e.currentTarget.id);
+        setSocialToggler(true);
+    }
 
     const { data, pending, error } = useFetch("http://localhost:8000/profile/" + username);
     console.log(data)
+
+    // extracting username from token
+    // if(token){
+    //     const decoded_token = decodeToken(token);
+    // }
 
     return (
     <>
@@ -42,33 +58,40 @@ const ProfilePage = () => {
                             <i className="far fa-edit"></i>
                         </div>
                     </div>
-                    <div className='profile-info'>
-                        <div className='info-inner'>
-                            <p className='profile-name'>{data.data.username}</p>
-                            <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
-                                {isFollowed ? 'Unfollow' : 'Follow'}
+                    <div className='profile-info-container'>
+                        <div className='profile-info'>
+                            <div className='info-inner'>
+                                <p className='profile-name'>{data.data.username}</p>
+                                <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
+                                    {isFollowed ? 'Unfollow' : 'Follow'}
+                                </Link>
+                            </div>
+                            
+                            <p className='bio'>{data.data.bio}</p>
+                            <div className='location'>
+                                <p><i class="fas fa-map-marker-alt"></i>{data.data.location}</p>
+                                <p><i class="fas fa-graduation-cap"></i>{data.data.department}</p>
+                            </div> 
+                        </div>
+                        <div className='stats'>
+                            <Link to = "" id = "followers" onClick = {socialToggle}>
+                                <div className='stats-item' >
+                                    {data.data.follower.length}<span>followers</span>
+                                </div>
+                            </Link> 
+                            <Link to = "" id = "following" onClick = {socialToggle}>
+                                <div className='stats-item'>
+                                {data.data.following.length}<span>following</span>
+                                </div>
                             </Link>
                         </div>
-                        
-                        <p className='bio'>{data.data.bio}</p>
-                        {/* add location icon with location */}
-                        <div className='location'>
-                            <p><i class="fas fa-map-marker-alt"></i>{data.data.location}</p>
-                            <p><i class="fas fa-graduation-cap"></i>{data.data.department}</p>
-                        </div>
-                        
-                        
-                        {/* <div className='profile-stats'>
-                            <p className='followers'><span>0</span>followers</p>
-                            <p className='following'><span>0</span>following</p>
-                        </div> */}
-                        
                     </div>
+                    
                     <div className = "profile-options-container">
-                    <div className='profile-options' onClick={dropdown}>
-                        <i class="fas fa-ellipsis-v"></i>
-                    </div>
-                    <ul className = {`drop-down ${dropdownToggle ? 'drop-down-active' : ''}`}>
+                        <div className='profile-options' onClick={dropdown}>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                        <ul className = {`drop-down ${dropdownToggle ? 'drop-down-active' : ''}`}>
                             <li className='drop-down-item'>
                                 Edit
                             </li>
@@ -79,7 +102,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 <div className='profile-links'>
-                    <NavLink to = "/profile" className= "links">Profile</NavLink>
+                    {/* <NavLink to = "/profile" className= "links">Profile</NavLink> */}
                     <NavLink to = "answers" className= "links">Answers</NavLink>
                     <NavLink to = "questions" className= "links">Questions</NavLink>
                     <NavLink to = "posts" className= "links">Posts</NavLink>
@@ -104,7 +127,17 @@ const ProfilePage = () => {
             </div>}
         </div>
     </div>
-    {formToggler && <ProfileEditForm onClick = {formToggle}/>}
+    {formToggler && <ProfileEditForm 
+                    onClick = {formToggle} 
+                    usernameProp = {username}
+                    loc = {data.data.location}
+                    dept = {data.data.department}
+                    desc = {data.data.bio}/>}
+    {socialToggler && <SocialOverlay 
+                        setSocialToggler={setSocialToggler} 
+                        overlayID = {overlayId}
+                        following = {data.data.following}
+                        followers = {data.data.follower}/>}
     </>
   )
 }
