@@ -5,7 +5,7 @@ import Tag from '../../components/Tag/Tag'
 import ProfileEditForm from '../../components/ProfileEditForm/ProfileEditForm'
 import profileImg from '../Post_Overlay/images/img.png' 
 import { useParams } from 'react-router-dom'
-import useFetch from "../../utils/useFetch.js";
+import { useFetch, useFetchToken } from "../../utils/useFetch.js";
 import { InfinitySpin } from "react-loader-spinner";
  
 
@@ -109,4 +109,4 @@ const ProfilePage = () => {
   )
 }
 
-export default ProfilePage
+export default ProfilePage;

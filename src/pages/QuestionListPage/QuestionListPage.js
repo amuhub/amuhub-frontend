@@ -1,12 +1,13 @@
 import { React } from "react";
 // import Wrapper from '../../components/Wrapper/Wrapper'
-import useFetch from "../../utils/useFetch";
+import { useFetch, useFetchToken } from "../../utils/useFetch";
 import Question from "../../components/Question/Question";
 import News from "../../components/News/News";
 import Button from "../../components/Button/Button";
 import { InfinitySpin } from "react-loader-spinner";
 import "../Feed/Feed.css";
 import { useState } from "react";
+import postToken from "../../utils/postToken";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 import Select from 'react-select'
 
@@ -46,13 +47,34 @@ const question = [
 ];
 
 const QuestionListPage = () => {
-  const options = [
-    { value: 'css', label: 'CSS' },
-    { value: 'electrical-enginnering', label: 'Electrical Engineering' },
-    { value: 'computer-scince', label: 'Computer Sc' },
-    { value: 'management', label: 'Management Studies' }
-    
-  ]
+
+  const token = localStorage.getItem("token");
+  const { data : tagdata, pending: tagpending, error : tagerror } = useFetchToken("http://127.0.0.1:8000/tag", token);
+  // console.log(tagdata);
+
+  const [ tags, setTags ] = useState();
+  var options = [];
+  if(!tagpending){
+    tagdata.data.map((tag)=>{
+      options.push({value: tag._id, label: tag.name})
+    })
+    // console.log(options);
+  }
+
+  var options_map = {};
+  options.forEach(function (item) {
+    options_map[item.label] = item.value;
+  });
+
+
+  const handleSelect = (e)=>{
+    var id = options_map[e.label];
+    setTags(id);
+  }
+
+  console.log(tags);
+  // console.log(options_map);
+  
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/home-events?lang=en`
   );
@@ -66,6 +88,22 @@ const QuestionListPage = () => {
     setHtmlText(text);
     console.log(htmlText);
   }
+
+  const submitQues = (e) => {
+    e.preventDefault();
+    const body = {
+      ques: htmlText,
+      tag: tags
+    }
+
+    const res = postToken("http://127.0.0.1:8000/question", body, token);
+    if(res){
+      window.location.reload();
+    } else {
+      console.log("error");
+    }
+  }
+
   return (
 
     
@@ -75,12 +113,7 @@ const QuestionListPage = () => {
         <Button text="Ask a question" onClick={answerBox}/>
       </div>
 
-      <form onSubmit={(e)=>{
-        e.preventDefault();
-        // addAnswer();
-      }
-
-      }
+      <form onSubmit={submitQues}
         className={
           textArea ? "answer-form activeAnswerForm" : "answer-form"
         }
@@ -88,7 +121,7 @@ const QuestionListPage = () => {
         <div class="input-div">
           <RichTextEditor onChangeOfEditor = {richHtml}/>
         </div><div className='form-control'>
-              <Select options={options} isMulti isClearable />
+              <Select options={options} isClearable onChange={handleSelect}/>
         </div>
 
         <input type="submit" value="Post Question" className="btn" />

@@ -1,7 +1,7 @@
 import News from "../../components/News/News";
 import Answer from "../../components/Answer/Answer";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor"
-import useFetch from "../../utils/useFetch";
+import { useFetch, useFetchToken } from "../../utils/useFetch";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
