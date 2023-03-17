@@ -9,9 +9,9 @@ const QuesAns = ({answerItem}) => {
       <p className="question">{answerItem.question.ques}</p>
       <div className="question-header">
 
-      {/* <div  dangerouslySetInnerHTML={{__html : data.answerText}}></div> */}
-          <div>
-            {answerItem.text}  
+      
+          <div dangerouslySetInnerHTML={{__html:answerItem.text}}>
+             
           </div>
           <div className="author-details">
               <div className="profile-div">

@@ -50,7 +50,7 @@ const ProfileEditForm = ({tags, setTags, onClick, usernameProp, loc, dept, desc}
               <Select options={options} isMulti isClearable/>
             </div>
             
-            <input type='sumit' value="Save Changes" className = "btn btn-block"/>
+            <input type='submit' value="Save Changes" className = "btn btn-block"/>
         </form>
     </div>
   )

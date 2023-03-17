@@ -1,8 +1,14 @@
 import React from 'react'
 import './ProfilePosts.css'
+import { useParams } from 'react-router-dom'
 import postImg from '../Post/img.png'
+import { useFetch } from '../../utils/useFetch'
 
 const ProfilePosts = () => {
+    const {username} = useParams()
+    const {data, pending, error} = useFetch("http://localhost:8000/profile/" + username + "/posts")
+    console.log(data);
+    
   return (
     <div className = "post-grid">
         <div className='profile-post-container'>
