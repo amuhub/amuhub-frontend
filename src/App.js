@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Questions from "./components/Questions";
 import ProfilePosts from "./components/ProfilePosts/ProfilePosts";
 import ProfileAnswer from "./components/ProfileAnswer/ProfileAnswer.js"
+import ProfileQuestion from "./components/ProfileQuestion/ProfileQuestion";
 
 function App() {
   return (
@@ -27,8 +28,8 @@ function App() {
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
           <Route path = "/profile/:username" element = {<ProfilePage/>}>
-            <Route path = "answers" element = {<ProfileAnswer/>}/>
-            <Route path = "questions" element = {<Questions/>}/>
+            <Route index path = "answers" element = {<ProfileAnswer/>}/>
+            <Route path = "questions" element = {<ProfileQuestion/>}/>
             <Route path = "posts" element = {<ProfilePosts/>}/>
           </Route>
         </Routes>

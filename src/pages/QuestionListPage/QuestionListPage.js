@@ -70,9 +70,10 @@ const QuestionListPage = () => {
   const handleSelect = (e)=>{
     var id = options_map[e.label];
     setTags(id);
+    console.log(tags);
   }
 
-  console.log(tags);
+  
   // console.log(options_map);
   
   const { data, pending, error } = useFetch(
@@ -118,10 +119,11 @@ const QuestionListPage = () => {
           textArea ? "answer-form activeAnswerForm" : "answer-form"
         }
       >
+        <div className='form-control'>
+              <Select options={options} isClearable onChange={handleSelect}/>
+        </div>
         <div class="input-div">
           <RichTextEditor onChangeOfEditor = {richHtml}/>
-        </div><div className='form-control'>
-              <Select options={options} isClearable onChange={handleSelect}/>
         </div>
 
         <input type="submit" value="Post Question" className="btn" />
