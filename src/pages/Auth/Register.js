@@ -4,39 +4,40 @@ import "./form.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
+import baseUrl from "../../utils/constants";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [username, setusername] = useState('')
-  const [name, setname] = useState('')
-  const [email, setemail] = useState('')
-  const [password, setpassword] = useState('')
-  const [error, seterror ] = useState('')
-  const [msg, setmsg] = useState(false)
+  const [username, setusername] = useState("");
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [error, seterror] = useState("");
+  const [msg, setmsg] = useState(false);
 
-  if(isAuthenticated()){
-    window.location.href ='/';
+  if (isAuthenticated()) {
+    window.location.href = "/";
   }
 
   async function registerUser(event) {
-      event.preventDefault()
-      const user = { username, name, email , password }
-      const response = await fetch('http://127.0.0.1:8000/auth/register',{
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user)
-      });
+    event.preventDefault();
+    const user = { username, name, email, password };
+    const response = await fetch(`${baseUrl}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
 
-      const resp = await response.json()
-      if(resp.data!=null){
-        console.log(resp.data)
-        window.location.href ='/login';
-      } else {
-        setmsg(true);
-        seterror(resp.message)
-      }
+    const resp = await response.json();
+    if (resp.data != null) {
+      console.log(resp.data);
+      window.location.href = "/login";
+    } else {
+      setmsg(true);
+      seterror(resp.message);
+    }
   }
-  
+
   return (
     <div className="form-body">
       <div className="form-container-outer">
@@ -50,14 +51,20 @@ const Register = () => {
             />
           </div>
 
-          <form onSubmit={registerUser} >
+          <form onSubmit={registerUser}>
             <div className="input-div-error">
-              {msg && <div><img src={errorIcon} alt="" /><p>{error}</p></div>}
+              {msg && (
+                <div>
+                  <img src={errorIcon} alt="" />
+                  <p>{error}</p>
+                </div>
+              )}
             </div>
             <div className="input-div">
               <input
                 type="text"
-                value={username} onChange={(e) => setusername(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 placeholder="Username"
                 id="username"
                 name="username"
@@ -66,19 +73,28 @@ const Register = () => {
             <div className="input-div">
               <input
                 type="text"
-                value={name} onChange={(e) => setname(e.target.value)}
+                value={name}
+                onChange={(e) => setname(e.target.value)}
                 placeholder="Full Name"
                 id="name"
                 name="name"
               />
             </div>
             <div className="input-div">
-              <input type="email" value={email} onChange={(e) => setemail(e.target.value)} placeholder="Email" id="email" name="email" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                placeholder="Email"
+                id="email"
+                name="email"
+              />
             </div>
             <div className="input-div">
               <input
                 type="password"
-                value={password} onChange={(e) => setpassword(e.target.value)}
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
                 placeholder="Password"
                 id="password"
                 name="password"

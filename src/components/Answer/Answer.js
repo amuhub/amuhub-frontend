@@ -1,6 +1,6 @@
 import "./Answer.css";
 
-const Answer = ({data}) => {
+const Answer = ({ data }) => {
   return (
     <div className="ques-container">
       <div className="upvote-downvote-panel">
@@ -29,7 +29,7 @@ const Answer = ({data}) => {
         </button>
       </div>
       <div className="question-header">
-        <div  dangerouslySetInnerHTML={{__html : data.answerText}}></div>
+        <div dangerouslySetInnerHTML={{ __html: data.answerText }}></div>
         <div className="author-details">
           <div className="profile-div">
             <div className="profile-img"></div>

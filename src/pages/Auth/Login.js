@@ -4,37 +4,38 @@ import "./form.css";
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
+import baseUrl from "../../utils/constants";
 
 const Login = () => {
-  const [username, setusername] = useState('')
-  const [password, setpassword] = useState('')
-  const [error, seterror ] = useState('')
-  const [msg, setmsg] = useState(false)
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const [error, seterror] = useState("");
+  const [msg, setmsg] = useState(false);
   // const navigate = useNavigate();
 
-  if(isAuthenticated()){
-    window.location.href ='/';
+  if (isAuthenticated()) {
+    window.location.href = "/";
   }
 
   async function loginUser(event) {
-    event.preventDefault()
-    const user = { username , password }
-    const response = await fetch('http://127.0.0.1:8000/auth/login',{
-      method: 'POST',
+    event.preventDefault();
+    const user = { username, password };
+    const response = await fetch(`${baseUrl}/auth/login`, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     });
 
-    const resp = await response.json()
-    if(resp.data!=null){
-      console.log('null nhi hai')
-      localStorage.setItem('token',resp.data.token)
-      window.location.href ='/';
+    const resp = await response.json();
+    if (resp.data != null) {
+      console.log("null nhi hai");
+      localStorage.setItem("token", resp.data.token);
+      window.location.href = "/";
     } else {
       setmsg(true);
-      seterror(resp.message)
+      seterror(resp.message);
     }
-    console.log(resp)
+    console.log(resp);
   }
 
   return (
@@ -52,12 +53,18 @@ const Login = () => {
 
           <form onSubmit={loginUser}>
             <div className="input-div-error">
-              {msg && <div><img src={errorIcon} alt="" /><p>{error}</p></div>}
+              {msg && (
+                <div>
+                  <img src={errorIcon} alt="" />
+                  <p>{error}</p>
+                </div>
+              )}
             </div>
             <div className="input-div">
               <input
                 type="text"
-                value={username} onChange={(e)=>setusername(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 placeholder="Username"
                 id="username"
                 name="username"
@@ -66,7 +73,8 @@ const Login = () => {
             <div className="input-div">
               <input
                 type="password"
-                value={password} onChange={(e)=>setpassword(e.target.value)}
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
                 placeholder="Password"
                 id="password"
                 name="password"

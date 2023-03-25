@@ -10,11 +10,11 @@
     border-bottom: none;
 } */
 
-.tag{
-    display: inline-block;
-    background-color: #d8dee9;
-    padding: 4px 15px;
-    border-radius: 50px;
-    color: black;
-    font-size: 13px;
+.tag {
+  display: inline-block;
+  background-color: #d8dee9;
+  padding: 4px 15px;
+  border-radius: 50px;
+  color: black;
+  font-size: 13px;
 }
