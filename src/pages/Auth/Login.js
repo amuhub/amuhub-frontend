@@ -4,6 +4,7 @@ import "./form.css";
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
+import baseUrl from "../../utils/constants";
 
 const Login = () => {
   const [username, setusername] = useState('')
@@ -19,7 +20,7 @@ const Login = () => {
   async function loginUser(event) {
     event.preventDefault()
     const user = { username , password }
-    const response = await fetch('http://127.0.0.1:8000/auth/login',{
+    const response = await fetch(`${baseUrl}/auth/login`,{
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)

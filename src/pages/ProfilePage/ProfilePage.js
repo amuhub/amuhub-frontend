@@ -9,6 +9,10 @@ import { useParams } from 'react-router-dom'
 import { useFetch, useFetchToken } from "../../utils/useFetch.js";
 import { InfinitySpin } from "react-loader-spinner";
 import { decodeToken } from 'react-jwt'
+import baseUrl from '../../utils/constants'
+import ProfileImgOverlay from '../../components/ProfileImgOverlay/ProfileImgOverlay'
+import isAuthenticated from '../../utils/isAuth'
+
  
 
 const ProfilePage = () => {
@@ -17,9 +21,13 @@ const ProfilePage = () => {
     const [isFollowed, setIsFollowed] = useState(true)
     const [tags, setTags] = useState(["Css", "Computer Sc.", "Electrical Engineering", "Management Studies"])
     const [formToggler, setFormToggler] = useState(false)
-    const [dropdownToggle, setDropdownToggle] = useState(false)
+    // const [dropdownToggle, setDropdownToggle] = useState(false)
     const [socialToggler, setSocialToggler] = useState(false)
     const [overlayId, setOverlayId] = useState("")
+    const [changePicOverlay, setChangePicOverlay] = useState(false);
+    const isLoggedInUser = isAuthenticated() === username;
+
+    
 
     const formToggle = ()=>{
         setFormToggler(!formToggler)
@@ -27,9 +35,9 @@ const ProfilePage = () => {
     const follow = ()=>{
         setIsFollowed(!isFollowed)
     }
-    const dropdown = ()=>{
-        setDropdownToggle(!dropdownToggle)
-    }
+    // const dropdown = ()=>{
+    //     setDropdownToggle(!dropdownToggle)
+    // }
     const socialToggle = (e)=>{
         e.preventDefault()
         setOverlayId(e.currentTarget.id)
@@ -37,13 +45,10 @@ const ProfilePage = () => {
         setSocialToggler(true);
     }
 
-    const { data, pending, error } = useFetch("http://localhost:8000/profile/" + username);
+    const { data, pending, error } = useFetch(`${baseUrl}/profile/` + username);
     console.log(data)
 
-    // extracting username from token
-    // if(token){
-    //     const decoded_token = decodeToken(token);
-    // }
+    
 
     return (
     <>
@@ -54,7 +59,7 @@ const ProfilePage = () => {
                 <div className='profile-section'>
                     <div className='profile-img'>
                         <img src={data.data.pic} alt = "xy"/>
-                        <div className='img-edit-overlay'>
+                        <div className='img-edit-overlay' onClick={()=> setChangePicOverlay(true)}>
                             <i className="far fa-edit"></i>
                         </div>
                     </div>
@@ -62,8 +67,11 @@ const ProfilePage = () => {
                         <div className='profile-info'>
                             <div className='info-inner'>
                                 <p className='profile-name'>{data.data.username}</p>
-                                {!(username == data._id) && <Link to='#' className = {`btn follow-btn ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
+                                {!isLoggedInUser && <Link to='#' className = {`btn-sec ${isFollowed ? 'followed' : ''}`} onClick = {follow}>
                                     {isFollowed ? 'Unfollow' : 'Follow'}
+                                </Link>}
+                                {isLoggedInUser && <Link to='#' className = {`btn btn-sec`} onClick = {formToggle}>
+                                    Edit Profile
                                 </Link>}
                             </div>
                             
@@ -86,8 +94,10 @@ const ProfilePage = () => {
                             </Link>
                         </div>
                     </div>
+
+                    {/* Dropdown menu  */}
                     
-                    <div className = "profile-options-container">
+                    {/* <div className = "profile-options-container">
                         <div className='profile-options' onClick={dropdown}>
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
@@ -99,7 +109,7 @@ const ProfilePage = () => {
                                 Logout
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='profile-links'>
                     {/* <NavLink to = "/profile" className= "links">Profile</NavLink> */}
@@ -138,6 +148,7 @@ const ProfilePage = () => {
                         overlayID = {overlayId}
                         following = {data.data.following}
                         followers = {data.data.follower}/>}
+    {changePicOverlay && <ProfileImgOverlay setChangePicOverlay = {setChangePicOverlay}/>}
     </>
   )
 }

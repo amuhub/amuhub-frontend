@@ -10,7 +10,7 @@ const isAuthenticated = () => {
             localStorage.removeItem('token')
             return false
         } else {
-            return true
+            return decoded_token.user.username
         }
     }else{
         return false

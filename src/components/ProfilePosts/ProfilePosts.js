@@ -3,10 +3,11 @@ import './ProfilePosts.css'
 import { useParams } from 'react-router-dom'
 import postImg from '../Post/img.png'
 import { useFetch } from '../../utils/useFetch'
+import baseUrl from '../../utils/constants'
 
 const ProfilePosts = () => {
     const {username} = useParams()
-    const {data, pending, error} = useFetch("http://localhost:8000/profile/" + username + "/posts")
+    const {data, pending, error} = useFetch(`${baseUrl}/profile/` + username + "/posts")
     console.log(data);
     
   return (

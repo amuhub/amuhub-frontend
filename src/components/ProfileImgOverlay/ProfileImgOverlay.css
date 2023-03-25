@@ -1,0 +1,83 @@
+.profile-img-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-content: center;
+}
+.profile-pic-form{
+    max-width: 500px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#inputFile{
+    display: none;
+}
+
+.crop-btns label{
+    text-transform: capitalize;
+    padding: 8px 16px;
+    background-color: blue;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.ReactCrop__image{
+    width: 100%;
+
+}
+
+.btn{
+    text-transform: capitalize;
+    padding: 5px 22px;
+    background-color: blue;
+    border-radius: 4px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    }
+
+.crop-btns{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.selected-image{
+    width: 400px;
+    height: 250px;
+    background-color: aliceblue;
+    object-fit: cover;
+}
+.generated-profile-pic{
+    display: flex;
+    justify-content: center;
+}
+.generated-profile-pic > *{
+    margin: 20px 0;
+}
+
+.save-btn{
+    display: block;
+    background-color: #28a745;
+    margin: 0 auto;
+}
+  

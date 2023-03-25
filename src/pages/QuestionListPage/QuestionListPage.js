@@ -10,6 +10,7 @@ import { useState } from "react";
 import postToken from "../../utils/postToken";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 import Select from 'react-select'
+import baseUrl from "../../utils/constants";
 
 const question = [
   {
@@ -49,7 +50,7 @@ const question = [
 const QuestionListPage = () => {
 
   const token = localStorage.getItem("token");
-  const { data : tagdata, pending: tagpending, error : tagerror } = useFetchToken("http://127.0.0.1:8000/tag", token);
+  const { data : tagdata, pending: tagpending, error : tagerror } = useFetchToken(`${baseUrl}/tag`, token);
   // console.log(tagdata);
 
   const [ tags, setTags ] = useState();
@@ -58,20 +59,19 @@ const QuestionListPage = () => {
     tagdata.data.map((tag)=>{
       options.push({value: tag._id, label: tag.name})
     })
-    // console.log(options);
+    console.log(options);
   }
 
-  var options_map = {};
-  options.forEach(function (item) {
-    options_map[item.label] = item.value;
-  });
+  // var options_map = {};
+  // options.forEach(function (item) {
+  //   options_map[item.label] = item.value;
+  // });
 
 
-  const handleSelect = (e)=>{
-    var id = options_map[e.label];
-    setTags(id);
+  const handleSelect = (selectedOption) => {
+    setTags(selectedOption?.value);
     console.log(tags);
-  }
+  };
 
   
   // console.log(options_map);
@@ -97,7 +97,7 @@ const QuestionListPage = () => {
       tag: tags
     }
 
-    const res = postToken("http://127.0.0.1:8000/question", body, token);
+    const res = postToken("/question", body, token);
     if(res){
       window.location.reload();
     } else {

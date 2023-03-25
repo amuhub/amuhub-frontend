@@ -4,6 +4,7 @@ import "./form.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
+import baseUrl from "../../utils/constants";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Register = () => {
   async function registerUser(event) {
       event.preventDefault()
       const user = { username, name, email , password }
-      const response = await fetch('http://127.0.0.1:8000/auth/register',{
+      const response = await fetch(`${baseUrl}/auth/register`,{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)

@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useFetch, useFetchToken } from "../../utils/useFetch";
 import { InfinitySpin } from "react-loader-spinner";
 import QuesAns from './QuesAns';
+import baseUrl from '../../utils/constants';
 
 
 
 const ProfileAnswer = () => {
   const {username} = useParams();
-  const { data, pending, error } = useFetch("http://localhost:8000/profile/" + username + "/answers");
+  const { data, pending, error } = useFetch(`${baseUrl}/profile/` + username + "/answers");
   console.log(data)
 
 
