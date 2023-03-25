@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
 import isAuthenticated from "../../../utils/isAuth";
 import { useNavigate } from "react-router-dom";
+import { useFetchToken } from "../../../utils/useFetch";
+import baseUrl from "../../../utils/constants";
 // import Button from '../../Button/Button';
 
 const NavAuth = ({usertext, setHeight}) => {
@@ -12,6 +14,15 @@ const NavAuth = ({usertext, setHeight}) => {
   const navToggle = (e) => {
     setmenu(!menu);
   };
+
+  const token = localStorage.getItem("token");
+  console.log(`${baseUrl}/profile/${usertext}`);
+  console.log(token);
+  const { data, pending, error } = useFetchToken(`${baseUrl}/profile/${usertext}`, token);
+  console.log("ye wala",data);
+  // if(!data.data){
+  //   console.log("Error fetching data")
+  // }
 
   const logoutUser = () => {
     if(isAuthenticated()){
@@ -53,7 +64,7 @@ const NavAuth = ({usertext, setHeight}) => {
         {/* <Button text='Ask Question' /> */}
         <Link to = {`profile/${usertext}`}>
           <div className="profile-div">
-            <div className="profile-img"></div>
+            <div className="profile-img">{!pending && !error && data.data && <img src={data.data.pic}></img>}</div>
             <p className="username">{usertext}</p>
           </div>
         </Link>

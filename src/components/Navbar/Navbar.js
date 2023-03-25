@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import { useNavigate } from "react-router-dom";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 
 const Navbar = () => {
   const navigate = useNavigate();

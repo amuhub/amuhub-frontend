@@ -15,7 +15,7 @@ const Ques = (props) => {
               Asked On: <span className="timestamp">{`${month_name} ${day_num}, ${year}`}</span>
             </p>
             <p>
-              Tags : <span className="tags">{tag}</span>
+              Tags : <span className="tags">{tag.name}</span>
             </p>
           </div>
           <p className="question" dangerouslySetInnerHTML={{__html:ques}}></p>

@@ -148,7 +148,7 @@ const ProfilePage = () => {
                         overlayID = {overlayId}
                         following = {data.data.following}
                         followers = {data.data.follower}/>}
-    {changePicOverlay && <ProfileImgOverlay setChangePicOverlay = {setChangePicOverlay}/>}
+    {changePicOverlay && <ProfileImgOverlay setChangePicOverlay = {setChangePicOverlay} username={username}/>}
     </>
   )
 }

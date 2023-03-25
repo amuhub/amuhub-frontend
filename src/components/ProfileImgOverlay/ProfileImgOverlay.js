@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './ProfileImgOverlay.css'
+import uploadImageCloudinary from '../../utils/third_party_services/cloudinary';
+import baseUrl from '../../utils/constants';
 
   
-function ProfileImgOverlay({setChangePicOverlay}) {
+function ProfileImgOverlay({setChangePicOverlay, username}) {
   const [src, setSrc] = useState(null);
   const [crop, setCrop] = useState({ aspect: 1 });
   const [image, setImage] = useState(null);
@@ -80,18 +82,13 @@ function ProfileImgOverlay({setChangePicOverlay}) {
 
   const saveChanges = async () => {
     setChangePicOverlay(false);
-    // Upload image to Cloudinary
-    const data = new FormData();
-    data.append('file', fileitem);
-    data.append('upload_preset', 'b4h2nbgm'); // replace with your own upload preset name
-    const response = await fetch('https://api.cloudinary.com/v1_1/dtt5pe9sl/image/upload', {
-      method: 'POST',
-      body: data,
-    });
-    const result = await response.json();
-    console.log(result);
+    const result = await uploadImageCloudinary(fileitem);
+    if (!result && !result.secure_url) {
+      console.log('Error uploading image to Cloudinary');
+      return;
+    }
     try {
-      const response = await fetch('http://localhost:8000/profile/photo/', {
+      const response = await fetch(`${baseUrl}/profile/photo/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +97,9 @@ function ProfileImgOverlay({setChangePicOverlay}) {
         body: JSON.stringify({ path: result.secure_url }), // send Cloudinary URL as JSON data
       });
       const data = await response.json();
-      console.log(data);
+      if(response.ok) {
+        window.location.href =`/profile/${username}`
+      }
     } catch (error) {
       console.error(error);
     }

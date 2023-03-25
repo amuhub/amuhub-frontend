@@ -8,8 +8,8 @@ import baseUrl from '../../utils/constants';
 
 const ProfileQuestion = () => {
   const {username} = useParams();
-  const { data, pending, error } = useFetch(`${baseUrl}/profile/username/questions`);
-  console.log(data)
+  const { data, pending, error } = useFetch(`${baseUrl}/profile/${username}/questions`);
+  console.log(data);
 
   return (
       <div>
