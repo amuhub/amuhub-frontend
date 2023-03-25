@@ -16,13 +16,19 @@ const NavNoAuth = (props) => {
           <i className="fa fa-times" aria-hidden="true" onClick={navToggle}></i>
           <ul>
             <li>
-              <Link to="/" onClick={navToggle}>Home</Link>
+              <Link to="/" onClick={navToggle}>
+                Home
+              </Link>
             </li>
             <li>
-              <a href="#about-us" onClick={navToggle}>about</a>
+              <a href="#about-us" onClick={navToggle}>
+                about
+              </a>
             </li>
             <li>
-              <a href="#contact" onClick={navToggle}>contact</a>
+              <a href="#contact" onClick={navToggle}>
+                contact
+              </a>
             </li>
           </ul>
         </div>
@@ -32,7 +38,9 @@ const NavNoAuth = (props) => {
           <Link to="/login">Sign In</Link>
         </li>
         <li>
-          <Link to="/register" className="btn">Sign Up</Link>
+          <Link to="/register" className="btn">
+            Sign Up
+          </Link>
         </li>
       </ul>
       <label for="check" onClick={navToggle} className="burger_btn">

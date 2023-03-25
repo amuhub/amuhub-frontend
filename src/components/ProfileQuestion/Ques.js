@@ -3,8 +3,9 @@ import { fetchDate } from "../../utils/parseDate";
 import { Link } from "react-router-dom";
 
 const Ques = (props) => {
-  const { ques, upvotes, downvotes, tag, updatedAt, createdAt} = props.quesItem;
-  const { year, month_name, day_num} = fetchDate(createdAt);
+  const { ques, upvotes, downvotes, tag, updatedAt, createdAt } =
+    props.quesItem;
+  const { year, month_name, day_num } = fetchDate(createdAt);
   return (
     <div className="question_container">
       <div className="question_header">
@@ -12,13 +13,17 @@ const Ques = (props) => {
         <div className="question_info">
           <div>
             <p>
-              Asked On: <span className="timestamp">{`${month_name} ${day_num}, ${year}`}</span>
+              Asked On:{" "}
+              <span className="timestamp">{`${month_name} ${day_num}, ${year}`}</span>
             </p>
             <p>
               Tags : <span className="tags">{tag.name}</span>
             </p>
           </div>
-          <p className="question" dangerouslySetInnerHTML={{__html:ques}}></p>
+          <p
+            className="question"
+            dangerouslySetInnerHTML={{ __html: ques }}
+          ></p>
         </div>
       </div>
       <div className="question_stats">
@@ -32,7 +37,6 @@ const Ques = (props) => {
           </Link> */}
         </div>
         <div className="stats_list_b">
-
           <Link to="" className="upvote">
             <svg
               xmlns="http://www.w3.org/2000/svg"

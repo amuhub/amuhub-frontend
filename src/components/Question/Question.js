@@ -30,7 +30,6 @@ const Question = (props) => {
           </Link> */}
         </div>
         <div className="stats_list_b">
-
           <Link to="" className="upvote">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,16 +55,16 @@ const Question = (props) => {
         </div>
       </div>
       <div className="author-details">
-          <div className="profile-div">
-            <div className="profile-img"></div>
-            <p className="username">
-              <span className="answered-by">Asked By</span> Hasan Faraz
-            </p>
-          </div>
-          <p className="answered-on">
-            Asked <span>2 hours ago</span>
+        <div className="profile-div">
+          <div className="profile-img"></div>
+          <p className="username">
+            <span className="answered-by">Asked By</span> Hasan Faraz
           </p>
         </div>
+        <p className="answered-on">
+          Asked <span>2 hours ago</span>
+        </p>
+      </div>
     </div>
   );
 };

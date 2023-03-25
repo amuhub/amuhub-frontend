@@ -9,7 +9,7 @@ import "../Feed/Feed.css";
 import { useState } from "react";
 import postToken from "../../utils/postToken";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
-import Select from 'react-select'
+import Select from "react-select";
 import baseUrl from "../../utils/constants";
 
 const question = [
@@ -48,17 +48,20 @@ const question = [
 ];
 
 const QuestionListPage = () => {
-
   const token = localStorage.getItem("token");
-  const { data : tagdata, pending: tagpending, error : tagerror } = useFetchToken(`${baseUrl}/tag`, token);
+  const {
+    data: tagdata,
+    pending: tagpending,
+    error: tagerror,
+  } = useFetchToken(`${baseUrl}/tag`, token);
   // console.log(tagdata);
 
-  const [ tags, setTags ] = useState();
+  const [tags, setTags] = useState();
   var options = [];
-  if(!tagpending){
-    tagdata.data.map((tag)=>{
-      options.push({value: tag._id, label: tag.name})
-    })
+  if (!tagpending) {
+    tagdata.data.map((tag) => {
+      options.push({ value: tag._id, label: tag.name });
+    });
     console.log(options);
   }
 
@@ -67,15 +70,13 @@ const QuestionListPage = () => {
   //   options_map[item.label] = item.value;
   // });
 
-
   const handleSelect = (selectedOption) => {
     setTags(selectedOption?.value);
     console.log(tags);
   };
 
-  
   // console.log(options_map);
-  
+
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/home-events?lang=en`
   );
@@ -84,46 +85,43 @@ const QuestionListPage = () => {
 
   const answerBox = () => {
     setTextArea(!textArea);
-  }; 
-  const richHtml = (text)=>{
+  };
+  const richHtml = (text) => {
     setHtmlText(text);
     console.log(htmlText);
-  }
+  };
 
   const submitQues = (e) => {
     e.preventDefault();
     const body = {
       ques: htmlText,
-      tag: tags
-    }
+      tag: tags,
+    };
 
     const res = postToken("/question", body, token);
-    if(res){
+    if (res) {
       window.location.reload();
     } else {
       console.log("error");
     }
-  }
+  };
 
   return (
-
-    
     <div className="common-container">
       <div className="feed-ques-header">
         <h1>Latest Questions</h1>
-        <Button text="Ask a question" onClick={answerBox}/>
+        <Button text="Ask a question" onClick={answerBox} />
       </div>
 
-      <form onSubmit={submitQues}
-        className={
-          textArea ? "answer-form activeAnswerForm" : "answer-form"
-        }
+      <form
+        onSubmit={submitQues}
+        className={textArea ? "answer-form activeAnswerForm" : "answer-form"}
       >
-        <div className='form-control'>
-              <Select options={options} isClearable onChange={handleSelect}/>
+        <div className="form-control">
+          <Select options={options} isClearable onChange={handleSelect} />
         </div>
         <div class="input-div">
-          <RichTextEditor onChangeOfEditor = {richHtml}/>
+          <RichTextEditor onChangeOfEditor={richHtml} />
         </div>
 
         <input type="submit" value="Post Question" className="btn" />

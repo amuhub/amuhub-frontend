@@ -38,7 +38,6 @@ const useFetch = (url) => {
   return { data, pending, error };
 };
 
-
 const useFetchToken = (url, token) => {
   const [data, setdata] = useState(null);
   const [pending, setpending] = useState(true);
@@ -48,25 +47,28 @@ const useFetchToken = (url, token) => {
     // using settimeout here just to demonstrate the time server takes to fetch
 
     // axios to get data from url with headers
-    axios.get(url, {
-      headers: {
+    axios
+      .get(url, {
+        headers: {
           "Content-Type": "application/json",
           "x-auth-token": token,
         },
-        }).then((res) => {
-          return res;
-        }).then((data) => {
-          setdata(data.data);
-          setpending(false);
-        }).catch((err) => {
-            setpending(false);
-            seterror(err.message);
-            console.log(err.message)
-        });
+      })
+      .then((res) => {
+        return res;
+      })
+      .then((data) => {
+        setdata(data.data);
+        setpending(false);
+      })
+      .catch((err) => {
+        setpending(false);
+        seterror(err.message);
+        console.log(err.message);
+      });
   }, [url]);
 
   return { data, pending, error };
 };
-
 
 export { useFetch, useFetchToken };

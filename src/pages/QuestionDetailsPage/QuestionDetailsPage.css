@@ -1,65 +1,62 @@
-.ques-ans-container{
-    max-width: 708px;
-    margin: 0 auto;
+.ques-ans-container {
+  max-width: 708px;
+  margin: 0 auto;
 }
-.ques-container{
-    display: flex;
-    align-items: start;
-    margin-bottom: 50px;
-    background-color: #fff;
-    padding: 30px 20px;
-    border: 1px solid #d8dee9;
+.ques-container {
+  display: flex;
+  align-items: start;
+  margin-bottom: 50px;
+  background-color: #fff;
+  padding: 30px 20px;
+  border: 1px solid #d8dee9;
 }
-.upvote-downvote-panel{
-    width: 70px;
-    text-align: center;
-    margin-right: 20px;
-} 
-.upvote-downvote-panel button{
-    outline: none;
-    border: none;
-    background-color: #fff;
-    cursor: pointer;
+.upvote-downvote-panel {
+  width: 70px;
+  text-align: center;
+  margin-right: 20px;
 }
-.upvote-downvote-panel .up{
-    transform: rotate(-180deg);
+.upvote-downvote-panel button {
+  outline: none;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
 }
-.upvote-downvote-panel svg{
-    fill: #767676;
+.upvote-downvote-panel .up {
+  transform: rotate(-180deg);
 }
-.answer-page .question-header{
-    flex-grow: 1;
-    /* padding: 0 20px;   */
+.upvote-downvote-panel svg {
+  fill: #767676;
 }
-
-.answer-page .question_stats{
-    background-color: #fff;
-    padding: 0;
-    margin: 30px 0;
-
+.answer-page .question-header {
+  flex-grow: 1;
+  /* padding: 0 20px;   */
 }
 
-.answer-page .stats_list_a a{
-    border: 1px solid #767676;
+.answer-page .question_stats {
+  background-color: #fff;
+  padding: 0;
+  margin: 30px 0;
 }
 
-.answer-form{
-    padding: 0;
-    width: 100%;
-    max-height: 0;
-    transition: all 0.5s ease-in-out;
-    overflow: hidden;
+.answer-page .stats_list_a a {
+  border: 1px solid #767676;
 }
 
-.activeAnswerForm{
-    max-height: 600px;
-    margin-bottom: 40px;
+.answer-form {
+  padding: 0;
+  width: 100%;
+  max-height: 0;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
 }
 
-.answer-from .input-div textarea{
-    display: block;
-    width: 100%;
-    max-width: 650px;
+.activeAnswerForm {
+  max-height: 600px;
+  margin-bottom: 40px;
 }
 
-
+.answer-from .input-div textarea {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+}
