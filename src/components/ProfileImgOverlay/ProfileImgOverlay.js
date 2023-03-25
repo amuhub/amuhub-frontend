@@ -9,6 +9,7 @@ function ProfileImgOverlay({setChangePicOverlay}) {
   const [crop, setCrop] = useState({ aspect: 1 });
   const [image, setImage] = useState(null);
   const [output, setOutput] = useState(null);
+  const [fileitem, setfileitem] = useState(null);
   const [buttonDisplay, setButtonDisplay] = useState(false)
 
   const token = localStorage.getItem("token");
@@ -41,11 +42,11 @@ function ProfileImgOverlay({setChangePicOverlay}) {
     // scale the canvas by the device pixel ratio
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
   
-    // create a circular path
-    ctx.beginPath();
-    ctx.arc(size/2, size/2, size/2, 0, 2*Math.PI);
-    ctx.closePath();
-    ctx.clip();
+    // // create a circular path
+    // ctx.beginPath();
+    // ctx.arc(size/2, size/2, size/2, 0, 2*Math.PI);
+    // ctx.closePath();
+    // ctx.clip();
   
     // draw the cropped image onto the canvas
     ctx.drawImage(
@@ -62,6 +63,7 @@ function ProfileImgOverlay({setChangePicOverlay}) {
   
     // convert the canvas to a base64-encoded data URL
     const base64Image = canvas.toDataURL('image/jpeg');
+    setfileitem(base64Image);
   
     // set the output as a background image of a div element
     const div = document.createElement('div');
@@ -76,31 +78,26 @@ function ProfileImgOverlay({setChangePicOverlay}) {
    
   };
 
-  function dataURLtoFile(dataurl) {
-    const arr = dataurl.split(',');
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], 'image.jpg', {type:mime});
-  }
-  
-
   const saveChanges = async () => {
     setChangePicOverlay(false);
+    // Upload image to Cloudinary
+    const data = new FormData();
+    data.append('file', fileitem);
+    data.append('upload_preset', 'b4h2nbgm'); // replace with your own upload preset name
+    const response = await fetch('https://api.cloudinary.com/v1_1/dtt5pe9sl/image/upload', {
+      method: 'POST',
+      body: data,
+    });
+    const result = await response.json();
+    console.log(result);
     try {
-      const formData = new FormData();
-      formData.append('photo', dataURLtoFile(output));
       const response = await fetch('http://localhost:8000/profile/photo/', {
         method: 'PUT',
         headers: {
-          "Content-Type": "multipart/form-data",
-          'x-auth-token': token
+          'Content-Type': 'application/json',
+          'x-auth-token': token,
         },
-        body: formData
+        body: JSON.stringify({ path: result.secure_url }), // send Cloudinary URL as JSON data
       });
       const data = await response.json();
       console.log(data);
