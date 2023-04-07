@@ -31,6 +31,15 @@
   cursor: pointer;
   background-color: rgba(231, 231, 242, 0.25);
 }
+.img-edit-overlay .edit-blue-bg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: #2046a4;
+  border-radius: 50%;
+}
 .img-edit-overlay i {
   color: #fff;
   font-size: 25px;
@@ -68,6 +77,8 @@
   font-size: 13px;
   border: 1px solid white;
   border-radius: 5px;
+  background-color: #2046a4;
+  color: white;
 }
 .followed {
   background-color: white;
@@ -166,49 +177,6 @@
 .profile-options:hover {
   transform: scale(1.1);
 }
-.drop-down {
-  list-style-type: none;
-  position: absolute;
-  top: 100%;
-  /* bottom: 0; */
-  right: 0;
-  background-color: #fff;
-  border: 1px solid rgb(217, 215, 215);
-  z-index: 2;
-  display: none;
-  margin-top: 8px;
-}
-.drop-down li {
-  text-align: left;
-  padding: 10px 0 10px 15px;
-  width: 100px;
-  border-bottom: 1px solid rgb(217, 215, 215);
-  font-size: 13px;
-  color: rgb(52, 50, 50);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.drop-down li:hover {
-  padding-left: 20px;
-}
-.drop-down li:last-child {
-  border: none;
-}
-.drop-down::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  top: -5px;
-  right: 8px;
-  background-color: white;
-  transform: rotateZ(45deg);
-  border-top: 1px solid rgb(217, 215, 215);
-  border-left: 1px solid rgb(217, 215, 215);
-}
-.drop-down-active {
-  display: block;
-}
 
 .stats {
   display: flex;
@@ -234,6 +202,12 @@
 .stats-item:hover {
   background-color: rgba(212, 213, 244, 0.8);
 }
+.profile-add-links{
+  display: inline-block;
+}
+.profile-add-links:hover{
+  text-decoration: underline;
+}
 
 @media (max-width: 1200px) {
   .profile-info .profile-name {
@@ -243,6 +217,12 @@
     width: 80px;
     height: 80px;
     align-self: start;
+  }
+  .img-edit-overlay .edit-blue-bg{
+    width: 40px;
+  }
+  .img-edit-overlay i {
+    font-size: 18px;
   }
   /* .follow-btn{
         display: block;

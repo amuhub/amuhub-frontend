@@ -5,20 +5,24 @@ import cross from "../../assets/navbar/multiply-svgrepo-com.svg";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { isExpired, decodeToken } from "react-jwt";
-import { useNavigate } from "react-router-dom";
+import baseUrl from "../../utils/constants";
+
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [auth, setauth] = useState(false);
   const [usertext, setusertext] = useState("");
   const [dropDownSearchHeight, setDropDownSearchHeight] = useState(false);
+  const [searchResultsDisplay, setSearchResultsDisplay] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const setHeight = () => {
     setDropDownSearchHeight(!dropDownSearchHeight);
+    
   };
 
   const closeDropSearch = (e) => {
     setDropDownSearchHeight(false);
+    setSearchResultsDisplay(false)
   };
 
   useEffect(() => {
@@ -35,7 +39,28 @@ const Navbar = () => {
     } else {
       // nothing
     }
-  });
+  },[]);
+
+  const prepareSearchQuery = (query)=>{
+    const url = `${baseUrl}`
+    return encodeURI(url);
+  }
+
+  const searchProfiles = async ()=> {
+    if(!searchQuery || searchQuery.trim === "") return;
+
+    const URL = prepareSearchQuery(searchQuery)
+
+    try{
+      const res = await fetch(URL)
+      if(res.ok){
+        const data = await res.json()
+      }
+    }catch(err){
+      console.log(err);
+    }
+    
+  }
 
   return (
     <>
@@ -57,16 +82,24 @@ const Navbar = () => {
             : "drop-down-search"
         }
       >
-        <div class="search-div">
-          <div class="search-icon">
-            <i class="fa fa-search" aria-hidden="true"></i>
+        
+        <div className="search-div">
+          <div className="search-icon">
+            <i className="fa fa-search" aria-hidden="true"></i>
           </div>
-          <input type="text" placeholder="Search" />
+          <input 
+          type="text" 
+          placeholder="Search" 
+          onFocus= {()=> (setSearchResultsDisplay(true))}
+          value = {searchQuery}
+          onChange= {(e)=>{setSearchQuery(e.target.value)}}/>
           <div className="drop-search-cancel" onClick={closeDropSearch}>
-            <img src={cross} />
+            <img src={cross} alt="close-btn"/>
           </div>
+        
         </div>
       </div>
+      {searchResultsDisplay && <div className="search-results drop-down-search-results"></div>}
     </>
   );
 };

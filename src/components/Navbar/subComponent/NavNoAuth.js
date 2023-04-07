@@ -21,14 +21,14 @@ const NavNoAuth = (props) => {
               </Link>
             </li>
             <li>
-              <a href="#about-us" onClick={navToggle}>
+              <Link href="#about-us" onClick={navToggle}>
                 about
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" onClick={navToggle}>
+              <Link href="#contact" onClick={navToggle}>
                 contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -43,7 +43,7 @@ const NavNoAuth = (props) => {
           </Link>
         </li>
       </ul>
-      <label for="check" onClick={navToggle} className="burger_btn">
+      <label htmlFor="check" onClick={navToggle} className="burger_btn">
         <span></span>
         <span></span>
         <span></span>

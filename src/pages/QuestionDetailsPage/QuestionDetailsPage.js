@@ -67,7 +67,7 @@ const Answers = () => {
               <button className="up">
                 <svg
                   aria-hidden="true"
-                  class="svg-icon iconArrowDownLg"
+                  className="svg-icon iconArrowDownLg"
                   width="36"
                   height="36"
                   viewBox="0 0 36 36"
@@ -79,7 +79,7 @@ const Answers = () => {
               <button className="down">
                 <svg
                   aria-hidden="true"
-                  class="svg-icon iconArrowDownLg"
+                  className="svg-icon iconArrowDownLg"
                   width="36"
                   height="36"
                   viewBox="0 0 36 36"
@@ -115,7 +115,7 @@ const Answers = () => {
                   textArea ? "answer-form activeAnswerForm" : "answer-form"
                 }
               >
-                <div class="input-div">
+                <div className="input-div">
                   <RichTextEditor onChangeOfEditor={richHtml} />
                 </div>
                 <input type="submit" value="Post Answer" className="btn" />

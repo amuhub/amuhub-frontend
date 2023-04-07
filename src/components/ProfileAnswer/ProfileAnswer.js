@@ -4,6 +4,7 @@ import { useFetch, useFetchToken } from "../../utils/useFetch";
 import { InfinitySpin } from "react-loader-spinner";
 import QuesAns from "./QuesAns";
 import baseUrl from "../../utils/constants";
+import NoContent from "../NoContent/NoContent";
 
 const ProfileAnswer = () => {
   const { username } = useParams();
@@ -18,6 +19,10 @@ const ProfileAnswer = () => {
         <InfinitySpin type="ThreeDots" color="#00BFFF" height={80} width={80} />
       )}
       {error && <div>{error}</div>}
+      {!pending && !data.data.length && 
+      (
+        <NoContent text={"You haven't answered any questions yet!"}/>
+      )}
       {!pending &&
         data &&
         data.data.map((answerItem) => (
