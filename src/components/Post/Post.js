@@ -15,20 +15,20 @@ const Post = (props) => {
 
   return (
     <>
-      <div class="post_container">
-        <div class="post_header">
-          <div class="user_info">
-            <img src={postImg} class="user_img" alt="" />
-            <span class="username">{data.author}</span>
+      <div className="post_container">
+        <div className="post_header">
+          <div className="user_info">
+            <img src={postImg} className="user_img" alt="" />
+            <span className="username">{data.author}</span>
           </div>
-          <i class="fas fa-ellipsis-h"></i>
+          <i className="fas fa-ellipsis-h"></i>
         </div>
-        <div class="post_content">
-          <div class="post">
+        <div className="post_content">
+          <div className="post">
             <img src={postImg} alt="" />
           </div>
-          <div class="post_stats">
-            <div class="post_stats_likes">
+          <div className="post_stats">
+            <div className="post_stats_likes">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -39,15 +39,15 @@ const Post = (props) => {
               </svg>
               <span>{data.likes}</span>
             </div>
-            <div class="post_stats_comments">
-              <i class="far fa-comment-alt"></i>
+            <div className="post_stats_comments">
+              <i className="far fa-comment-alt"></i>
               <a onClick={postOverlaytoggler}>Comments</a>
             </div>
           </div>
         </div>
-        <div class="post_comment">
+        <div className="post_comment">
           <input type="text" placeholder="Add a comment..." />
-          <a class="post_btn">Post</a>
+          <a className="post_btn">Post</a>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ const Answer = ({ data }) => {
         <button className="up">
           <svg
             aria-hidden="true"
-            class="svg-icon iconArrowDownLg"
+            className="svg-icon iconArrowDownLg"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -19,7 +19,7 @@ const Answer = ({ data }) => {
         <button className="down">
           <svg
             aria-hidden="true"
-            class="svg-icon iconArrowDownLg"
+            className="svg-icon iconArrowDownLg"
             width="36"
             height="36"
             viewBox="0 0 36 36"

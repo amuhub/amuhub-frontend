@@ -1,6 +1,7 @@
 import "./Form.css";
 import Title from "../Title/Title";
 import errorIcon from "./images/icon-error.svg";
+import { Link } from "react-router-dom";
 
 const Form = ({ form }) => {
   return (
@@ -58,27 +59,27 @@ const Form = ({ form }) => {
             <div className="options">
               <div className="option-list">
                 <input type="checkbox" name="remerber-me" id="remember-me" />
-                <label for="remerber-me">Remember Me!</label>
+                <label htmlFor="remerber-me">Remember Me!</label>
               </div>
-              <a href="#">Forgot Password? </a>
+              <Link href="#">Forgot Password? </Link>
             </div>
             <input type="submit" value="Sign in" className="btn" />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">
-                <a href="#">
+                <Link href="#">
                   <i className="fab fa-facebook-f"></i>
-                </a>
+                </Link>
               </li>
               <li className="twit">
-                <a href="#">
+                <Link href="#">
                   <i className="fab fa-twitter"></i>
-                </a>
+                </Link>
               </li>
               <li className="google">
-                <a href="#">
+                <Link href="#">
                   <i className="fab fa-google-plus-g"></i>
-                </a>
+                </Link>
               </li>
             </ul>
           </form>

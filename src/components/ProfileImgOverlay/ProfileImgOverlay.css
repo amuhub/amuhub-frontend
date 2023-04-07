@@ -40,19 +40,6 @@
   width: 100%;
 }
 
-.btn {
-  text-transform: capitalize;
-  padding: 5px 22px;
-  background-color: blue;
-  border-radius: 4px;
-  display: block;
-  color: white;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  font-size: 12px;
-}
-
 .crop-btns {
   display: flex;
   justify-content: center;
@@ -65,6 +52,16 @@
   height: 250px;
   background-color: aliceblue;
   object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.selected-image h2{
+    color: rgb(179, 189, 197);
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 3px;
 }
 .generated-profile-pic {
   display: flex;

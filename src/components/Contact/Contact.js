@@ -5,12 +5,12 @@ const Contact = () => {
   return (
     <>
       <Title text="Contact Us" />
-      <div class="form-container">
-        <div class="contact-img">
+      <div className="form-container">
+        <div className="contact-img">
           <img src={require("./images/12-removebg-preview.png")} alt="" />
         </div>
         <form>
-          <div class="input-div">
+          <div className="input-div">
             <input
               type="text"
               placeholder="Username"
@@ -20,12 +20,12 @@ const Contact = () => {
             <p>This is error</p>
             <img src="./images/icon-error.svg" alt="" />
           </div>
-          <div class="input-div">
+          <div className="input-div">
             <input type="email" placeholder="Email" id="email" name="email" />
             <p>This is also an error</p>
             <img src="./images/icon-error.svg" alt="" />
           </div>
-          <div class="input-div">
+          <div className="input-div">
             <textarea
               name=""
               id=""

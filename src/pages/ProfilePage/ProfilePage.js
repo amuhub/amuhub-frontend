@@ -3,28 +3,19 @@ import "./ProfilePage.css";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import Tag from "../../components/Tag/Tag";
 import ProfileEditForm from "../../components/ProfileEditForm/ProfileEditForm";
-import profileImg from "../Post_Overlay/images/img.png";
 import SocialOverlay from "../../components/SocialOverlay/SocialOverlay";
 import { useParams } from "react-router-dom";
-import { useFetch, useFetchToken } from "../../utils/useFetch.js";
+import { useFetch} from "../../utils/useFetch.js";
 import { InfinitySpin } from "react-loader-spinner";
-import { decodeToken } from "react-jwt";
 import baseUrl from "../../utils/constants";
 import ProfileImgOverlay from "../../components/ProfileImgOverlay/ProfileImgOverlay";
 import isAuthenticated from "../../utils/isAuth";
 
+
 const ProfilePage = () => {
-  const token = localStorage.getItem("token");
   const { username } = useParams();
   const [isFollowed, setIsFollowed] = useState(true);
-  const [tags, setTags] = useState([
-    "Css",
-    "Computer Sc.",
-    "Electrical Engineering",
-    "Management Studies",
-  ]);
   const [formToggler, setFormToggler] = useState(false);
-  // const [dropdownToggle, setDropdownToggle] = useState(false)
   const [socialToggler, setSocialToggler] = useState(false);
   const [overlayId, setOverlayId] = useState("");
   const [changePicOverlay, setChangePicOverlay] = useState(false);
@@ -36,13 +27,10 @@ const ProfilePage = () => {
   const follow = () => {
     setIsFollowed(!isFollowed);
   };
-  // const dropdown = ()=>{
-  //     setDropdownToggle(!dropdownToggle)
-  // }
+
   const socialToggle = (e) => {
     e.preventDefault();
     setOverlayId(e.currentTarget.id);
-    console.log(e.currentTarget.id);
     setSocialToggler(true);
   };
 
@@ -63,7 +51,9 @@ const ProfilePage = () => {
                     className="img-edit-overlay"
                     onClick={() => setChangePicOverlay(true)}
                   >
-                    <i className="far fa-edit"></i>
+                    <div className="edit-blue-bg">
+                        <i className="far fa-edit"></i>
+                    </div>
                   </div>
                 </div>
                 <div className="profile-info-container">
@@ -90,15 +80,15 @@ const ProfilePage = () => {
                       )}
                     </div>
 
-                    <p className="bio">{data.data.bio}</p>
+                    <p className="bio"> {data.data.bio ? data.data.bio : <Link to = "" className = "profile-add-links" onClick={formToggle} style = {{display : "inline-block"}}>Add Bio</Link>}</p>
                     <div className="location">
                       <p>
-                        <i class="fas fa-map-marker-alt"></i>
-                        {data.data.location}
+                        <i className="fas fa-map-marker-alt"></i>
+                        {data.data.location ? data.data.location : <Link to = "" className = "profile-add-links" onClick={formToggle} style = {{display : "inline-block"}}>Add Location</Link>}
                       </p>
                       <p>
-                        <i class="fas fa-graduation-cap"></i>
-                        {data.data.department}
+                        <i className="fas fa-graduation-cap"></i>
+                        {data.data.department ? data.data.department : <Link to = "" className = "profile-add-links" onClick={formToggle}>Add Department</Link>}
                       </p>
                     </div>
                   </div>
@@ -117,32 +107,16 @@ const ProfilePage = () => {
                     </Link>
                   </div>
                 </div>
-
-                {/* Dropdown menu  */}
-
-                {/* <div className = "profile-options-container">
-                        <div className='profile-options' onClick={dropdown}>
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                        <ul className = {`drop-down ${dropdownToggle ? 'drop-down-active' : ''}`}>
-                            <li className='drop-down-item'>
-                                Edit
-                            </li>
-                            <li className='drop-down-item'>
-                                Logout
-                            </li>
-                        </ul>
-                    </div> */}
               </div>
+
               <div className="profile-links">
-                {/* <NavLink to = "/profile" className= "links">Profile</NavLink> */}
-                <NavLink to="answers" className="links">
+                <NavLink to="answers" className="links" >
                   Answers
                 </NavLink>
-                <NavLink to="questions" className="links">
+                <NavLink to="questions" className="links" >
                   Questions
                 </NavLink>
-                <NavLink to="posts" className="links">
+                <NavLink to="posts" className="links" >
                   Posts
                 </NavLink>
               </div>
@@ -159,9 +133,9 @@ const ProfilePage = () => {
                 <i className="far fa-edit" onClick={formToggle}></i>
               </div>
               <div className="tags">
-                {tags.map((tag, index) => (
-                  <Tag key={index} title={tag} />
-                ))}
+                {data.data.interest.length ? data.data.interest.map((tag, index) => (
+                  <Tag key={index} title={tag.name} />
+                )) : <p style={{margin : "0 auto", fontSize : "16px"}}>No Interest chosen yet!</p>}
               </div>
             </div>
           )}
@@ -174,6 +148,7 @@ const ProfilePage = () => {
           loc={data.data.location}
           dept={data.data.department}
           desc={data.data.bio}
+          tags = {data.data.interest}
         />
       )}
       {socialToggler && (

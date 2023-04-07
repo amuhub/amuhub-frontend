@@ -14,6 +14,7 @@ import Questions from "./components/Questions";
 import ProfilePosts from "./components/ProfilePosts/ProfilePosts";
 import ProfileAnswer from "./components/ProfileAnswer/ProfileAnswer.js";
 import ProfileQuestion from "./components/ProfileQuestion/ProfileQuestion";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -28,10 +29,12 @@ function App() {
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
           <Route path="/profile/:username" element={<ProfilePage />}>
-            <Route index path="answers" element={<ProfileAnswer />} />
+            <Route index element={<ProfileAnswer />} />
+            <Route path="answers" element={<ProfileAnswer />} />
             <Route path="questions" element={<ProfileQuestion />} />
             <Route path="posts" element={<ProfilePosts />} />
           </Route>
+          <Route path = "*" element= {<NotFound/>}/>
         </Routes>
         <Footer />
       </div>

@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 // import Wrapper from '../../components/Wrapper/Wrapper'
 import { useFetch, useFetchToken } from "../../utils/useFetch";
 import Question from "../../components/Question/Question";
@@ -65,14 +65,9 @@ const QuestionListPage = () => {
     console.log(options);
   }
 
-  // var options_map = {};
-  // options.forEach(function (item) {
-  //   options_map[item.label] = item.value;
-  // });
-
   const handleSelect = (selectedOption) => {
     setTags(selectedOption?.value);
-    console.log(tags);
+    
   };
 
   // console.log(options_map);
@@ -120,7 +115,7 @@ const QuestionListPage = () => {
         <div className="form-control">
           <Select options={options} isClearable onChange={handleSelect} />
         </div>
-        <div class="input-div">
+        <div className="input-div">
           <RichTextEditor onChangeOfEditor={richHtml} />
         </div>
 

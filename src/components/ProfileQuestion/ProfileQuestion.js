@@ -4,13 +4,14 @@ import { useFetch, useFetchToken } from "../../utils/useFetch";
 import { InfinitySpin } from "react-loader-spinner";
 import Ques from "./Ques";
 import baseUrl from "../../utils/constants";
+import NoContent from "../NoContent/NoContent";
 
 const ProfileQuestion = () => {
   const { username } = useParams();
   const { data, pending, error } = useFetch(
     `${baseUrl}/profile/${username}/questions`
   );
-  console.log(data);
+  console.log("profile questions", data);
 
   return (
     <div>
@@ -18,6 +19,10 @@ const ProfileQuestion = () => {
         <InfinitySpin type="ThreeDots" color="#00BFFF" height={80} width={80} />
       )}
       {error && <div>{error}</div>}
+      {!pending && !data.data.length && 
+      (
+        <NoContent text={"You haven't asked any questions yet!"}/>
+      )}
       {!pending &&
         data &&
         data.data.map((quesItem) => (

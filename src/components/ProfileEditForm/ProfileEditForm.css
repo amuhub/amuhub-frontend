@@ -15,33 +15,69 @@
   justify-content: center;
 }
 
-.profile-edit-form {
-  width: 100%;
-  max-width: 500px;
+.edit-form-container{
+  max-width: 400px;
+  width: 90%;
+  background-color: rgb(240, 241, 254);
+}
+.edit-form-container .title{
+  padding: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-align: left;
+    margin: 0;
+}
+.profile-edit-form{
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
+  padding: 2rem;
+  width: 100%;
 }
-.form-control {
-  position: relative;
+.edit-form-container .flex-row{
+  display: flex;
+  gap: 20px;
+}
+.profile-edit-form .form-control{
   margin-bottom: 30px;
-  width: 100%;
-}
-.form-control label {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 14px;
-  color: black;
-}
-.form-control input {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border-radius: 3px;
-  border: 1px solid grey;
-}
 
-.profile-edit-form .btn {
-  margin-top: 30px;
+}
+.form-control .edit-form-label{
+  color: rgb(81, 81, 255);
+  font-size: 10px;
+  text-transform: capitalize;
+  font-weight: 500;
+  display: block;
+}
+.profile-edit-form .form-control input{
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #edebeb;
+  border-radius: 1px;
+  padding: 5px 0 7px 0;
+}
+.profile-edit-form .form-control input:focus{
+  border-bottom: 2px solid rgb(81, 81, 255);
+}
+/* .btn{
+  padding: 13px;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  border-radius: 4px;
+} */
+.btn-blue{
+  background-color: rgb(81, 81, 255);
+}
+.btn-blue:hover{
+  background-color: rgb(38, 38, 235);
+}
+.btn-red{
+  background-color: rgb(255, 37, 37);
+}
+.btn-red:hover{
+  background-color: rgb(214, 2, 2);
 }

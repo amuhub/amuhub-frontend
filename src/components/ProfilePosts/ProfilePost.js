@@ -8,10 +8,10 @@ const ProfilePost = () => {
       <img src={postImg} alt="post-profile"></img>
       <div className="profile-post-overlay">
         <span className="post-likes">
-          20<i class="fas fa-heart"></i>
+          20<i className="fas fa-heart"></i>
         </span>
         <span className="post-comments">
-          14<i class="fas fa-comment"></i>
+          14<i className="fas fa-comment"></i>
         </span>
       </div>
     </div>
