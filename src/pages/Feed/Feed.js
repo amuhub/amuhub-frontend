@@ -1,10 +1,11 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import { useFetch, useFetchToken } from "../../utils/useFetch";
 import Post from "../../components/Post/Post";
 import News from "../../components/News/News";
 import Button from "../../components/Button/Button";
 import { InfinitySpin } from "react-loader-spinner";
 import "./Feed.css";
+import baseUrl from '../../utils/constants'
 
 const posts = [
   {
@@ -25,15 +26,30 @@ const posts = [
 ];
 
 const Feed = () => {
+  const token = localStorage.getItem("token");
+  const [postUploadOverlay, setPostUploadOverlay] = useState(false);
+
+  useEffect(()=>{
+    console.log(postUploadOverlay);
+  },[postUploadOverlay])
+
+  const displayOverlay = ()=>{
+    setPostUploadOverlay(true)
+  }
   const { data, pending, error } = useFetch(
-    `https://api.amu.ac.in/api/v1/home-events?lang=en`
+    `https://api.amu.ac.in/api/v1/news?lang=en`
   );
   console.log(data);
+
+
+  const {data:feed, pending:feedPending, error:feedError} = useFetchToken(`${baseUrl}/feed/feed`, token)
+  console.log(feed);
+
   return (
     <div className="common-container">
       <div className="feed-ques-header">
         <h1>See What's New</h1>
-        <Button text="Create New Post" />
+        <Button text="Create New Post" onClick={displayOverlay}/>
       </div>
       <div className="grid-container">
         <div className="wrapper">
