@@ -10,6 +10,7 @@
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "immutable": "^3.7.4",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-image-crop": "^8.6.12",

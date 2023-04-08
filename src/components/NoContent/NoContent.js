@@ -1,5 +1,5 @@
 import React from 'react'
-import noContent from "../../assets/no-content.jpg";
+import noContent from "../../assets/no-content.png";
 
 const NoContent = ({text}) => {
   return (
