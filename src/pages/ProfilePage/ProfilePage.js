@@ -5,27 +5,42 @@ import Tag from "../../components/Tag/Tag";
 import ProfileEditForm from "../../components/ProfileEditForm/ProfileEditForm";
 import SocialOverlay from "../../components/SocialOverlay/SocialOverlay";
 import { useParams } from "react-router-dom";
-import { useFetch} from "../../utils/useFetch.js";
+import { useFetch, useFetchToken} from "../../utils/useFetch.js";
 import { InfinitySpin } from "react-loader-spinner";
 import baseUrl from "../../utils/constants";
 import ProfileImgOverlay from "../../components/ProfileImgOverlay/ProfileImgOverlay";
 import isAuthenticated from "../../utils/isAuth";
+import axios from "axios";
 
 
 const ProfilePage = () => {
   const { username } = useParams();
-  const [isFollowed, setIsFollowed] = useState(true);
   const [formToggler, setFormToggler] = useState(false);
   const [socialToggler, setSocialToggler] = useState(false);
   const [overlayId, setOverlayId] = useState("");
+  const token = localStorage.getItem("token");
   const [changePicOverlay, setChangePicOverlay] = useState(false);
   const isLoggedInUser = isAuthenticated() === username;
 
   const formToggle = () => {
     setFormToggler(!formToggler);
   };
-  const follow = () => {
-    setIsFollowed(!isFollowed);
+  const useToggleFollow = () => {
+    axios
+      .get(`${baseUrl}/profile/follow/${username}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        console.log("toggle follow");
+        
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    window.location.reload();
   };
 
   const socialToggle = (e) => {
@@ -34,8 +49,8 @@ const ProfilePage = () => {
     setSocialToggler(true);
   };
 
-  const { data, pending, error } = useFetch(`${baseUrl}/profile/` + username);
-  console.log(data);
+  const { data, pending, error } = useFetchToken(`${baseUrl}/profile/` + username, token);
+  console.log("profile data", data);
 
   return (
     <>
@@ -60,13 +75,13 @@ const ProfilePage = () => {
                   <div className="profile-info">
                     <div className="info-inner">
                       <p className="profile-name">{data.data.username}</p>
-                      {!isLoggedInUser && (
+                      {!isLoggedInUser && data.data.auth && (
                         <Link
                           to="#"
-                          className={`btn-sec ${isFollowed ? "followed" : ""}`}
-                          onClick={follow}
+                          className={`btn-sec ${data.data.isFollowing ? "followed" : ""}`}
+                          onClick={useToggleFollow}
                         >
-                          {isFollowed ? "Unfollow" : "Follow"}
+                          {data.data.isFollowing ? "Unfollow" : "Follow"}
                         </Link>
                       )}
                       {isLoggedInUser && (
