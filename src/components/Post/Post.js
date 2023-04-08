@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import "./Post.css";
 import postImg from "./img.png";
 import PostOverlay from "../../pages/Post_Overlay/PostOverlay";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { data } = props;
@@ -18,14 +19,14 @@ const Post = (props) => {
       <div className="post_container">
         <div className="post_header">
           <div className="user_info">
-            <img src={postImg} className="user_img" alt="" />
-            <span className="username">{data.author}</span>
+            <img src={data.photo} className="user_img" alt="" />
+            <span className="username">{data.user}</span>
           </div>
           <i className="fas fa-ellipsis-h"></i>
         </div>
         <div className="post_content">
           <div className="post">
-            <img src={postImg} alt="" />
+            <img src={data.photo} alt="" />
           </div>
           <div className="post_stats">
             <div className="post_stats_likes">
@@ -37,17 +38,17 @@ const Post = (props) => {
               >
                 <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z" />
               </svg>
-              <span>{data.likes}</span>
+              <span>{data.likes.length}</span>
             </div>
             <div className="post_stats_comments">
               <i className="far fa-comment-alt"></i>
-              <a onClick={postOverlaytoggler}>Comments</a>
+              <Link to = "" onClick={postOverlaytoggler}>Comments</Link>
             </div>
           </div>
         </div>
         <div className="post_comment">
           <input type="text" placeholder="Add a comment..." />
-          <a className="post_btn">Post</a>
+          <Link to = "" className="post_btn">Post</Link>
         </div>
       </div>
 
