@@ -3,6 +3,7 @@ import "./Post.css";
 import postImg from "./img.png";
 import PostOverlay from "../../pages/Post_Overlay/PostOverlay";
 import { Link } from "react-router-dom";
+import Feed from "../../pages/Feed/Feed";
 
 const Post = (props) => {
   const { data } = props;
@@ -20,7 +21,7 @@ const Post = (props) => {
         <div className="post_header">
           <div className="user_info">
             <img src={data.photo} className="user_img" alt="" />
-            <span className="username">{data.user}</span>
+            <span className="username">{data.user.username}</span>
           </div>
           <i className="fas fa-ellipsis-h"></i>
         </div>
@@ -53,7 +54,7 @@ const Post = (props) => {
       </div>
 
       {togglePostOverlay && (
-        <PostOverlay postOverlaytoggler={postOverlaytoggler} />
+        <PostOverlay postOverlaytoggler={postOverlaytoggler} postId = {data._id}/>
       )}
     </>
   );
