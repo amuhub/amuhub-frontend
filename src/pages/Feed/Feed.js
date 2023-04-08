@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import { InfinitySpin } from "react-loader-spinner";
 import "./Feed.css";
 import baseUrl from '../../utils/constants'
+import PostUploadOverlay from "../../components/PostUploadOverlay/PostUploadOverlay";
 
 const posts = [
   {
@@ -36,6 +37,9 @@ const Feed = () => {
   const displayOverlay = ()=>{
     setPostUploadOverlay(true)
   }
+  const hideOverlay = ()=>{
+    setPostUploadOverlay(true)
+  }
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/news?lang=en`
   );
@@ -53,8 +57,8 @@ const Feed = () => {
       </div>
       <div className="grid-container">
         <div className="wrapper">
-          {posts.map((post) => (
-            <Post key={post.id} data={post} />
+          {!feedPending && feed.data.map((post) => (
+            <Post key={feed.data._id} data={post} />
           ))}
         </div>
 
@@ -65,14 +69,11 @@ const Feed = () => {
             data.data.map((singleEvent) => (
               <News key={singleEvent.id} data={singleEvent} />
             ))}
-          {/* // <News />
-          // <News />
-          // <News />
-          // <News /> */}
         </div>
       </div>
+      {postUploadOverlay && <PostUploadOverlay hideOverlay = {hideOverlay} setPostUploadOverlay = {setPostUploadOverlay}/>}
     </div>
-  );
+  ); 
 };
 
 export default Feed;

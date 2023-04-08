@@ -8,16 +8,18 @@ import './PostUploadOverlay.css'
 
 
 
-const PostUploadOverlay = (setOverlay) => {
+const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
  
-    const [src, setSrc] = useState(null);
+  const [src, setSrc] = useState(null);
   const [crop, setCrop] = useState({ aspect: 1 });
   const [image, setImage] = useState(null);
   const [output, setOutput] = useState(null);
   const [fileitem, setfileitem] = useState(null);
   const [buttonDisplay, setButtonDisplay] = useState(false);
+  const [caption, setCaption] = useState("")
 
   const token = localStorage.getItem("token");
+
 
   const selectImage = (file) => {
     const reader = new FileReader();
@@ -27,11 +29,11 @@ const PostUploadOverlay = (setOverlay) => {
     };
   };
 
-  const cropImageNow = () => {
+  const cropImageNow = async () => {
     const canvas = document.createElement("canvas");
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
-    const size = 100; // set the size of the circular canvas
+    const size = 400; // set the size of the circular canvas
 
     canvas.width = size;
     canvas.height = size;
@@ -45,12 +47,6 @@ const PostUploadOverlay = (setOverlay) => {
 
     // scale the canvas by the device pixel ratio
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-
-    // // create a circular path
-    // ctx.beginPath();
-    // ctx.arc(size/2, size/2, size/2, 0, 2*Math.PI);
-    // ctx.closePath();
-    // ctx.clip();
 
     // draw the cropped image onto the canvas
     ctx.drawImage(
@@ -69,37 +65,31 @@ const PostUploadOverlay = (setOverlay) => {
     const base64Image = canvas.toDataURL("image/jpeg");
     setfileitem(base64Image);
 
-    // set the output as a background image of a div element
-    const div = document.createElement("div");
-    div.style.width = `${size}px`;
-    div.style.height = `${size}px`;
-    div.style.backgroundImage = `url(${base64Image})`;
-    div.style.backgroundSize = "cover";
-    div.style.backgroundPosition = "center";
-    div.style.borderRadius = "50%";
-    setOutput(div.outerHTML);
     setButtonDisplay(true);
+    
   };
 
   const saveChanges = async () => {
-    setChangePicOverlay(false);
+    setPostUploadOverlay(false);
     const result = await uploadImageCloudinary(fileitem);
+    console.log(result);
     if (!result && !result.secure_url) {
       console.log("Error uploading image to Cloudinary");
       return;
     }
     try {
-      const response = await fetch(`${baseUrl}/profile/photo/`, {
-        method: "PUT",
+      const response = await fetch(`${baseUrl}/feed/upload/`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-auth-token": token,
         },
-        body: JSON.stringify({ path: result.secure_url }), // send Cloudinary URL as JSON data
+        body: JSON.stringify({ photo: result.secure_url , caption : caption}), // send Cloudinary URL as JSON data
       });
+      console.log(JSON.stringify({ path: result.secure_url , caption}));
       const data = await response.json();
       if (response.ok) {
-        window.location.href = `/profile/${username}`;
+        // window.location.href = `/feed`;
       }
     } catch (error) {
       console.error(error);
@@ -108,21 +98,34 @@ const PostUploadOverlay = (setOverlay) => {
 
   return (
     <div className="profile-img-overlay">
-      <button className="close-btn" onClick={() => setChangePicOverlay(false)}>
+      <button className="close-btn" onClick={()=>(setPostUploadOverlay(false))}>
         <i className="fas fa-times"></i>
       </button>
       <div className="profile-pic-form">
-        {!src && <div className="selected-image" ><h2>Choose Image</h2></div>}
-        {src && (
-          <div>
-            <ReactCrop
-              src={src}
-              onImageLoaded={setImage}
-              crop={crop}
-              onChange={setCrop}
+        <>
+          {!src && <div className="selected-image" ><h2>Choose Image</h2></div>}
+          {src && (
+            <div>
+              <ReactCrop
+                src={src}
+                onImageLoaded={setImage}
+                crop={crop}
+                onChange={setCrop}
+              />
+            </div>
+          )}
+          <div className='post-form-control'>
+            <label className="post-form-label">Caption</label>
+            <input 
+            type="text" 
+            className="post-form-input"
+            onChange={(e)=>(setCaption(e.target.value))}
+            value = {caption}
             />
           </div>
-        )}
+           
+        </>
+        
 
         <div className="crop-btns">
           <label htmlFor="inputFile">
