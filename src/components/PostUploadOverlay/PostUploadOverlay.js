@@ -145,10 +145,6 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
             </button>
           )}
         </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: output }}
-          className="generated-profile-pic"
-        ></div>
         {buttonDisplay && (
           <button className="btn save-btn" onClick={saveChanges}>
             Save Changes

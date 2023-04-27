@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import baseUrl from "../../utils/constants";
+import useDebounce from "../../utils/debounceHook";
 
 
 const Navbar = () => {
@@ -41,12 +42,17 @@ const Navbar = () => {
     }
   },[]);
 
+  const changeHandler = (e)=>{
+    e.preventDefault();
+    setSearchQuery(e.target.value)
+  }
   const prepareSearchQuery = (query)=>{
-    const url = `${baseUrl}`
+    const url = `${baseUrl}/profile/?search=${query}`
     return encodeURI(url);
   }
 
   const searchProfiles = async ()=> {
+    
     if(!searchQuery || searchQuery.trim === "") return;
 
     const URL = prepareSearchQuery(searchQuery)
@@ -55,12 +61,15 @@ const Navbar = () => {
       const res = await fetch(URL)
       if(res.ok){
         const data = await res.json()
+        console.log(data);
       }
     }catch(err){
       console.log(err);
     }
     
   }
+
+  useDebounce(searchQuery, 500, searchProfiles)
 
   return (
     <>
@@ -69,7 +78,7 @@ const Navbar = () => {
           amu<span>hub</span>
         </h1>
         {auth ? (
-          <NavAuth usertext={usertext} setHeight={setHeight} />
+          <NavAuth usertext={usertext} setHeight={setHeight}/>
         ) : (
           <NavNoAuth />
         )}
@@ -92,14 +101,14 @@ const Navbar = () => {
           placeholder="Search" 
           onFocus= {()=> (setSearchResultsDisplay(true))}
           value = {searchQuery}
-          onChange= {(e)=>{setSearchQuery(e.target.value)}}/>
+          onChange= {changeHandler}/>
           <div className="drop-search-cancel" onClick={closeDropSearch}>
             <img src={cross} alt="close-btn"/>
           </div>
         
         </div>
       </div>
-      {searchResultsDisplay && <div className="search-results drop-down-search-results"></div>}
+      {searchResultsDisplay && <div className="drop-down-search-results"></div>}
     </>
   );
 };
