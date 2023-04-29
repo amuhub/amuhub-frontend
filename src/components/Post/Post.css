@@ -156,9 +156,19 @@
 }
 
 .post_comment .post_btn {
-  color: skyblue;
+  color: #2046a4;
   font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
+
+.post_comment .post_btn[disabled=true], .post_btn:disabled{
+  color: skyblue;
+  pointer-events: none;
+}
+
+
 
 
 .post{

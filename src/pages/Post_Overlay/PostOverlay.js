@@ -7,11 +7,59 @@ import baseUrl from "../../utils/constants";
 import { Puff } from "react-loader-spinner";
 import NoContent from "../../components/NoContent/NoContent";
 import moment from "moment";
+import { useEffect } from "react";
+import postToken from "../../utils/postToken";
 
 export default function PostOverlay({ postOverlaytoggler, postId }) {
   const token = localStorage.getItem("token");
   const { data, pending, error } = useFetchToken(`${baseUrl}/feed/post/${postId}`, token);
   console.log("post overlay", data);
+  const [togglePostOverlay, setTogglePostOverlay] = useState(false);
+  const [isLiked, setIsLiked] = useState("")
+  const [comment, setComment] = useState("")
+  const [likeCnt, setLikeCnt] = useState(0)
+
+
+  useEffect(()=>{
+    if(data) {
+      setIsLiked(data.data.isLiked)
+      setLikeCnt(data.data.likes.length)
+      console.log(isLiked);
+    }
+  },[data])
+
+
+  // const postOverlaytoggler = () => {
+  //   togglePostOverlay === true
+  //     ? setTogglePostOverlay(false)
+  //     : setTogglePostOverlay(true);
+  // };
+
+  const postComment = ()=>{
+    const res = postToken(
+      `${baseUrl}/feed/comment/${data.data._id}`,
+     {text:comment}, 
+      token
+      ) 
+    if(!res) console.log(res.error);
+    setComment("")
+    window.location.reload(true);
+  }
+
+  const doLike = async (e)=>{
+
+    const res = await postToken(`${baseUrl}/feed/togglelike/${data.data._id}`, {},token)
+    if(res.status === 200){
+      if(res.data.message === "Post liked") {
+        setIsLiked(true) 
+      }
+      else setIsLiked(false)
+      setLikeCnt(res.data.data.likes.length)
+    }
+    
+    
+   
+  }
 
   return (
     <div>
@@ -69,28 +117,30 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
             </div>
 
             <div className="pop_up_stats_outer">
-              <div className="pop_up_stats">
-                <div className="pop_up_stats_likes">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z" />
-                  </svg>
-                  <span>{data.data.likes.length} likes</span>
-                </div>
-                <div className="pop_up_stats_comments">
-                  <i className="far fa-comment-alt"></i>
-                  <Link to="#">Comments</Link>
-                </div>
+            <div className="pop_up_stats">
+                <div className={`post_stats_likes ${isLiked ? 'liked' : ''}`} onClick={doLike}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  
+                >
+                  <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z" />
+                </svg>
+                <span>{likeCnt}</span>
+              </div>
               </div>
               <div className="pop_up_comment_type">
-                <input type="text" placeholder="Add a comment..." />
-                <Link to="#" className="post_btn">
+              <input 
+                type="text" 
+                placeholder="Add a comment..." 
+                value={comment}
+                onChange = {(e)=>(setComment(e.target.value))}
+                />
+                <button to="#" className="post_btn" onClick={postComment} disabled = {!comment}>
                   Post
-                </Link>
+                </button>
               </div>
             </div>
           </div>

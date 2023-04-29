@@ -287,10 +287,17 @@ img {
 }
 
 .pop_up_comment_type .post_btn {
-  color: skyblue;
+  color: #2046a4;
   font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
+.pop_up_comment_type .post_btn[disabled=true], .post_btn:disabled{
+  color: skyblue;
+  pointer-events: none;
+}
 @media (max-width: 900px) {
   .post_pop_up {
     width: 400px;

@@ -4,10 +4,11 @@ import "./News.css";
 
 const News = (props) => {
   const { data } = props;
-  const { day_num, day } = fetchDate(data.start_date);
+  const { day_num, day } = fetchDate(data.date);
+  console.log(`Date : ${day_num} and ${day}`);
   return (
     <div className="event-component">
-      <h1 className="upcoming-event">Upcoming Event</h1>
+      <h1 className="upcoming-event">AMU News</h1>
       <div className="event-component-header">
         <h1 className="event-title">{data.title}</h1>
         <h1 className="start-event">
@@ -15,17 +16,10 @@ const News = (props) => {
         </h1>
       </div>
       <div className="event-details">
-        <p className="event-detail-header">Details</p>
+        {/* <p className="event-detail-header">Details</p> */}
         <p className="details">
-          Start :
-          <span className="detail-value">{convertDate(data.start_date)}</span>
-        </p>
-        <p className="details">
-          End :
-          <span className="detail-value">{convertDate(data.end_date)}</span>
-        </p>
-        <p className="details">
-          Venue :<span className="detail-value">{data.venue}</span>
+          Date :
+          <span className="detail-value">{data.date}</span>
         </p>
       </div>
     </div>
