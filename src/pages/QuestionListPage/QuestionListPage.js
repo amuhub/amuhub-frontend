@@ -62,14 +62,11 @@ const QuestionListPage = () => {
     tagdata.data.map((tag) => {
       options.push({ value: tag._id, label: tag.name });
     });
-    console.log(options);
   }
 
   const handleSelect = (selectedOption) => {
     setTags(selectedOption?.value);
   };
-
-  // console.log(options_map);
 
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/news?lang=en`
@@ -82,17 +79,18 @@ const QuestionListPage = () => {
   };
   const richHtml = (text) => {
     setHtmlText(text);
-    console.log(htmlText);
   };
 
-  const submitQues = (e) => {
+  const submitQues = async (e) => {
     e.preventDefault();
     const body = {
       ques: htmlText,
       tag: tags,
     };
 
-    const res = postToken("/question", body, token);
+    const res = await postToken(`${baseUrl}/question/`, body, token);
+    const data = await res.json;
+    console.log(data);
     if (res) {
       window.location.reload();
     } else {

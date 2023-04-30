@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import baseUrl from "../../utils/constants";
 import useDebounce from "../../utils/debounceHook";
+import ProfileOverview from "../ProfileOverview/ProfileOverview";
 
 const Navbar = () => {
   const [auth, setauth] = useState(false);
@@ -14,6 +15,8 @@ const Navbar = () => {
   const [dropDownSearchHeight, setDropDownSearchHeight] = useState(false);
   const [searchResultsDisplay, setSearchResultsDisplay] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchData, setSearchData] = useState([]);
+  const isEmpty = !searchData || searchData.length === 0;
 
   const setHeight = () => {
     setDropDownSearchHeight(!dropDownSearchHeight);
@@ -42,8 +45,10 @@ const Navbar = () => {
 
   const changeHandler = (e) => {
     e.preventDefault();
+    if (e.target.value === "") setSearchResultsDisplay(false);
     setSearchQuery(e.target.value);
   };
+
   const prepareSearchQuery = (query) => {
     const url = `${baseUrl}/profile/?search=${query}`;
     return encodeURI(url);
@@ -58,7 +63,9 @@ const Navbar = () => {
       const res = await fetch(URL);
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
+        setSearchData(data.data);
+        setSearchResultsDisplay(true);
       }
     } catch (err) {
       console.log(err);
@@ -94,7 +101,6 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search"
-            onFocus={() => setSearchResultsDisplay(true)}
             value={searchQuery}
             onChange={changeHandler}
           />
@@ -103,7 +109,23 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {searchResultsDisplay && <div className="drop-down-search-results"></div>}
+      {searchResultsDisplay && (
+        <div className="drop-down-search-results">
+          {isEmpty ? (
+            <div className="no-results">No Result Found</div>
+          ) : (
+            searchData.map((profile) => (
+              <ProfileOverview
+                key={profile._id}
+                name={profile.name}
+                username={profile.username}
+                setSearchResultsDisplay={setSearchResultsDisplay}
+                setQuery={setSearchQuery}
+              />
+            ))
+          )}
+        </div>
+      )}
     </>
   );
 };
