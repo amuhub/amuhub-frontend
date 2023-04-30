@@ -18,8 +18,7 @@ const News = (props) => {
       <div className="event-details">
         {/* <p className="event-detail-header">Details</p> */}
         <p className="details">
-          Date :
-          <span className="detail-value">{data.date}</span>
+          Date :<span className="detail-value">{data.date}</span>
         </p>
       </div>
     </div>

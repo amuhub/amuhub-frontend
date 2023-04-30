@@ -21,16 +21,15 @@ const ProfilePosts = () => {
         <InfinitySpin type="ThreeDots" color="#00BFFF" height={80} width={80} />
       )}
       {error && <div>{error}</div>}
-      {!pending && !data.data.length && 
-      (
-        <NoContent text={"You don't have any posts yet !"}/>
+      {!pending && !data.data.length && (
+        <NoContent text={"You don't have any posts yet !"} />
       )}
       <div className="post-grid">
-      {!pending &&
-        data &&
-        data.data.map((postItem) => (
-          <ProfilePost postItem={postItem} key={postItem._id} />
-        ))}
+        {!pending &&
+          data &&
+          data.data.map((postItem) => (
+            <ProfilePost postItem={postItem} key={postItem._id} />
+          ))}
       </div>
     </div>
   );

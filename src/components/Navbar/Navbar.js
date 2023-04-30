@@ -8,7 +8,6 @@ import { isExpired, decodeToken } from "react-jwt";
 import baseUrl from "../../utils/constants";
 import useDebounce from "../../utils/debounceHook";
 
-
 const Navbar = () => {
   const [auth, setauth] = useState(false);
   const [usertext, setusertext] = useState("");
@@ -18,12 +17,11 @@ const Navbar = () => {
 
   const setHeight = () => {
     setDropDownSearchHeight(!dropDownSearchHeight);
-    
   };
 
   const closeDropSearch = (e) => {
     setDropDownSearchHeight(false);
-    setSearchResultsDisplay(false)
+    setSearchResultsDisplay(false);
   };
 
   useEffect(() => {
@@ -40,36 +38,34 @@ const Navbar = () => {
     } else {
       // nothing
     }
-  },[]);
+  }, []);
 
-  const changeHandler = (e)=>{
+  const changeHandler = (e) => {
     e.preventDefault();
-    setSearchQuery(e.target.value)
-  }
-  const prepareSearchQuery = (query)=>{
-    const url = `${baseUrl}/profile/?search=${query}`
+    setSearchQuery(e.target.value);
+  };
+  const prepareSearchQuery = (query) => {
+    const url = `${baseUrl}/profile/?search=${query}`;
     return encodeURI(url);
-  }
+  };
 
-  const searchProfiles = async ()=> {
-    
-    if(!searchQuery || searchQuery.trim === "") return;
+  const searchProfiles = async () => {
+    if (!searchQuery || searchQuery.trim === "") return;
 
-    const URL = prepareSearchQuery(searchQuery)
+    const URL = prepareSearchQuery(searchQuery);
 
-    try{
-      const res = await fetch(URL)
-      if(res.ok){
-        const data = await res.json()
+    try {
+      const res = await fetch(URL);
+      if (res.ok) {
+        const data = await res.json();
         console.log(data);
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
-    
-  }
+  };
 
-  useDebounce(searchQuery, 500, searchProfiles)
+  useDebounce(searchQuery, 500, searchProfiles);
 
   return (
     <>
@@ -78,7 +74,7 @@ const Navbar = () => {
           amu<span>hub</span>
         </h1>
         {auth ? (
-          <NavAuth usertext={usertext} setHeight={setHeight}/>
+          <NavAuth usertext={usertext} setHeight={setHeight} />
         ) : (
           <NavNoAuth />
         )}
@@ -91,21 +87,20 @@ const Navbar = () => {
             : "drop-down-search"
         }
       >
-        
         <div className="search-div">
           <div className="search-icon">
             <i className="fa fa-search" aria-hidden="true"></i>
           </div>
-          <input 
-          type="text" 
-          placeholder="Search" 
-          onFocus= {()=> (setSearchResultsDisplay(true))}
-          value = {searchQuery}
-          onChange= {changeHandler}/>
+          <input
+            type="text"
+            placeholder="Search"
+            onFocus={() => setSearchResultsDisplay(true)}
+            value={searchQuery}
+            onChange={changeHandler}
+          />
           <div className="drop-search-cancel" onClick={closeDropSearch}>
-            <img src={cross} alt="close-btn"/>
+            <img src={cross} alt="close-btn" />
           </div>
-        
         </div>
       </div>
       {searchResultsDisplay && <div className="drop-down-search-results"></div>}

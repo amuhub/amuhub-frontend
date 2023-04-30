@@ -15,21 +15,25 @@ const ProfilePost = (props) => {
   return (
     <div className="profile-post-container">
       <div onClick={postOverlaytoggler}>
-      <img src={postItem.photo} alt="post-profile"></img>
-      <div onClick={postOverlaytoggler}></div>
-      <div className="profile-post-overlay">
-        <span className="post-likes">
-          {postItem.likes.length}<i className="fas fa-heart"></i>
-        </span>
-        <span className="post-comments">
-        {postItem.comments.length}<i className="fas fa-comment"></i>
-        </span>
+        <img src={postItem.photo} alt="post-profile"></img>
+        <div className="profile-post-overlay">
+          <span className="post-likes">
+            {postItem.likes.length}
+            <i className="fas fa-heart"></i>
+          </span>
+          <span className="post-comments">
+            {postItem.comments.length}
+            <i className="fas fa-comment"></i>
+          </span>
+        </div>
       </div>
+      {togglePostOverlay && (
+        <PostOverlay
+          postId={postItem._id}
+          postOverlaytoggler={postOverlaytoggler}
+        />
+      )}
     </div>
-    {togglePostOverlay && (
-      <PostOverlay postId={postItem._id} postOverlaytoggler={postOverlaytoggler} />
-    )}
-    </div>
   );
 };
 

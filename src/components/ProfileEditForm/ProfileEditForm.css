@@ -15,39 +15,38 @@
   justify-content: center;
 }
 
-.edit-form-container{
+.edit-form-container {
   max-width: 400px;
   width: 90%;
   background-color: rgb(240, 241, 254);
 }
-.edit-form-container .title{
+.edit-form-container .title {
   padding: 2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-align: left;
-    margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: left;
+  margin: 0;
 }
-.profile-edit-form{
+.profile-edit-form {
   background-color: #fff;
   padding: 2rem;
   width: 100%;
 }
-.edit-form-container .flex-row{
+.edit-form-container .flex-row {
   display: flex;
   gap: 20px;
 }
-.profile-edit-form .form-control{
+.profile-edit-form .form-control {
   margin-bottom: 30px;
-
 }
-.form-control .edit-form-label{
+.form-control .edit-form-label {
   color: rgb(81, 81, 255);
   font-size: 10px;
   text-transform: capitalize;
   font-weight: 500;
   display: block;
 }
-.profile-edit-form .form-control input{
+.profile-edit-form .form-control input {
   width: 100%;
   outline: none;
   border: none;
@@ -55,7 +54,7 @@
   border-radius: 1px;
   padding: 5px 0 7px 0;
 }
-.profile-edit-form .form-control input:focus{
+.profile-edit-form .form-control input:focus {
   border-bottom: 2px solid rgb(81, 81, 255);
 }
 /* .btn{
@@ -69,15 +68,15 @@
   width: 100%;
   border-radius: 4px;
 } */
-.btn-blue{
+.btn-blue {
   background-color: rgb(81, 81, 255);
 }
-.btn-blue:hover{
+.btn-blue:hover {
   background-color: rgb(38, 38, 235);
 }
-.btn-red{
+.btn-red {
   background-color: rgb(255, 37, 37);
 }
-.btn-red:hover{
+.btn-red:hover {
   background-color: rgb(214, 2, 2);
 }

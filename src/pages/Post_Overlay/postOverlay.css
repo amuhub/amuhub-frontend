@@ -294,7 +294,8 @@ img {
   cursor: pointer;
 }
 
-.pop_up_comment_type .post_btn[disabled=true], .post_btn:disabled{
+.pop_up_comment_type .post_btn[disabled="true"],
+.post_btn:disabled {
   color: skyblue;
   pointer-events: none;
 }

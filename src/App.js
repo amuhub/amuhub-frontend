@@ -34,7 +34,7 @@ function App() {
             <Route path="questions" element={<ProfileQuestion />} />
             <Route path="posts" element={<ProfilePosts />} />
           </Route>
-          <Route path = "*" element= {<NotFound/>}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

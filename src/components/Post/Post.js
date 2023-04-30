@@ -6,22 +6,20 @@ import postToken from "../../utils/postToken";
 import baseUrl from "../../utils/constants";
 import axios from "axios";
 
-
 const Post = (props) => {
   const { data } = props;
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const [togglePostOverlay, setTogglePostOverlay] = useState(false);
-  const [isLiked, setIsLiked] = useState("")
-  const [comment, setComment] = useState("")
-  const [likeCnt, setLikeCnt] = useState(0)
+  const [isLiked, setIsLiked] = useState("");
+  const [comment, setComment] = useState("");
+  const [likeCnt, setLikeCnt] = useState(0);
 
-  useEffect(()=>{
-    if(data) {
-      setIsLiked(data.isLiked)
-      setLikeCnt(data.likes.length)
+  useEffect(() => {
+    if (data) {
+      setIsLiked(data.isLiked);
+      setLikeCnt(data.likes.length);
     }
-  },[data])
-
+  }, [data]);
 
   const postOverlaytoggler = () => {
     togglePostOverlay === true
@@ -29,31 +27,30 @@ const Post = (props) => {
       : setTogglePostOverlay(true);
   };
 
-  const postComment = ()=>{
+  const postComment = () => {
     const res = postToken(
       `${baseUrl}/feed/comment/${data._id}`,
-     {text:comment}, 
+      { text: comment },
       token
-      ) 
-    if(!res) console.log(res.error);
-    setComment("")
-    setTogglePostOverlay(true)
-  }
+    );
+    if (!res) console.log(res.error);
+    setComment("");
+    setTogglePostOverlay(true);
+  };
 
-  const doLike = async (e)=>{
-
-    const res = await postToken(`${baseUrl}/feed/togglelike/${data._id}`, {},token)
-    if(res.status === 200){
-      if(res.data.message === "Post liked") {
-        setIsLiked(true) 
-      }
-      else setIsLiked(false)
-      setLikeCnt(res.data.data.likes.length)
+  const doLike = async (e) => {
+    const res = await postToken(
+      `${baseUrl}/feed/togglelike/${data._id}`,
+      {},
+      token
+    );
+    if (res.status === 200) {
+      if (res.data.message === "Post liked") {
+        setIsLiked(true);
+      } else setIsLiked(false);
+      setLikeCnt(res.data.data.likes.length);
     }
-    
-    
-   
-  }
+  };
 
   // const doubleLiked = (e)=>{
   //   e.currentTarget.classList.add('liked-double')
@@ -75,13 +72,15 @@ const Post = (props) => {
             <div className="post-heart"></div>
           </div>
           <div className="post_stats">
-            <div className ={`post_stats_likes ${isLiked ? 'liked' : ''}`} onClick={doLike}>
+            <div
+              className={`post_stats_likes ${isLiked ? "liked" : ""}`}
+              onClick={doLike}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
                 height="22"
                 viewBox="0 0 24 24"
-                
               >
                 <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z" />
               </svg>
@@ -89,24 +88,34 @@ const Post = (props) => {
             </div>
             <div className="post_stats_comments">
               <i className="far fa-comment-alt"></i>
-              <Link to = "" onClick={postOverlaytoggler}>Comments</Link>
+              <Link to="" onClick={postOverlaytoggler}>
+                Comments
+              </Link>
             </div>
           </div>
         </div>
         <div className="post_comment">
-          <input 
-          type="text" 
-          placeholder="Add a comment..." 
-          value={comment}
-          onChange = {(e)=>(setComment(e.target.value))}
-         
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
-          <button className="post_btn" onClick={postComment}  disabled = {!comment}>Post</button>
+          <button
+            className="post_btn"
+            onClick={postComment}
+            disabled={!comment}
+          >
+            Post
+          </button>
         </div>
       </div>
 
       {togglePostOverlay && (
-        <PostOverlay postOverlaytoggler={postOverlaytoggler} postId = {data._id}/>
+        <PostOverlay
+          postOverlaytoggler={postOverlaytoggler}
+          postId={data._id}
+        />
       )}
     </>
   );

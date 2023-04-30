@@ -57,11 +57,11 @@
   justify-content: center;
   cursor: pointer;
 }
-.selected-image h2{
-    color: rgb(179, 189, 197);
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 3px;
+.selected-image h2 {
+  color: rgb(179, 189, 197);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 3px;
 }
 .generated-profile-pic {
   display: flex;

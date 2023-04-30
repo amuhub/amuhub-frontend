@@ -108,7 +108,11 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
         <i className="fas fa-times"></i>
       </button>
       <div className="profile-pic-form">
-        {!src && <div className="selected-image" ><h2>Choose Image</h2></div>}
+        {!src && (
+          <div className="selected-image">
+            <h2>Choose Image</h2>
+          </div>
+        )}
         {src && (
           <div>
             <ReactCrop
