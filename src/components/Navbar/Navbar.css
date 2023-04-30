@@ -162,7 +162,6 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   overflow-y: scroll;
 }
 
@@ -183,7 +182,14 @@ nav {
   background-color: transparent;
 }
 
+.no-results{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .drop-down-search {
+  
   height: 80px;
   display: flex;
   align-items: center;
@@ -202,9 +208,21 @@ nav {
   margin: 0 auto;
 }
 .drop-down-search-results {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80%;
   max-width: 400px;
-  display: block;
+  /* display: block; */
+  margin: 0 auto;
+  background-color: aliceblue;
+  border-radius: 8px;
+  padding: 8px 0;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
 .drop-down-search .search-div {
   width: 80%;

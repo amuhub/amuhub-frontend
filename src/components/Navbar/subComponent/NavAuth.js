@@ -35,13 +35,11 @@ const NavAuth = ({ usertext, setHeight }) => {
 
   const changeHandler = (e) => {
     e.preventDefault();
+    if(e.target.value === "") setSearchResultsDisplay(false)
     setQuery(e.target.value);
+      
   };
 
-  const displaySearch = () => {
-    if (query === "") setSearchResultsDisplay(false);
-    else setSearchResultsDisplay(true);
-  };
 
   const prepareQuery = (query) => {
     const url = `${baseUrl}/profile/?search=${query}`;
@@ -49,15 +47,18 @@ const NavAuth = ({ usertext, setHeight }) => {
   };
 
   const searchProfile = async () => {
-    if (!query || query.trim === "") return;
-
+    if (!query || query.trim === "") {
+      return;
+    }
     const URL = prepareQuery(query);
 
     try {
       const res = await fetch(URL);
       if (res.ok) {
         const data = await res.json();
+        console.log(data);
         setSearchData(data.data);
+        setSearchResultsDisplay(true);
       }
     } catch (err) {
       console.log(err);
@@ -104,7 +105,7 @@ const NavAuth = ({ usertext, setHeight }) => {
             <input
               type="text"
               placeholder="Search"
-              onFocus={displaySearch}
+             
               onChange={changeHandler}
               value={query}
             />
@@ -112,7 +113,7 @@ const NavAuth = ({ usertext, setHeight }) => {
           {searchResultsDisplay && (
             <div className="search-results">
               {isEmpty
-                ? "No Result Found"
+                ? <div className="no-results">No Result Found</div>
                 : searchData.map((profile) => (
                     <ProfileOverview
                       key={profile._id}
