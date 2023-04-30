@@ -72,7 +72,7 @@ const QuestionListPage = () => {
   // console.log(options_map);
 
   const { data, pending, error } = useFetch(
-    `https://api.amu.ac.in/api/v1/home-events?lang=en`
+    `https://api.amu.ac.in/api/v1/news?lang=en`
   );
   const [textArea, setTextArea] = useState(false);
   const [htmlText, setHtmlText] = useState("");
