@@ -1,25 +1,21 @@
-import React from 'react'
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import uploadImageCloudinary from "../../utils/third_party_services/cloudinary";
 import baseUrl from "../../utils/constants";
-import './PostUploadOverlay.css'
+import "./PostUploadOverlay.css";
 
-
-
-const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
- 
+const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [src, setSrc] = useState(null);
   const [crop, setCrop] = useState({ aspect: 1 });
   const [image, setImage] = useState(null);
   const [output, setOutput] = useState(null);
   const [fileitem, setfileitem] = useState(null);
   const [buttonDisplay, setButtonDisplay] = useState(false);
-  const [caption, setCaption] = useState("")
+  const [caption, setCaption] = useState("");
 
   const token = localStorage.getItem("token");
-
 
   const selectImage = (file) => {
     const reader = new FileReader();
@@ -66,7 +62,6 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
     setfileitem(base64Image);
 
     setButtonDisplay(true);
-    
   };
 
   const saveChanges = async () => {
@@ -84,9 +79,9 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
           "Content-Type": "application/json",
           "x-auth-token": token,
         },
-        body: JSON.stringify({ photo: result.secure_url , caption : caption}), // send Cloudinary URL as JSON data
+        body: JSON.stringify({ photo: result.secure_url, caption: caption }), // send Cloudinary URL as JSON data
       });
-      console.log(JSON.stringify({ path: result.secure_url , caption}));
+      console.log(JSON.stringify({ path: result.secure_url, caption }));
       const data = await response.json();
       if (response.ok) {
         // window.location.href = `/feed`;
@@ -98,12 +93,16 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
 
   return (
     <div className="profile-img-overlay">
-      <button className="close-btn" onClick={()=>(setPostUploadOverlay(false))}>
+      <button className="close-btn" onClick={() => setPostUploadOverlay(false)}>
         <i className="fas fa-times"></i>
       </button>
       <div className="profile-pic-form">
         <>
-          {!src && <div className="selected-image" ><h2>Choose Image</h2></div>}
+          {!src && (
+            <div className="selected-image">
+              <h2>Choose Image</h2>
+            </div>
+          )}
           {src && (
             <div>
               <ReactCrop
@@ -114,18 +113,16 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
               />
             </div>
           )}
-          <div className='post-form-control'>
+          <div className="post-form-control">
             <label className="post-form-label">Caption</label>
-            <input 
-            type="text" 
-            className="post-form-input"
-            onChange={(e)=>(setCaption(e.target.value))}
-            value = {caption}
+            <input
+              type="text"
+              className="post-form-input"
+              onChange={(e) => setCaption(e.target.value)}
+              value={caption}
             />
           </div>
-           
         </>
-        
 
         <div className="crop-btns">
           <label htmlFor="inputFile">
@@ -153,6 +150,6 @@ const PostUploadOverlay = ({hideOverlay, setPostUploadOverlay}) => {
       </div>
     </div>
   );
-}
+};
 
-export default PostUploadOverlay
+export default PostUploadOverlay;

@@ -19,9 +19,8 @@ const ProfileAnswer = () => {
         <InfinitySpin type="ThreeDots" color="#00BFFF" height={80} width={80} />
       )}
       {error && <div>{error}</div>}
-      {!pending && !data.data.length && 
-      (
-        <NoContent text={"You haven't answered any questions yet!"}/>
+      {!pending && !data.data.length && (
+        <NoContent text={"You haven't answered any questions yet!"} />
       )}
       {!pending &&
         data &&

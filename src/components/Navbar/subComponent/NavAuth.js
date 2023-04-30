@@ -12,7 +12,7 @@ const NavAuth = ({ usertext, setHeight }) => {
   const [searchResultsDisplay, setSearchResultsDisplay] = useState(false);
   const [query, setQuery] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const isEmpty = !searchData || searchData.length === 0
+  const isEmpty = !searchData || searchData.length === 0;
 
   const navToggle = (e) => {
     setmenu(!menu);
@@ -24,7 +24,6 @@ const NavAuth = ({ usertext, setHeight }) => {
     `${baseUrl}/profile/${usertext}`,
     token
   );
- 
 
   const logoutUser = () => {
     if (isAuthenticated()) {
@@ -34,41 +33,38 @@ const NavAuth = ({ usertext, setHeight }) => {
     }
   };
 
-  const changeHandler = (e)=>{
+  const changeHandler = (e) => {
     e.preventDefault();
-    setQuery(e.target.value)
-    
-  }
+    setQuery(e.target.value);
+  };
 
-  const displaySearch = ()=>{
-    if(query === "") setSearchResultsDisplay(false)
-    else setSearchResultsDisplay(true)
-  }
+  const displaySearch = () => {
+    if (query === "") setSearchResultsDisplay(false);
+    else setSearchResultsDisplay(true);
+  };
 
-  const prepareQuery = (query)=>{
-    const url = `${baseUrl}/profile/?search=${query}`
+  const prepareQuery = (query) => {
+    const url = `${baseUrl}/profile/?search=${query}`;
     return encodeURI(url);
-  }
+  };
 
-  const searchProfile = async ()=> {
-    
-    if(!query || query.trim === "") return;
+  const searchProfile = async () => {
+    if (!query || query.trim === "") return;
 
-    const URL = prepareQuery(query)
+    const URL = prepareQuery(query);
 
-    try{
-      const res = await fetch(URL)
-      if(res.ok){
-        const data = await res.json()
-        setSearchData(data.data)
+    try {
+      const res = await fetch(URL);
+      if (res.ok) {
+        const data = await res.json();
+        setSearchData(data.data);
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
-    
-  }
+  };
 
-  useDebounce(query, 500, searchProfile)
+  useDebounce(query, 500, searchProfile);
 
   return (
     <>
@@ -105,20 +101,29 @@ const NavAuth = ({ usertext, setHeight }) => {
             <div className="search-icon">
               <i className="fa fa-search" aria-hidden="true"></i>
             </div>
-            <input 
+            <input
               type="text"
-              placeholder="Search" 
-              onFocus={displaySearch} 
+              placeholder="Search"
+              onFocus={displaySearch}
               onChange={changeHandler}
-              value = {query}
+              value={query}
             />
           </div>
-          {searchResultsDisplay && 
-          <div className="search-results">
-            {
-              isEmpty ? "No Result Found" : searchData.map((profile)=><ProfileOverview key = {profile._id} name = {profile.name} username = {profile.username} setSearchResultsDisplay = {setSearchResultsDisplay} setQuery = {setQuery}/>)
-            }
-          </div>}
+          {searchResultsDisplay && (
+            <div className="search-results">
+              {isEmpty
+                ? "No Result Found"
+                : searchData.map((profile) => (
+                    <ProfileOverview
+                      key={profile._id}
+                      name={profile.name}
+                      username={profile.username}
+                      setSearchResultsDisplay={setSearchResultsDisplay}
+                      setQuery={setQuery}
+                    />
+                  ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="nav-links-list-b">
@@ -127,7 +132,7 @@ const NavAuth = ({ usertext, setHeight }) => {
           <div className="profile-div">
             <div className="profile-img">
               {!pending && !error && data.data && (
-                <img src={data.data.pic} alt = "profile"></img>
+                <img src={data.data.pic} alt="profile"></img>
               )}
             </div>
             <p className="username">{usertext}</p>

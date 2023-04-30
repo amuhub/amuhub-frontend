@@ -67,7 +67,6 @@ const QuestionListPage = () => {
 
   const handleSelect = (selectedOption) => {
     setTags(selectedOption?.value);
-    
   };
 
   // console.log(options_map);

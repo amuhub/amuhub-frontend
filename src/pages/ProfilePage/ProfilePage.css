@@ -31,7 +31,7 @@
   cursor: pointer;
   background-color: rgba(231, 231, 242, 0.25);
 }
-.img-edit-overlay .edit-blue-bg{
+.img-edit-overlay .edit-blue-bg {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,10 +202,10 @@
 .stats-item:hover {
   background-color: rgba(212, 213, 244, 0.8);
 }
-.profile-add-links{
+.profile-add-links {
   display: inline-block;
 }
-.profile-add-links:hover{
+.profile-add-links:hover {
   text-decoration: underline;
 }
 
@@ -218,7 +218,7 @@
     height: 80px;
     align-self: start;
   }
-  .img-edit-overlay .edit-blue-bg{
+  .img-edit-overlay .edit-blue-bg {
     width: 40px;
   }
   .img-edit-overlay i {
