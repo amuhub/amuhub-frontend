@@ -9,8 +9,10 @@ import baseUrl from "../../utils/constants";
 import "./QuestionDetailsPage.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import postToken from "../../utils/postToken";
 
 const Answers = () => {
+  const token = localStorage.getItem("token");
   const answerBox = () => {
     setTextArea(!textArea);
   };
@@ -27,10 +29,8 @@ const Answers = () => {
   };
 
   const [textArea, setTextArea] = useState(false);
-
   const { id } = useParams();
 
-  const token = localStorage.getItem("token");
   const {
     data: questionData,
     pending: questionPending,
@@ -40,8 +40,27 @@ const Answers = () => {
   console.log(questionData);
 
   const { data, pending, error } = useFetch(
-    `https://api.amu.ac.in/api/v1/home-events?lang=en`
+    `https://api.amu.ac.in/api/v1/news?lang=en`
   );
+  // ------------------start------------------
+
+  const postAnswer = async (e) => {
+    e.preventDefault();
+    const body = {
+      ques: id,
+      text: htmlText,
+    };
+
+    const res = await postToken(`${baseUrl}/answer/`, body, token);
+    const data = await res.json;
+    console.log(data);
+    if (res) {
+      window.location.reload();
+    } else {
+      console.log("error");
+    }
+  };
+  // ------------------end------------------
 
   return (
     <div className="common-container">
@@ -91,7 +110,7 @@ const Answers = () => {
                   </Link>
                 </div>
                 <form
-                  onSubmit={addAnswer}
+                  onSubmit={postAnswer}
                   className={
                     textArea ? "answer-form activeAnswerForm" : "answer-form"
                   }

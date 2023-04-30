@@ -5,7 +5,6 @@ import "./News.css";
 const News = (props) => {
   const { data } = props;
   const { day_num, day } = fetchDate(data.date);
-  console.log(`Date : ${day_num} and ${day}`);
   return (
     <div className="event-component">
       <h1 className="upcoming-event">AMU News</h1>

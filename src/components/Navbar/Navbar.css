@@ -182,14 +182,13 @@ nav {
   background-color: transparent;
 }
 
-.no-results{
+.no-results {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
 .drop-down-search {
-  
   height: 80px;
   display: flex;
   align-items: center;

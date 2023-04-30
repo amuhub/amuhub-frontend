@@ -6,10 +6,12 @@ import { useFetchToken } from "../../../utils/useFetch";
 import baseUrl from "../../../utils/constants";
 import ProfileOverview from "../../ProfileOverview/ProfileOverview";
 import useDebounce from "../../../utils/debounceHook";
+import cross from "../../../assets/navbar/multiply-svgrepo-com.svg";
 
 const NavAuth = ({ usertext, setHeight }) => {
   const [menu, setmenu] = useState(false);
   const [searchResultsDisplay, setSearchResultsDisplay] = useState(false);
+  // const [showCross, setShowCross]
   const [query, setQuery] = useState("");
   const [searchData, setSearchData] = useState([]);
   const isEmpty = !searchData || searchData.length === 0;
@@ -35,11 +37,9 @@ const NavAuth = ({ usertext, setHeight }) => {
 
   const changeHandler = (e) => {
     e.preventDefault();
-    if(e.target.value === "") setSearchResultsDisplay(false)
+    if (e.target.value === "") setSearchResultsDisplay(false);
     setQuery(e.target.value);
-      
   };
-
 
   const prepareQuery = (query) => {
     const url = `${baseUrl}/profile/?search=${query}`;
@@ -105,24 +105,28 @@ const NavAuth = ({ usertext, setHeight }) => {
             <input
               type="text"
               placeholder="Search"
-             
               onChange={changeHandler}
               value={query}
             />
+            <div className="drop-search-cancel">
+              <img src={cross} alt="close-btn" />
+            </div>
           </div>
           {searchResultsDisplay && (
             <div className="search-results">
-              {isEmpty
-                ? <div className="no-results">No Result Found</div>
-                : searchData.map((profile) => (
-                    <ProfileOverview
-                      key={profile._id}
-                      name={profile.name}
-                      username={profile.username}
-                      setSearchResultsDisplay={setSearchResultsDisplay}
-                      setQuery={setQuery}
-                    />
-                  ))}
+              {isEmpty ? (
+                <div className="no-results">No Result Found</div>
+              ) : (
+                searchData.map((profile) => (
+                  <ProfileOverview
+                    key={profile._id}
+                    name={profile.name}
+                    username={profile.username}
+                    setSearchResultsDisplay={setSearchResultsDisplay}
+                    setQuery={setQuery}
+                  />
+                ))
+              )}
             </div>
           )}
         </div>

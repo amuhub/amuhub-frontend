@@ -45,7 +45,7 @@ const Navbar = () => {
 
   const changeHandler = (e) => {
     e.preventDefault();
-    if(e.target.value === "") setSearchResultsDisplay(false)
+    if (e.target.value === "") setSearchResultsDisplay(false);
     setSearchQuery(e.target.value);
   };
 
@@ -64,7 +64,7 @@ const Navbar = () => {
       if (res.ok) {
         const data = await res.json();
         // console.log(data);
-        setSearchData(data.data)
+        setSearchData(data.data);
         setSearchResultsDisplay(true);
       }
     } catch (err) {
@@ -110,20 +110,22 @@ const Navbar = () => {
         </div>
       </div>
       {searchResultsDisplay && (
-            <div className="drop-down-search-results">
-              {isEmpty
-                ? <div className="no-results">No Result Found</div>
-                : searchData.map((profile) => (
-                    <ProfileOverview
-                      key={profile._id}
-                      name={profile.name}
-                      username={profile.username}
-                      setSearchResultsDisplay={setSearchResultsDisplay}
-                      setQuery={setSearchQuery}
-                    />
-                  ))}
-            </div>
+        <div className="drop-down-search-results">
+          {isEmpty ? (
+            <div className="no-results">No Result Found</div>
+          ) : (
+            searchData.map((profile) => (
+              <ProfileOverview
+                key={profile._id}
+                name={profile.name}
+                username={profile.username}
+                setSearchResultsDisplay={setSearchResultsDisplay}
+                setQuery={setSearchQuery}
+              />
+            ))
           )}
+        </div>
+      )}
     </>
   );
 };
