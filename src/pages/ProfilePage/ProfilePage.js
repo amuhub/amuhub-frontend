@@ -214,8 +214,7 @@ const ProfilePage = () => {
         <SocialOverlay
           setSocialToggler={setSocialToggler}
           overlayID={overlayId}
-          following={data.data.following}
-          followers={data.data.follower}
+          username={username}
         />
       )}
       {changePicOverlay && (

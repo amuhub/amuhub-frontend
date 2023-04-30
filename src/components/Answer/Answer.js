@@ -1,4 +1,5 @@
 import "./Answer.css";
+import moment from "moment";
 
 const Answer = ({ data }) => {
   return (
@@ -15,7 +16,9 @@ const Answer = ({ data }) => {
             <path d="M2 11h32L18 27 2 11Z"></path>
           </svg>
         </button>
-        <p className="vote-count">125</p>
+        <p className="vote-count">
+          {data.upvotes.length + data.downvotes.length}
+        </p>
         <button className="down">
           <svg
             aria-hidden="true"
@@ -29,16 +32,18 @@ const Answer = ({ data }) => {
         </button>
       </div>
       <div className="question-header">
-        <div dangerouslySetInnerHTML={{ __html: data.answerText }}></div>
+        <div dangerouslySetInnerHTML={{ __html: data.text }}></div>
         <div className="author-details">
           <div className="profile-div">
-            <div className="profile-img"></div>
+            <div className="profile-img">
+              <img src={data.user.profile.pic}></img>
+            </div>
             <p className="username">
-              <span className="answered-by">Answered By</span> Hasan Faraz
+              <span className="answered-by">Answered By</span> {data.user.name}
             </p>
           </div>
           <p className="answered-on">
-            Answered <span>2 hours ago</span>
+            Answered <span>{moment(data.createdAt).fromNow()}</span>
           </p>
         </div>
       </div>

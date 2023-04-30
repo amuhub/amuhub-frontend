@@ -3,8 +3,16 @@ import { fetchDate } from "../../utils/parseDate";
 import { Link } from "react-router-dom";
 
 const Ques = (props) => {
-  const { ques, upvotes, downvotes, tag, updatedAt, createdAt } =
-    props.quesItem;
+  const {
+    _id,
+    ques,
+    upvotes,
+    downvotes,
+    tag,
+    answer_count,
+    updatedAt,
+    createdAt,
+  } = props.quesItem;
   const { year, month_name, day_num } = fetchDate(createdAt);
   return (
     <div className="question_container">
@@ -23,6 +31,7 @@ const Ques = (props) => {
           <p
             className="question"
             dangerouslySetInnerHTML={{ __html: ques }}
+            onClick={() => (window.location.href = `/question/${_id}`)}
           ></p>
         </div>
       </div>
@@ -30,7 +39,7 @@ const Ques = (props) => {
         <div className="stats_list_a">
           <Link to="" className="answers_count">
             <i className="fas fa-comment-alt"></i>
-            24 <span>answers</span>
+            {answer_count} <span>answers</span>
           </Link>
           {/* <Link to="" className="views_count">
             <i className="fas fa-eye"></i> {views} <span>views</span>
