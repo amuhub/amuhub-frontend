@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const ProfileOverview = ({
   name,
   username,
+  pic,
   setSearchResultsDisplay,
   setQuery,
 }) => {
@@ -20,7 +21,7 @@ const ProfileOverview = ({
     >
       <div className="profile-overview">
         <div className="profile-div">
-          <div className="profile-img"></div>
+          <div className="profile-img"><img src = {pic}/></div>
           <p className="profile-overview-info">
             {name} <span>@{username}</span>
           </p>
