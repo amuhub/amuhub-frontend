@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fetchDate } from "../../utils/parseDate";
 
 const QuesAns = ({ answerItem }) => {
@@ -8,7 +9,12 @@ const QuesAns = ({ answerItem }) => {
   return (
     <div className="ques-container-1">
       <div className="question_container">
-        <p className="question">{answerItem.question.ques}</p>
+        <Link to={`/question/${answerItem.question._id}`}>
+          <p
+            className="question"
+            dangerouslySetInnerHTML={{ __html: answerItem.question.ques }}
+          ></p>
+        </Link>
         <div className="question-header">
           <div dangerouslySetInnerHTML={{ __html: answerItem.text }}></div>
           <div className="author-details">

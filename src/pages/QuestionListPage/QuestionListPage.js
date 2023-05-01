@@ -11,6 +11,7 @@ import postToken from "../../utils/postToken";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 import Select from "react-select";
 import baseUrl from "../../utils/constants";
+import NoContent from "../../components/NoContent/NoContent";
 
 const question = [
   {
@@ -54,6 +55,12 @@ const QuestionListPage = () => {
     pending: tagpending,
     error: tagerror,
   } = useFetchToken(`${baseUrl}/tag`, token);
+
+  const {
+    data: questiondata,
+    pending: questionpending,
+    error: questionerror,
+  } = useFetchToken(`${baseUrl}/question/interests/tags/`, token);
   // console.log(tagdata);
 
   const [tags, setTags] = useState();
@@ -119,10 +126,15 @@ const QuestionListPage = () => {
         <input type="submit" value="Post Question" className="btn" />
       </form>
       <div className="grid-container">
+        {questionpending && <InfinitySpin width="300" color="#6495ED" />}
+        {!questionpending && !questiondata.data.length && (
+          <NoContent text={"You haven't asked any questions yet!"} />
+        )}
         <div className="wrapper">
-          {question.map((question) => (
-            <Question key={question.id} data={question} />
-          ))}
+          {questiondata &&
+            questiondata.data.map((question) => (
+              <Question key={question.id} data={question} />
+            ))}
         </div>
 
         {pending && <InfinitySpin width="300" color="#6495ED" />}
