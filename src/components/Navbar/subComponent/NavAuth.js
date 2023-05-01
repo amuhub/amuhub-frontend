@@ -35,6 +35,11 @@ const NavAuth = ({ usertext, setHeight }) => {
     }
   };
 
+  const searchClose = ()=>{
+    setQuery("")
+    setSearchResultsDisplay(false)
+  }
+
   const changeHandler = (e) => {
     e.preventDefault();
     if (e.target.value === "") setSearchResultsDisplay(false);
@@ -108,9 +113,9 @@ const NavAuth = ({ usertext, setHeight }) => {
               onChange={changeHandler}
               value={query}
             />
-            <div className="drop-search-cancel">
+            {query && <div className="search-cancel" onClick = {searchClose}>
               <img src={cross} alt="close-btn" />
-            </div>
+            </div>}
           </div>
           {searchResultsDisplay && (
             <div className="search-results">
@@ -122,6 +127,7 @@ const NavAuth = ({ usertext, setHeight }) => {
                     key={profile._id}
                     name={profile.name}
                     username={profile.username}
+                    pic = {profile.profile.pic}
                     setSearchResultsDisplay={setSearchResultsDisplay}
                     setQuery={setQuery}
                   />
