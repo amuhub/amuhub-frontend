@@ -10,6 +10,7 @@ import "./QuestionDetailsPage.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
+import NoContent from "../../components/NoContent/NoContent";
 
 const Answers = () => {
   const token = localStorage.getItem("token");
@@ -97,7 +98,10 @@ const Answers = () => {
                 </button>
               </div>
               <div className="question-header">
-                <p className="question">{questionData.data.ques}</p>
+                <p
+                  className="question"
+                  dangerouslySetInnerHTML={{ __html: questionData.data.ques }}
+                ></p>
                 <div className="question_stats">
                   <div className="stats_list_a">
                     <Link to="" className="answers_count">
@@ -123,6 +127,11 @@ const Answers = () => {
               </div>
             </div>
             <div className="wrapper">
+              {!questionPending && !questionData.data.answers.length && (
+                <NoContent
+                  text={"This question does not have any answers yet!"}
+                />
+              )}
               {questionData.data.answers.map((answer) => (
                 <Answer key={answer.id} data={answer} />
               ))}

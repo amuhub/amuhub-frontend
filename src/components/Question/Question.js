@@ -1,8 +1,12 @@
 import "./Question.css";
 import { Link } from "react-router-dom";
+import { fetchDate } from "../../utils/parseDate";
+import moment from "moment";
 
 const Question = (props) => {
-  const { ques, answers, views, upvote, downvote } = props.data;
+  const { _id, user, ques, tag, answer_count, upvotes, downvotes, createdAt } =
+    props.data;
+  const { year, month_name, day_num } = fetchDate(createdAt);
   return (
     <div className="question_container">
       <div className="question_header">
@@ -10,20 +14,23 @@ const Question = (props) => {
         <div className="question_info">
           <div>
             <p>
-              Asked On: <span className="timestamp">March 28, 2018</span>
+              Asked On:{" "}
+              <span className="timestamp">{`${month_name} ${day_num}, ${year}`}</span>
             </p>
             <p>
-              Tags : <span className="tags">Movies, Series</span>
+              Tags : <span className="tags">{tag.name}</span>
             </p>
           </div>
-          <p className="question">{ques}</p>
+          <Link to={`/question/${_id}`}>
+            <p className="question">{ques}</p>
+          </Link>
         </div>
       </div>
       <div className="question_stats">
         <div className="stats_list_a">
           <Link to="" className="answers_count">
             <i className="fas fa-comment-alt"></i>
-            {answers} <span>answers</span>
+            {answer_count} <span>answers</span>
           </Link>
           {/* <Link to="" className="views_count">
             <i className="fas fa-eye"></i> {views} <span>views</span>
@@ -39,7 +46,7 @@ const Question = (props) => {
             >
               <path d="M24 12l-12-8v5h-12v6h12v5z" />
             </svg>
-            <span>{upvote}</span>
+            <span>{upvotes.length}</span>
           </Link>
           <Link to="" className="downvote">
             <svg
@@ -50,19 +57,21 @@ const Question = (props) => {
             >
               <path d="M24 12l-12-8v5h-12v6h12v5z" />
             </svg>
-            <span>{downvote}</span>
+            <span>{downvotes.length}</span>
           </Link>
         </div>
       </div>
       <div className="author-details">
         <div className="profile-div">
-          <div className="profile-img"></div>
+          <div className="profile-img">
+            <img src={user.profile.pic}></img>
+          </div>
           <p className="username">
-            <span className="answered-by">Asked By</span> Hasan Faraz
+            <span className="answered-by">Asked By</span> {user.name}
           </p>
         </div>
         <p className="answered-on">
-          Asked <span>2 hours ago</span>
+          Asked <span>{moment(createdAt).fromNow()}</span>
         </p>
       </div>
     </div>
