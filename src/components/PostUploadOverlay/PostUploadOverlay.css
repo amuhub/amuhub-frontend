@@ -1,4 +1,4 @@
-.profile-img-overlay {
+/* .profile-img-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -13,13 +13,13 @@
   -ms-flex-align: center;
   align-items: center;
   justify-content: center;
-}
-.profile-pic-form {
+} */
+/* .profile-pic-form {
   max-width: 500px;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
-}
+} */
 
 #inputFile {
   display: none;
@@ -47,22 +47,6 @@
   margin-top: 30px;
 }
 
-.selected-image {
-  width: 400px;
-  height: 250px;
-  background-color: aliceblue;
-  object-fit: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.selected-image h2 {
-  color: rgb(179, 189, 197);
-  font-size: 28px;
-  font-weight: 300;
-  letter-spacing: 3px;
-}
 .generated-profile-pic {
   display: flex;
   justify-content: center;

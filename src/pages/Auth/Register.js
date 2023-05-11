@@ -99,14 +99,8 @@ const Register = () => {
                 name="password"
               />
             </div>
-            <div className="options">
-              <div className="option-list">
-                <input type="checkbox" name="remerber-me" id="remember-me" />
-                <label htmlFor="remerber-me">Remember Me!</label>
-              </div>
-              <Link href="#">Forgot Password ? </Link>
-            </div>
-            <input type="submit" value="Register" className="btn" />
+            
+            <input type="submit" value="Register" className="btn btn-block" />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">

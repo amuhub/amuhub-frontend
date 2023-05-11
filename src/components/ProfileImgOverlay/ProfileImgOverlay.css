@@ -15,6 +15,7 @@
   justify-content: center;
 }
 .profile-pic-form {
+  width: 100%;
   max-width: 500px;
   padding: 30px;
   background-color: white;
@@ -48,7 +49,7 @@
 }
 
 .selected-image {
-  width: 400px;
+  /* width: 400px; */
   height: 250px;
   background-color: aliceblue;
   object-fit: cover;
@@ -75,4 +76,16 @@
   display: block;
   background-color: #28a745;
   margin: 0 auto;
+}
+
+@media (max-width: 500px){
+  .profile-img-overlay{
+    padding: 20px 10px;
+  }
+  .selected-image h2 { 
+    font-size: 22px;
+  }
+  .profile-pic-form {
+    padding: 20px;
+  }
 }

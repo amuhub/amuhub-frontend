@@ -21,13 +21,18 @@ const NavNoAuth = (props) => {
               </Link>
             </li>
             <li>
-              <Link href="#about-us" onClick={navToggle}>
+              <Link to="#about-us" onClick={navToggle}>
                 about
               </Link>
             </li>
             <li>
-              <Link href="#contact" onClick={navToggle}>
+              <Link to="#contact" onClick={navToggle}>
                 contact
+              </Link>
+            </li>
+            <li className="desktop-hide">
+              <Link to="/register" onClick={navToggle}>
+                Sign Up
               </Link>
             </li>
           </ul>
@@ -38,7 +43,7 @@ const NavNoAuth = (props) => {
           <Link to="/login">Sign In</Link>
         </li>
         <li>
-          <Link to="/register" className="btn">
+          <Link to="/register" className="btn mobile-hide">
             Sign Up
           </Link>
         </li>

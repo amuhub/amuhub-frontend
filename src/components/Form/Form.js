@@ -56,13 +56,13 @@ const Form = ({ form }) => {
               <p>This is also an error</p>
               <img src={errorIcon} alt="" />
             </div>
-            <div className="options">
+            {/* <div className="options">
               <div className="option-list">
                 <input type="checkbox" name="remerber-me" id="remember-me" />
                 <label htmlFor="remerber-me">Remember Me!</label>
               </div>
               <Link href="#">Forgot Password? </Link>
-            </div>
+            </div> */}
             <input type="submit" value="Sign in" className="btn" />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">

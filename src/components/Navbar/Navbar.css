@@ -14,7 +14,7 @@ body {
   font-size: 15px;
 }
 
-a {
+nav a {
   text-decoration: none;
   display: inline-block;
   color: #767676;
@@ -281,6 +281,71 @@ nav {
   width: 75%;
 }
 
+.mobile-svg{
+  display: none;
+}
+
+.notification-icon{
+  position: relative;
+  margin-top: 8px;
+}
+/* .notification-icon svg{
+  fill: red;
+} */
+.notification{
+  position: absolute;
+  top: 5px;
+  right: -1px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.notification-icon-outer{
+  position: relative;
+  margin-left: 20px;
+  background-color: #fff;
+}
+.notification-container{
+  position: absolute;
+  right: -40px;
+  top: 60px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  z-index: 2;
+  overflow-y: scroll;
+  height: 400px;
+  width: 300px;
+}
+.notification-container h1{
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.dropdown-outer-container{
+  position: relative;
+}
+.triangle{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -10px;
+  right: 40px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  transform: rotateZ(45deg);
+}
+.desktop-hide{
+  display: none;
+}
 @media (max-width: 1100px) {
   .desktop-logout {
     display: none;
@@ -374,5 +439,52 @@ nav {
   }
   .search-cancel{
     display: none;
+  }
+}
+
+@media (max-width: 450px){
+  .notification-icon-outer{
+    margin-left: 0;
+  }
+  .nav-links-list-b > * {
+    margin: 0;
+  }
+  nav{
+    padding: 0 20px;
+  }
+  .mobile-svg{
+    display: none;
+    padding-left: 20px;
+    gap: 20px;
+  }
+ 
+  .logout-svg{
+    width: 30px;
+    height: 30px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  /* .burger_btn{
+    display: none;
+  }
+  .burger_btn{
+    
+    display: none;
+    gap: 20px;
+  } */
+  .profile-img{
+    display: none;
+  }
+  .mobile-hide{
+    display: none;
+  }
+  .desktop-hide{
+    display: block;
+  }
+  
+}
+@media (max-width: 450px){
+  .notification-container{
+    width: 280px;
   }
 }

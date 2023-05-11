@@ -72,6 +72,7 @@ img {
   border-radius: 8px;
   overflow: hidden;
   max-height: 90vh;
+  position: relative;
 }
 
 .pop_up_img {
@@ -79,7 +80,7 @@ img {
   background-color: #fff;
   -ms-flex-negative: 2;
   flex-shrink: 2;
-  width: 55%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -210,6 +211,7 @@ img {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 .pop_up_stats_likes {
@@ -294,22 +296,109 @@ img {
   cursor: pointer;
 }
 
+.single-post .post_overlay{
+  position: unset;
+  background-color: rgb(235 233 247 / 60%);
+}
+
 .pop_up_comment_type .post_btn[disabled="true"],
 .post_btn:disabled {
   color: skyblue;
   pointer-events: none;
 }
+.mobile-pop-up-stats{
+  display: none;
+}
+.mobile_pop_up_header{
+  display: none;
+}
+.delete-icon{
+  width: 17px;
+  cursor: pointer;
+}
+.delete-icon:hover{
+  transform: scale(1.1);
+}
+
 @media (max-width: 900px) {
+  .pop_up_header{
+    display: none;
+  }
   .post_pop_up {
     width: 400px;
     max-height: 75vh;
+    height: 850px;
   }
   .pop_up_img {
-    display: none;
+    display: flex;
+    width: 100%;
+    /* min-height: 100%; */
+  }
+  .pop_up_stats_outer {
+    height: auto;
   }
   .pop_up_content {
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    position: absolute;
+    height: 85%;
+    bottom: 0;
+    left: 0;
     width: 100%;
     min-width: unset;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+    transition: all 0.5s;
   }
+
+  .comment-section{
+    border-top: none;
+  }
+  .mobile-pop-up-stats{
+    display: flex;
+  }
+  /* .desktop-pop-up-stats{
+    display: none;
+  } */
+  .mobile_pop_up_header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #d8dee9;
+    padding: 10px;
+    height: 80px;
+  }
+  .mobile_pop_up_header .comment-toggle{
+    height: 6px;
+    border-radius: 30px;
+    width: 100px;
+    background-color: #000;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+  }
+  .inactive-comment{
+    transform: translateY(93%);
+  }
+  .mobile_pop_up_header .comment-toggle:hover{
+    height: 8px;
+  }
+  .mobile_pop_up_header p{
+    font-size: 17px;
+  }
+}
+
+
+
+@media (max-width: 500px){
+  .post_overlay{
+    padding: 20px 10px;
+  }
+  
+}
+
+@media (max-width: 500px){
+  /* .post_pop_up {
+    height: 400px;
+  } */
 }
 /*# sourceMappingURL=post-overlay.css.map */

@@ -117,13 +117,13 @@ const QuestionListPage = () => {
         className={textArea ? "answer-form activeAnswerForm" : "answer-form"}
       >
         <div className="form-control">
-          <Select options={options} isClearable onChange={handleSelect} />
+          <Select options={options} isClearable onChange={handleSelect} placeholder = "Select Tag"/>
         </div>
-        <div className="input-div">
+        <div className="input-div" style = {{"margin" : "20px 0"}}>
           <RichTextEditor onChangeOfEditor={richHtml} />
         </div>
 
-        <input type="submit" value="Post Question" className="btn" />
+        <input type="submit" value="Post Question" className="btn btn-block" style={{"padding" : "14px 25px"}}/>
       </form>
       <div className="grid-container">
         {questionpending && <InfinitySpin width="300" color="#6495ED" />}

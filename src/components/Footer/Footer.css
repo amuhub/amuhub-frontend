@@ -58,3 +58,8 @@
 .attribute span:hover {
   opacity: 0.5;
 }
+@media (max-width: 450px){
+  .footer{
+    padding-bottom: 60px;
+  }
+}

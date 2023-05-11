@@ -1,0 +1,49 @@
+.notification-body{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.notification-body:hover{
+    background-color: #eeedfa;
+}
+.read-indicator{
+    width: 8px;
+    height: 8px;
+    align-self: flex-start;
+    background-color: blue;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+.notification-content{
+    /* width: 200px; */
+    flex-grow: 1;
+}
+.notificaion-timestamp{
+    font-size: 13px;
+    color: grey;
+}
+.notification-text{
+    font-size: 13px;
+}
+.notification-img{
+    width: 30px;
+    height: 30px;
+    align-self: start;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #000;
+    margin-left: 20px;
+    overflow: hidden;
+}
+.notification-divider{
+    height: 1px;
+    background-color: #d8dee9;
+    margin: 10px 0;
+}
+.indicator-hidden{
+    visibility:hidden;
+}

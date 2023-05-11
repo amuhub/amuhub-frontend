@@ -4,15 +4,22 @@ import PostOverlay from "../../pages/Post_Overlay/PostOverlay";
 import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
 import baseUrl from "../../utils/constants";
+import deleteIcon from "../../assets/icons8-trash.svg"
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 import axios from "axios";
+import isAuthenticated from "../../utils/isAuth";
+import ShareIcon from '../../assets/share.svg'
+
 
 const Post = (props) => {
-  const { data } = props;
+  const { data, defaultToggleOverlay} = props;
   const token = localStorage.getItem("token");
-  const [togglePostOverlay, setTogglePostOverlay] = useState(false);
+  const [togglePostOverlay, setTogglePostOverlay] = useState(defaultToggleOverlay);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
+  const [dropDown, setDropDown] = useState(true)
+  const [deleteOverlay, setDeleteOverlay] = useState(false)
 
   useEffect(() => {
     if (data) {
@@ -20,6 +27,8 @@ const Post = (props) => {
       setLikeCnt(data.likes.length);
     }
   }, [data]);
+
+  
 
   const postOverlaytoggler = () => {
     togglePostOverlay === true
@@ -52,19 +61,55 @@ const Post = (props) => {
     }
   };
 
+  // const deletePost = async () =>{
+  //   const res = await axios.delete(`${baseUrl}/feed/delete/${data._id}`, {
+  //     headers : {
+  //       "content-type" : "application/json",
+  //       "x-auth-token" : token,
+  //     }
+  //   })
+  //   window.location.reload(false);
+  //   console.log(res);
+  // }
+
   // const doubleLiked = (e)=>{
   //   e.currentTarget.classList.add('liked-double')
   // }
 
   return (
     <>
+    {deleteOverlay && 
+    <DeleteAlert text = "Are you sure you want to delete this post?"
+    overlayToggle={setDeleteOverlay}
+    deleteURL = ""/>}
       <div className="post_container">
         <div className="post_header">
           <div className="user_info">
             <img src={data.photo} className="user_img" alt="" />
             <span className="username">{data.user.username}</span>
           </div>
-          <i className="fas fa-ellipsis-h"></i>
+
+          <div className="three-dots" onClick={()=> setDropDown(!dropDown)}>
+            <i className="fas fa-ellipsis-h"></i>
+            <div className="drop-down-wrapper">
+              {dropDown && 
+              <div className="drop-down">
+                <div className="drop-down-item">
+                  <img src = {ShareIcon} alt = "delete"/>
+                  <p>Share</p>
+                </div>
+                <div className="drop-down-item">
+                  <img src = {deleteIcon} alt = "delete"/>
+                  <p>Report</p>
+                </div>
+                <div className="drop-down-triangle"></div>
+              </div>
+                
+              }
+            </div>
+            
+          </div>
+          
         </div>
         <div className="post_content">
           <div className="post">

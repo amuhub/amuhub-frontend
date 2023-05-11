@@ -264,3 +264,9 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 600px){
+  .profile-section .profile-img{
+    display: flex;
+  }
+}

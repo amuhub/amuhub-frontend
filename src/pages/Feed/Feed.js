@@ -8,10 +8,15 @@ import "./Feed.css";
 import baseUrl from "../../utils/constants";
 import PostUploadOverlay from "../../components/PostUploadOverlay/PostUploadOverlay";
 import Error from "../../components/Error";
+import { useSearchParams } from "react-router-dom";
 
 const Feed = () => {
   const token = localStorage.getItem("token");
   const [postUploadOverlay, setPostUploadOverlay] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  const viewItemId = searchParams.get('open')
+  console.log(viewItemId); 
 
   const displayOverlay = () => {
     setPostUploadOverlay(true);
@@ -47,7 +52,7 @@ const Feed = () => {
                 !feedError &&
                 feed.data &&
                 feed.data.map((post) => (
-                  <Post key={feed.data._id} data={post} />
+                  <Post key={feed.data._id} data={post} defaultToggleOverlay = {viewItemId === post._id}/>
                 ))}
             </div>
 

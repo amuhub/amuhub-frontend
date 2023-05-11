@@ -9,32 +9,60 @@ import NoContent from "../../components/NoContent/NoContent";
 import moment from "moment";
 import { useEffect } from "react";
 import postToken from "../../utils/postToken";
+import deleteIcon from "../../assets/icons8-trash.svg"
+import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
+import isAuthenticated from "../../utils/isAuth";
+import axios from "axios";
 
 export default function PostOverlay({ postOverlaytoggler, postId }) {
   const token = localStorage.getItem("token");
+
+  
+
   const { data, pending, error } = useFetchToken(
     `${baseUrl}/feed/post/${postId}`,
     token
   );
-  console.log("post overlay", data);
+ if(!pending) console.log(data);
+
+
+
   const [togglePostOverlay, setTogglePostOverlay] = useState(false);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
+  const [commentToggler, setCommentToggler] = useState(true)
+  const [deleteOverlay, setDeleteOverlay] = useState(false)
+  const [deleteCommentId, setDeleteCommentId] = useState("")
+  const [comments, setComments] = useState([])
+
+  
 
   useEffect(() => {
     if (data) {
       setIsLiked(data.data.isLiked);
       setLikeCnt(data.data.likes.length);
-      console.log(isLiked);
     }
-  }, [data]);
+  }, []);
 
-  // const postOverlaytoggler = () => {
-  //   togglePostOverlay === true
-  //     ? setTogglePostOverlay(false)
-  //     : setTogglePostOverlay(true);
-  // };
+  useEffect(() => {
+    let fetchedComments = []; // Variable to store fetched comments
+  
+    axios
+      .get(`${baseUrl}/feed/post/${postId}/comments`, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        fetchedComments = res.data.data;
+        setComments(fetchedComments); // Update the comments state
+        console.log(fetchedComments); // Log the fetched comments
+      });
+  }, [deleteOverlay]);
+
+
 
   const postComment = () => {
     const res = postToken(
@@ -61,9 +89,20 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     }
   };
 
+  const toggleCommentSection = () =>{
+    setCommentToggler(!commentToggler)
+  }
+
+  const toggleOverlay = (id) =>{
+    console.log(id);
+    setDeleteCommentId(id)
+    setDeleteOverlay(true)
+  }
+
   return (
     <div>
       {pending && <div className="post_overlay"></div>}
+      {deleteOverlay && <DeleteAlert overlayToggle = {setDeleteOverlay} deleteURL = "feed/comment" deleteItemId = {deleteCommentId}/>}
       {error && <NoContent text={"Something went wrong!"} />}
       {!pending && data && (
         <div className="post_overlay">
@@ -71,11 +110,13 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
             <i className="fas fa-times"></i>
           </button>
           <div className="post_pop_up">
-            <div className="pop_up_img">
-              <img src={data.data.photo} alt="" />
+            <div className="pop-up-img-outer">
+              <div className="pop_up_img">
+                <img src={data.data.photo} alt="" />
+              </div>
+              
             </div>
-
-            <div className="pop_up_content">
+            <div className={`pop_up_content ${commentToggler ? "inactive-comment" : ""}`}>
               <div className="pop_up_header">
                 <div className="user_info">
                   <img
@@ -87,13 +128,17 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                 </div>
                 <i className="fas fa-ellipsis-h"></i>
               </div>
+              <div className="mobile_pop_up_header" onClick={toggleCommentSection}>
+                <div className="comment-toggle"></div>
+                <p>Comments</p>
+              </div>
 
               <div className="comment-section">
-                {/* caption comment */}
                 <div className="comment">
                   <img
                     className="commenter_img"
                     src={data.data.user.profile.pic}
+                    alt = "user"
                   />
                   <div className="comment_body">
                     <p>
@@ -106,12 +151,13 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   </div>
                 </div>
 
-                {/* loop here */}
-                {data.data.comments.map((comment) => (
+                
+                {comments.map((comment) => (
                   <div className="comment">
                     <img
                       className="commenter_img"
                       src={comment.user.profile.pic}
+                      alt = "user"
                     />
                     <div className="comment_body">
                       <p>
@@ -122,12 +168,14 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                       </p>
                       <p>{moment(comment.createdAt).fromNow()}</p>
                     </div>
+                    {isAuthenticated() === comment.user.username && <img src = {deleteIcon} alt = "delete" className="delete-icon" onClick={()=>(toggleOverlay(comment._id))}/>}
+ 
                   </div>
                 ))}
               </div>
 
               <div className="pop_up_stats_outer">
-                <div className="pop_up_stats">
+                <div className="pop_up_stats desktop-pop-up-stats">
                   <div
                     className={`post_stats_likes ${isLiked ? "liked" : ""}`}
                     onClick={doLike}

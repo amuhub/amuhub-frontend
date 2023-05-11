@@ -10,11 +10,13 @@ import QuestionListPage from "./pages/QuestionListPage/QuestionListPage";
 import QuestionDetailsPage from "./pages/QuestionDetailsPage/QuestionDetailsPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Questions from "./components/Questions";
 import ProfilePosts from "./components/ProfilePosts/ProfilePosts";
 import ProfileAnswer from "./components/ProfileAnswer/ProfileAnswer.js";
 import ProfileQuestion from "./components/ProfileQuestion/ProfileQuestion";
 import NotFound from "./pages/NotFound/NotFound";
+import BottomNavbar from "./components/BottomNavbar/BottomNavbar";
+import isAuthenticated from "./utils/isAuth";
+import SinglePost from "./pages/SinglePost/SinglePost";
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="post/:postId" element={<SinglePost/>}/>
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
           <Route path="/profile/:username" element={<ProfilePage />}>
@@ -36,6 +39,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        {isAuthenticated() && <BottomNavbar/>}
         <Footer />
       </div>
     </Router>

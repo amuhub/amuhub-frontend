@@ -56,11 +56,11 @@ form .input-div textarea {
   font-weight: bold;
 }
 
-form .btn {
+/* form .btn {
   display: block;
   width: 100%;
   padding: 15px 0;
-}
+} */
 
 form .error p,
 form .form-area .error img {

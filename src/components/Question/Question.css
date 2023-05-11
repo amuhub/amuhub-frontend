@@ -58,10 +58,7 @@
   color: #6055a5;
 }
 
-.question {
-  font-size: 22px;
-  font-weight: bold;
-}
+
 
 .question_stats {
   display: -webkit-box;
@@ -115,9 +112,14 @@
   transform: rotate(90deg);
   overflow: visible;
 }
-
+.question{
+  color: black;
+}
 @media (max-width: 610px) {
   .question_stats .stats_list_a a span {
     display: none;
+  }
+  .question h1{
+    font-size: 20px;
   }
 }

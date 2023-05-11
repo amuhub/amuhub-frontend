@@ -80,17 +80,8 @@ const Login = () => {
                 id="password"
                 name="password"
               />
-              {/* <p>This is also an error</p>
-              <img src={errorIcon} alt="" /> */}
             </div>
-            <div className="options">
-              <div className="option-list">
-                <input type="checkbox" name="remerber-me" id="remember-me" />
-                <label htmlFor="remerber-me">Remember Me!</label>
-              </div>
-              <Link href="#">Forgot Password ? </Link>
-            </div>
-            <input type="submit" value="Sign in" className="btn" />
+            <input type="submit" value="Sign in" className="btn btn-block btn-lg" />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">

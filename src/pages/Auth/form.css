@@ -211,6 +211,7 @@ form .error input {
 }
 
 @media (max-width: 800px) {
+  
   .form-container-inner {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -232,5 +233,20 @@ form .error input {
   }
   .form-container-inner form {
     width: 100%;
+  }
+}
+
+@media (max-width: 500px){
+  .form-body{
+    padding: 40px 20px;
+  }
+  form{
+    padding: 20px;
+  }
+  .signin{
+    padding: 0;
+  }
+  .title{
+    margin: 20px;
   }
 }
