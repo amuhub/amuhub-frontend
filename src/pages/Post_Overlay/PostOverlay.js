@@ -13,6 +13,7 @@ import deleteIcon from "../../assets/icons8-trash.svg"
 import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function PostOverlay({ postOverlaytoggler, postId }) {
   const token = localStorage.getItem("token");
@@ -27,14 +28,16 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
 
 
 
-  const [togglePostOverlay, setTogglePostOverlay] = useState(false);
   const [isLiked, setIsLiked] = useState("");
-  const [comment, setComment] = useState("");
+  const [commentInput, setCommentInput] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
   const [commentToggler, setCommentToggler] = useState(true)
   const [deleteOverlay, setDeleteOverlay] = useState(false)
   const [deleteCommentId, setDeleteCommentId] = useState("")
   const [comments, setComments] = useState([])
+  const [commentsPending, setCommentsPending] = useState(true)
+  const [commentPosted, setCommentPosted] = useState(false)
+  // const [comments, setComments] = useState([])
 
   
 
@@ -43,7 +46,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
       setIsLiked(data.data.isLiked);
       setLikeCnt(data.data.likes.length);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     let fetchedComments = []; // Variable to store fetched comments
@@ -58,21 +61,26 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
       .then((res) => {
         fetchedComments = res.data.data;
         setComments(fetchedComments); // Update the comments state
+        setCommentsPending(false)
+        setCommentPosted(false)
         console.log(fetchedComments); // Log the fetched comments
       });
-  }, [deleteOverlay]);
+  }, [deleteOverlay, commentPosted]);
 
-
+  useEffect(()=>{
+    console.log("jdjnjnfjdn   " + commentPosted);
+  }, [commentPosted])
 
   const postComment = () => {
     const res = postToken(
       `${baseUrl}/feed/comment/${data.data._id}`,
-      { text: comment },
+      { text: commentInput },
       token
     );
     if (!res) console.log(res.error);
-    setComment("");
-    window.location.reload(true);
+    setCommentInput("");
+    setCommentPosted(true)
+    // window.location.reload(true);
   };
 
   const doLike = async (e) => {
@@ -151,7 +159,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   </div>
                 </div>
 
-                
+                {commentsPending && <InfinitySpin width="300" color="#6495ED" />}
                 {comments.map((comment) => (
                   <div className="comment">
                     <img
@@ -195,14 +203,14 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   <input
                     type="text"
                     placeholder="Add a comment..."
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    value={commentInput}
+                    onChange={(e) => setCommentInput(e.target.value)}
                   />
                   <button
                     to="#"
                     className="post_btn"
                     onClick={postComment}
-                    disabled={!comment}
+                    disabled={!commentInput}
                   >
                     Post
                   </button>

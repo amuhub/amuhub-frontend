@@ -6,8 +6,6 @@ import postToken from "../../utils/postToken";
 import baseUrl from "../../utils/constants";
 import deleteIcon from "../../assets/icons8-trash.svg"
 import DeleteAlert from "../DeleteAlert/DeleteAlert";
-import axios from "axios";
-import isAuthenticated from "../../utils/isAuth";
 import ShareIcon from '../../assets/share.svg'
 
 

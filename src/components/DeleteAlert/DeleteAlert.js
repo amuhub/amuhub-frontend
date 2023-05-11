@@ -27,6 +27,7 @@ const DeleteAlert = ({text, overlayToggle, deleteItemId, deleteURL}) => {
         })
 
         if(!(deleteURL in  apiRedirectMapping)) overlayToggle(false)
+        // else if(deleteURL === "post/delete") continue
     }
 
   return (
