@@ -15,8 +15,8 @@ const Feed = () => {
   const [postUploadOverlay, setPostUploadOverlay] = useState(false);
 
   const [searchParams] = useSearchParams();
-  const viewItemId = searchParams.get('open')
-  console.log(viewItemId); 
+  const viewItemId = searchParams.get("open");
+  console.log(viewItemId);
 
   const displayOverlay = () => {
     setPostUploadOverlay(true);
@@ -52,7 +52,11 @@ const Feed = () => {
                 !feedError &&
                 feed.data &&
                 feed.data.map((post) => (
-                  <Post key={feed.data._id} data={post} defaultToggleOverlay = {viewItemId === post._id}/>
+                  <Post
+                    key={feed.data._id}
+                    data={post}
+                    defaultToggleOverlay={viewItemId === post._id}
+                  />
                 ))}
             </div>
 

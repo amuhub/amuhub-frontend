@@ -81,7 +81,11 @@ const Login = () => {
                 name="password"
               />
             </div>
-            <input type="submit" value="Sign in" className="btn btn-block btn-lg" />
+            <input
+              type="submit"
+              value="Sign in"
+              className="btn btn-block btn-lg"
+            />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">

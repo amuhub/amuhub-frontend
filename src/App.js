@@ -28,7 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/feed" element={<Feed />} />
-          <Route path="post/:postId" element={<SinglePost/>}/>
+          <Route path="post/:postId" element={<SinglePost />} />
           <Route path="/question" element={<QuestionListPage />} />
           <Route path="/question/:id" element={<QuestionDetailsPage />} />
           <Route path="/profile/:username" element={<ProfilePage />}>
@@ -39,7 +39,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {isAuthenticated() && <BottomNavbar/>}
+        {isAuthenticated() && <BottomNavbar />}
         <Footer />
       </div>
     </Router>

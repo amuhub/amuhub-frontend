@@ -22,7 +22,10 @@ const Question = (props) => {
             </p>
           </div>
           <Link to={`/question/${_id}`}>
-            <p className="question"  dangerouslySetInnerHTML={{ __html: ques }}></p>
+            <p
+              className="question"
+              dangerouslySetInnerHTML={{ __html: ques }}
+            ></p>
           </Link>
         </div>
       </div>

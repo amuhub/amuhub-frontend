@@ -4,8 +4,9 @@ import postImg from "../Post/img.png";
 import PostOverlay from "../../pages/Post_Overlay/PostOverlay";
 
 const ProfilePost = (props) => {
-  const { postItem } = props;
-  const [togglePostOverlay, setTogglePostOverlay] = useState(false);
+  const { postItem, defaultToggleOverlay } = props;
+  const [togglePostOverlay, setTogglePostOverlay] =
+    useState(defaultToggleOverlay);
 
   const postOverlaytoggler = () => {
     togglePostOverlay === true

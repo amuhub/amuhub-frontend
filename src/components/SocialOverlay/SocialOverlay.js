@@ -2,7 +2,7 @@ import React from "react";
 import "./SocialOverlay.css";
 import ProfileCard from "./ProfileCard";
 import { useFetchToken } from "../../utils/useFetch";
-import NoContent from "../NoContent/NoContent";
+import NoContentTwo from "../NoContent/NoContentTwo";
 import { InfinitySpin } from "react-loader-spinner";
 import baseUrl from "../../utils/constants";
 
@@ -37,6 +37,10 @@ const SocialOverlay = ({ setSocialToggler, overlayID, username }) => {
               key={item._id}
             />
           ))}
+        {pending && <InfinitySpin width="300" color="#6495ED" />}
+        {!pending && data && data.data.length === 0 && (
+          <NoContentTwo text={`You don't have any ${overlayID} yet !`} />
+        )}
       </div>
     </div>
   );

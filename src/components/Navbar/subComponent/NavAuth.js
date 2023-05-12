@@ -8,6 +8,7 @@ import ProfileOverview from "../../ProfileOverview/ProfileOverview";
 import useDebounce from "../../../utils/debounceHook";
 import cross from "../../../assets/navbar/multiply-svgrepo-com.svg";
 import Notification from "../../Notification/Notification";
+import sleepingbell from "../../../assets/navbar/sleeping-bell.gif";
 
 const NavAuth = ({ usertext, setHeight }) => {
   const [menu, setmenu] = useState(false);
@@ -15,7 +16,7 @@ const NavAuth = ({ usertext, setHeight }) => {
   // const [showCross, setShowCross]
   const [query, setQuery] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const [notificationDisplay, setNotificationDisplay] = useState(false)
+  const [notificationDisplay, setNotificationDisplay] = useState(false);
   const isEmpty = !searchData || searchData.length === 0;
 
   const navToggle = (e) => {
@@ -28,13 +29,12 @@ const NavAuth = ({ usertext, setHeight }) => {
     `${baseUrl}/profile/${usertext}`,
     token
   );
-  
 
-  const {data : notificationData, pending: notificationPending, error:notificationError} = useFetchToken(
-    `${baseUrl}/notification/`,
-    token
-  )
- 
+  const {
+    data: notificationData,
+    pending: notificationPending,
+    error: notificationError,
+  } = useFetchToken(`${baseUrl}/notification/`, token);
 
   const logoutUser = () => {
     if (isAuthenticated()) {
@@ -44,10 +44,10 @@ const NavAuth = ({ usertext, setHeight }) => {
     }
   };
 
-  const searchClose = ()=>{
-    setQuery("")
-    setSearchResultsDisplay(false)
-  }
+  const searchClose = () => {
+    setQuery("");
+    setSearchResultsDisplay(false);
+  };
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -122,9 +122,11 @@ const NavAuth = ({ usertext, setHeight }) => {
               onChange={changeHandler}
               value={query}
             />
-            {query && <div className="search-cancel" onClick = {searchClose}>
-              <img src={cross} alt="close-btn" />
-            </div>}
+            {query && (
+              <div className="search-cancel" onClick={searchClose}>
+                <img src={cross} alt="close-btn" />
+              </div>
+            )}
           </div>
           {searchResultsDisplay && (
             <div className="search-results">
@@ -136,7 +138,7 @@ const NavAuth = ({ usertext, setHeight }) => {
                     key={profile._id}
                     name={profile.name}
                     username={profile.username}
-                    pic = {profile.profile.pic}
+                    pic={profile.profile.pic}
                     setSearchResultsDisplay={setSearchResultsDisplay}
                     setQuery={setQuery}
                   />
@@ -146,23 +148,52 @@ const NavAuth = ({ usertext, setHeight }) => {
           )}
         </div>
       </div>
-      
+
       <div className="nav-links-list-b">
         {/* <Button text='Ask Question' /> */}
         <div className="notification-icon-outer">
-          <div className="notification-icon" onClick={()=>(setNotificationDisplay(!notificationDisplay))}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M15 21c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3h6zm.137-17.055c-.644-.374-1.042-1.07-1.041-1.82v-.003c.001-1.172-.938-2.122-2.096-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.668 2.709-1.985 11.715-6.862 13.306v1.749h20v-1.749c-4.877-1.591-2.193-10.598-6.863-13.306zm-3.137-2.945c.552 0 1 .449 1 1 0 .552-.448 1-1 1s-1-.448-1-1c0-.551.448-1 1-1zm-6.451 16c1.189-1.667 1.605-3.891 1.964-5.815.447-2.39.869-4.648 2.354-5.509 1.38-.801 2.956-.76 4.267 0 1.485.861 1.907 3.119 2.354 5.509.359 1.924.775 4.148 1.964 5.815h-12.903z"/></svg>
-            {!notificationPending && notificationData.data.length && <div className="notification">{notificationData.data.length}</div>}
+          <div
+            className="notification-icon"
+            onClick={() => setNotificationDisplay(!notificationDisplay)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15 21c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3h6zm.137-17.055c-.644-.374-1.042-1.07-1.041-1.82v-.003c.001-1.172-.938-2.122-2.096-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.668 2.709-1.985 11.715-6.862 13.306v1.749h20v-1.749c-4.877-1.591-2.193-10.598-6.863-13.306zm-3.137-2.945c.552 0 1 .449 1 1 0 .552-.448 1-1 1s-1-.448-1-1c0-.551.448-1 1-1zm-6.451 16c1.189-1.667 1.605-3.891 1.964-5.815.447-2.39.869-4.648 2.354-5.509 1.38-.801 2.956-.76 4.267 0 1.485.861 1.907 3.119 2.354 5.509.359 1.924.775 4.148 1.964 5.815h-12.903z" />
+            </svg>
+            {!notificationPending &&
+              notificationData.data.filter((item) => !item.isViewed).length >
+                0 && (
+                <div className="notification">
+                  {
+                    notificationData.data.filter((item) => !item.isViewed)
+                      .length
+                  }
+                </div>
+              )}
           </div>
-          
-          {notificationDisplay && <div className='notification-container'>
-            <h1>Notifications</h1>
-            {!notificationPending && notificationData.data.map((notification)=>(
-              <Notification key ={notification.id} data = {notification}/>
-            ))}
-            <div className="triangle"></div>
-          </div>}
-          
+
+          {notificationDisplay && (
+            <div className="notification-container">
+              <h1>Notifications</h1>
+              {!notificationPending &&
+                notificationData.data.map((notification) => (
+                  <Notification key={notification.id} data={notification} />
+                ))}
+              {notificationPending && (
+                <div className="notification-pending">Loading...</div>
+              )}
+              {notificationData.data.length === 0 && !notificationPending && (
+                <div className="notification-pending">
+                  <img src={sleepingbell}></img>
+                </div>
+              )}
+              <div className="triangle"></div>
+            </div>
+          )}
         </div>
         <Link to={`profile/${usertext}`}>
           <div className="profile-div">
@@ -175,20 +206,31 @@ const NavAuth = ({ usertext, setHeight }) => {
           </div>
         </Link>
         <Button text="Logout" btnClass="desktop-logout" onClick={logoutUser} />
-      
       </div>
-      
+
       <label htmlFor="check" onClick={navToggle} className="burger_btn">
         <span></span>
         <span></span>
         <span></span>
       </label>
       <div className="mobile-svg">
-        
-
         <div className="logout-svg" onClick={logoutUser}>
-       
-           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-log-out"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
         </div>
       </div>
     </>

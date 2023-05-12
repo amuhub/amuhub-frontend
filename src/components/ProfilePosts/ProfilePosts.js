@@ -7,6 +7,7 @@ import baseUrl from "../../utils/constants";
 import NoContent from "../NoContent/NoContent";
 import { InfinitySpin } from "react-loader-spinner";
 import ProfilePost from "./ProfilePost";
+import { useSearchParams } from "react-router-dom";
 
 const ProfilePosts = () => {
   const { username } = useParams();
@@ -14,6 +15,10 @@ const ProfilePosts = () => {
     `${baseUrl}/profile/` + username + "/posts"
   );
   console.log("profile posts", data);
+
+  const [searchParams] = useSearchParams();
+  const viewItemId = searchParams.get("open");
+  console.log(viewItemId);
 
   return (
     <div>
@@ -28,7 +33,11 @@ const ProfilePosts = () => {
         {!pending &&
           data &&
           data.data.map((postItem) => (
-            <ProfilePost postItem={postItem} key={postItem._id} />
+            <ProfilePost
+              postItem={postItem}
+              key={postItem._id}
+              defaultToggleOverlay={viewItemId === postItem._id}
+            />
           ))}
       </div>
     </div>

@@ -126,7 +126,9 @@ const Answers = () => {
                 </form>
               </div>
             </div>
-            <div className="divider"><p>Answers</p></div>
+            <div className="divider">
+              <p>Answers</p>
+            </div>
             <div className="wrapper">
               {!questionPending && !questionData.data.answers.length && (
                 <NoContent
@@ -139,7 +141,7 @@ const Answers = () => {
             </div>
           </div>
         )}
-        
+
         {pending && <InfinitySpin width="300" color="#6495ED" />}
 
         <div className="event-container">

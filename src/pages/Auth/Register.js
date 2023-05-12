@@ -99,7 +99,7 @@ const Register = () => {
                 name="password"
               />
             </div>
-            
+
             <input type="submit" value="Register" className="btn btn-block" />
             <div className="horizontal-rule"></div>
             <ul className="soc-media">

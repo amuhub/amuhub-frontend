@@ -21,7 +21,9 @@ const ProfileOverview = ({
     >
       <div className="profile-overview">
         <div className="profile-div">
-          <div className="profile-img"><img src = {pic}/></div>
+          <div className="profile-img">
+            <img src={pic} />
+          </div>
           <p className="profile-overview-info">
             {name} <span>@{username}</span>
           </p>
