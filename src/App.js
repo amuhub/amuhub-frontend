@@ -17,31 +17,35 @@ import NotFound from "./pages/NotFound/NotFound";
 import BottomNavbar from "./components/BottomNavbar/BottomNavbar";
 import isAuthenticated from "./utils/isAuth";
 import SinglePost from "./pages/SinglePost/SinglePost";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./components/ErrorFallback/ErrorFallback";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="post/:postId" element={<SinglePost />} />
-          <Route path="/question" element={<QuestionListPage />} />
-          <Route path="/question/:id" element={<QuestionDetailsPage />} />
-          <Route path="/profile/:username" element={<ProfilePage />}>
-            <Route index element={<ProfileAnswer />} />
-            <Route path="answers" element={<ProfileAnswer />} />
-            <Route path="questions" element={<ProfileQuestion />} />
-            <Route path="posts" element={<ProfilePosts />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {isAuthenticated() && <BottomNavbar />}
-        <Footer />
-      </div>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="post/:postId" element={<SinglePost />} />
+            <Route path="/question" element={<QuestionListPage />} />
+            <Route path="/question/:id" element={<QuestionDetailsPage />} />
+            <Route path="/profile/:username" element={<ProfilePage />}>
+              <Route index element={<ProfileAnswer />} />
+              <Route path="answers" element={<ProfileAnswer />} />
+              <Route path="questions" element={<ProfileQuestion />} />
+              <Route path="posts" element={<ProfilePosts />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          {isAuthenticated() && <BottomNavbar />}
+          <Footer />
+        </div>
+      </ErrorBoundary>
     </Router>
   );
 }
