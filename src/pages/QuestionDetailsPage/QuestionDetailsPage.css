@@ -23,10 +23,49 @@
   border: none;
   background-color: #fff;
   cursor: pointer;
+  position: relative;
+  font-size: 12px;
 }
-.upvote-downvote-panel .up {
+.upvote-downvote-panel .up{
+  margin-bottom: 20px;
+}
+/* .upvote-downvote-panel button div{
+  position: absolute;
+  top: 0;
+  right: 0;
+} */
+.upvote-count{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.upvote-triangle {
+  width: 0;
+  height: 0;
+  border: 30px solid transparent;
+  border-bottom: 28px solid #767676;
+  border-top: 0;
+}
+.downvote-count{
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.downvote-triangle {
+  width: 0;
+  height: 0;
+  border: 30px solid transparent;
+  border-top: 28px solid #767676;
+  border-bottom: 0;
+}
+
+/* .upvote-downvote-panel .up {
   transform: rotate(-180deg);
-}
+} */
 .upvote-downvote-panel svg {
   fill: #767676;
 }
@@ -84,4 +123,9 @@
 }
 .question-header .three-dots{
   align-self: flex-start;
+}
+
+.isUpvotedDownvoted svg{
+  fill: grey;
+  stroke: grey;
 }

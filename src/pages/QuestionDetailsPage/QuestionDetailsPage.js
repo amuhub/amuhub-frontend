@@ -2,7 +2,7 @@ import News from "../../components/News/News";
 import Answer from "../../components/Answer/Answer";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 import { useFetch, useFetchToken } from "../../utils/useFetch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import baseUrl from "../../utils/constants";
@@ -47,13 +47,28 @@ const Answers = () => {
   const [deleteOverlay, setDeleteOverlay] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState("");
   const { id } = useParams();
+  const [isUpvoted, setIsUpvoted] = useState(false)
+  const [isDownvoted, setIsDownvoted] = useState(false)
+  const [upvoteCnt, setUpvoteCnt] = useState(0)
+  const [downvoteCnt, setDownvoteCnt] = useState(0)
 
+  
   const {
     data: questionData,
     pending: questionPending,
     error: questionError,
   } = useFetchToken(`${baseUrl}/question/${id}`, token);
 
+  useEffect(() => {
+    if (!questionPending && !questionError) {
+      setIsDownvoted(questionData.data.downvoted);
+      setIsUpvoted(questionData.data.upvoted);
+      setUpvoteCnt(questionData.data.upvotes.length);
+      setDownvoteCnt(questionData.data.downvotes.length);
+    }
+  }, [questionData, questionPending, questionError]);
+
+  console.log("this is question data");
   console.log(questionData);
 
   const { data, pending, error } = useFetch(
@@ -65,6 +80,30 @@ const Answers = () => {
     setDeleteItemId(id)
     setDeleteOverlay(true);
     setDeleteUrl("question");
+  }
+
+  const upvoteQues = async () => {
+    const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token)
+    if(isUpvoted) setIsUpvoted(false)
+    else {
+      setIsUpvoted(true)
+      if(isDownvoted) setIsDownvoted(false) 
+    }
+    setUpvoteCnt(res.data.data.upvotes.length)
+    setDownvoteCnt(res.data.data.downvotes.length)
+    console.log(res.data.data);
+  }
+
+  const downvoteQues = async () => {
+    const res = await postToken(`${baseUrl}/question/downvote/${id}`, {}, token)
+    if(isDownvoted) setIsDownvoted(false)
+    else {
+      setIsDownvoted(true)
+      if(isUpvoted) setIsUpvoted(false)
+    }
+    setUpvoteCnt(res.data.data.upvotes.length)
+    setDownvoteCnt(res.data.data.downvotes.length)
+    console.log(res.data.data);
   }
   // ------------------start------------------
 
@@ -101,8 +140,8 @@ const Answers = () => {
           <div className="ques-ans-container">
             <div className="ques-container">
               <div className="upvote-downvote-panel">
-                <button className="up">
-                  <svg
+                <button className="up" onClick = {upvoteQues}>
+                  {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"
                     width="36"
@@ -110,14 +149,16 @@ const Answers = () => {
                     viewBox="0 0 36 36"
                   >
                     <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg>
+                  </svg> */}
+                  <div class="upvote-triangle"></div>
+                  <div className="upvote-count">{upvoteCnt}</div>
                 </button>
-                <p className="vote-count">
+                {/* <p className="vote-count">
                   {questionData.data.upvotes.length +
                     questionData.data.downvotes.length}
-                </p>
-                <button className="down">
-                  <svg
+                </p> */}
+                <button className="down" onClick = {downvoteQues}>
+                  {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"
                     width="36"
@@ -125,7 +166,9 @@ const Answers = () => {
                     viewBox="0 0 36 36"
                   >
                     <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg>
+                  </svg> */}
+                  <div class="downvote-triangle"></div>
+                  <div className="downvote-count">{downvoteCnt}</div>
                 </button>
               </div>
               <div className="question-header">
