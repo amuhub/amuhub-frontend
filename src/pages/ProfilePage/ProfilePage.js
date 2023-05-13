@@ -13,6 +13,7 @@ import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
 
 const ProfilePage = () => {
+
   const { username } = useParams();
   const [formToggler, setFormToggler] = useState(false);
   const [socialToggler, setSocialToggler] = useState(false);
@@ -20,6 +21,8 @@ const ProfilePage = () => {
   const token = localStorage.getItem("token");
   const [changePicOverlay, setChangePicOverlay] = useState(false);
   const isLoggedInUser = isAuthenticated() === username;
+
+  if(!isAuthenticated()) window.location.href = "/login"
 
   const formToggle = () => {
     setFormToggler(!formToggler);
@@ -53,6 +56,8 @@ const ProfilePage = () => {
   );
   console.log("profile data", data);
 
+  
+
   return (
     <>
       <div className="common-container">
@@ -76,7 +81,7 @@ const ProfilePage = () => {
                   <div className="profile-info">
                     <div className="info-inner">
                       <p className="profile-name">{data.data.username}</p>
-                      {!isLoggedInUser && data.data.auth && (
+                      {!isLoggedInUser && (
                         <Link
                           to="#"
                           className={`btn-sec ${

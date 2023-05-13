@@ -67,7 +67,12 @@ const NavAuth = ({ usertext, setHeight }) => {
     const URL = prepareQuery(query);
 
     try {
-      const res = await fetch(URL);
+      const res = await fetch(URL, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
       if (res.ok) {
         const data = await res.json();
         console.log(data);

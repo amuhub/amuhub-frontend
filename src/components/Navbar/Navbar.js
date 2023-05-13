@@ -18,6 +18,8 @@ const Navbar = () => {
   const [searchData, setSearchData] = useState([]);
   const isEmpty = !searchData || searchData.length === 0;
 
+  const token = localStorage.getItem("token")
+
   const setHeight = () => {
     setDropDownSearchHeight(!dropDownSearchHeight);
   };
@@ -60,7 +62,12 @@ const Navbar = () => {
     const URL = prepareSearchQuery(searchQuery);
 
     try {
-      const res = await fetch(URL);
+      const res = await fetch(URL, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
       if (res.ok) {
         const data = await res.json();
         // console.log(data);
@@ -118,6 +125,7 @@ const Navbar = () => {
               <ProfileOverview
                 key={profile._id}
                 name={profile.name}
+                pic = {profile.profile.pic}
                 username={profile.username}
                 setSearchResultsDisplay={setSearchResultsDisplay}
                 setQuery={setSearchQuery}

@@ -7,10 +7,14 @@ import moment from "moment";
 import { useEffect } from "react";
 import postToken from "../../utils/postToken";
 import { useParams } from "react-router-dom";
+import isAuthenticated from "../../utils/isAuth";
 
 const SinglePost = () => {
   const { postId } = useParams();
   const token = localStorage.getItem("token");
+
+  if(!isAuthenticated()) window.location.href = "/login"
+
   const { data, pending, error } = useFetchToken(
     `${baseUrl}/feed/post/${postId}`,
     token

@@ -2,7 +2,7 @@ import React from "react";
 import "./ProfilePosts.css";
 import { useParams } from "react-router-dom";
 import postImg from "../Post/img.png";
-import { useFetch } from "../../utils/useFetch";
+import { useFetchToken } from "../../utils/useFetch";
 import baseUrl from "../../utils/constants";
 import NoContent from "../NoContent/NoContent";
 import { InfinitySpin } from "react-loader-spinner";
@@ -11,8 +11,11 @@ import { useSearchParams } from "react-router-dom";
 
 const ProfilePosts = () => {
   const { username } = useParams();
-  const { data, pending, error } = useFetch(
-    `${baseUrl}/profile/` + username + "/posts"
+  const token = localStorage.getItem("token")
+
+  const { data, pending, error } = useFetchToken(
+    `${baseUrl}/profile/` + username + "/posts",
+    token
   );
   console.log("profile posts", data);
 

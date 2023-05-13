@@ -18,10 +18,16 @@ import { decodeToken } from "react-jwt";
 import ShareIcon from "../../assets/share.svg";
 
 const Answers = () => {
+
+  if(!isAuthenticated()) window.location.href = "/login"
+  
   const token = localStorage.getItem("token");
   const decoded_token = decodeToken(token)
   const user_id = decoded_token.user.id
   console.log(user_id);
+
+  
+
   const answerBox = () => {
     setTextArea(!textArea);
   };

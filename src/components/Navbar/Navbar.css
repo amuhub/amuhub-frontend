@@ -288,6 +288,7 @@ nav {
 .notification-icon{
   position: relative;
   margin-top: 8px;
+  cursor: pointer;
 }
 /* .notification-icon svg{
   fill: red;
@@ -324,7 +325,7 @@ nav {
   border-radius: 6px;
   z-index: 2;
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
   width: 300px;
 }
 .notification-container h1{
@@ -433,6 +434,7 @@ nav {
   }
   .drop-down-search-results {
     display: block;
+    z-index: 4;
   }
   .drop-down-active {
     max-height: 80px;

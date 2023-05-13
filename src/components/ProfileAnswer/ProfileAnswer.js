@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useFetch, useFetchToken } from "../../utils/useFetch";
+import { useFetchToken } from "../../utils/useFetch";
 import { InfinitySpin } from "react-loader-spinner";
 import QuesAns from "./QuesAns";
 import baseUrl from "../../utils/constants";
@@ -8,8 +8,11 @@ import NoContent from "../NoContent/NoContent";
 
 const ProfileAnswer = () => {
   const { username } = useParams();
-  const { data, pending, error } = useFetch(
-    `${baseUrl}/profile/` + username + "/answers"
+  const token = localStorage.getItem("token")
+
+  const { data, pending, error } = useFetchToken(
+    `${baseUrl}/profile/` + username + "/answers",
+    token
   );
   console.log(data);
 
