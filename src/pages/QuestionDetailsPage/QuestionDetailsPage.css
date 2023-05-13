@@ -55,12 +55,28 @@
   transform: translate(-50%, -50%);
   color: white;
 }
+
 .downvote-triangle {
   width: 0;
   height: 0;
   border: 30px solid transparent;
   border-top: 28px solid #767676;
   border-bottom: 0;
+}
+
+.upvote-active .upvote-triangle{
+  border-bottom: 28px solid #eff10e;
+  color: black;
+}
+.upvote-active .upvote-count{
+  color: black;
+}
+.downvote-active .downvote-triangle{
+  border-top: 28px solid #eff10e;
+  color: black;
+}
+.downvote-active .downvote-count{
+  color: black;
 }
 
 /* .upvote-downvote-panel .up {

@@ -7,10 +7,12 @@ import baseUrl from "../../utils/constants";
 import deleteIcon from "../../assets/icons8-trash.svg";
 import DeleteAlert from "../DeleteAlert/DeleteAlert";
 import ShareIcon from "../../assets/share.svg";
+import isAuthenticated from "../../utils/isAuth";
 
 const Post = (props) => {
   const { data, defaultToggleOverlay } = props;
   const token = localStorage.getItem("token");
+  const username = isAuthenticated()
   const [togglePostOverlay, setTogglePostOverlay] = useState(defaultToggleOverlay);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
@@ -56,29 +58,17 @@ const Post = (props) => {
     }
   };
 
-  // const deletePost = async () =>{
-  //   const res = await axios.delete(`${baseUrl}/feed/delete/${data._id}`, {
-  //     headers : {
-  //       "content-type" : "application/json",
-  //       "x-auth-token" : token,
-  //     }
-  //   })
-  //   window.location.reload(false);
-  //   console.log(res);
-  // }
-
-  // const doubleLiked = (e)=>{
-  //   e.currentTarget.classList.add('liked-double')
-  // }
 
   return (
     <>
       <div className="post_container">
         <div className="post_header">
-          <div className="user_info">
-            <img src={data.photo} className="user_img" alt="" />
-            <span className="username">{data.user.username}</span>
-          </div>
+          <Link to = {`/profile/${data.user.username}`} >
+            <div className="user_info">
+              <img src={data.user.profile.pic} className="user_img" alt="" />
+              <span className="username">{data.user.username}</span>
+            </div>
+          </Link>
 
           <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
             <i className="fas fa-ellipsis-h"></i>

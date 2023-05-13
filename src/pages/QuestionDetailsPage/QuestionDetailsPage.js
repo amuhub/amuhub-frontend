@@ -140,7 +140,7 @@ const Answers = () => {
           <div className="ques-ans-container">
             <div className="ques-container">
               <div className="upvote-downvote-panel">
-                <button className="up" onClick = {upvoteQues}>
+                <button className={`up ${isUpvoted ? 'upvote-active' : ''}`} onClick = {upvoteQues}>
                   {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"
@@ -157,7 +157,7 @@ const Answers = () => {
                   {questionData.data.upvotes.length +
                     questionData.data.downvotes.length}
                 </p> */}
-                <button className="down" onClick = {downvoteQues}>
+                <button className={`down ${isDownvoted ? 'downvote-active' : ''}`} onClick = {downvoteQues}>
                   {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"

@@ -32,6 +32,7 @@
   color: #000;
 }
 
+
 @media (max-width: 610px) {
   .answered-on span {
     display: block;

@@ -25,3 +25,9 @@
   font-weight: 300;
   color: rgb(184, 184, 192);
 }
+
+@media (max-width : 450px){
+  .profile-overview .profile-img{
+    display: block;
+  }
+}

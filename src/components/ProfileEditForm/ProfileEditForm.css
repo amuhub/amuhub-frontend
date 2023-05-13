@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px 60px;
+  padding: 20px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,7 +17,7 @@
 
 .edit-form-container {
   max-width: 400px;
-  width: 90%;
+  
   background-color: rgb(240, 241, 254);
 }
 .edit-form-container .title {

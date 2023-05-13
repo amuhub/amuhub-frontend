@@ -21,13 +21,7 @@ const SocialOverlay = ({ setSocialToggler, overlayID, username }) => {
       </button>
       <div className="social-container">
         <p className="social-title">{overlayID}</p>
-        {/* {pending && (
-          <InfinitySpin type="ThreeDots" color="#00BFFF" height={80} width={80} />
-        )}
-        {error && <div>{error}</div>}
-        {!pending && !data.data.length && (
-          <NoContent text={`You don't have any ${overlayID} yet !`} />
-        )} */}
+        
         {!pending &&
           data &&
           data.data.map((item) => (

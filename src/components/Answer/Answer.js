@@ -51,34 +51,14 @@ const Answer = ({ data, setDeleteItemId, setDeleteOverlay, setDeleteUrl, user_id
   return (
     <div className="ques-container">
       <div className="upvote-downvote-panel">
-                <button className="up" onClick = {upvoteAns}>
-                  {/* <svg
-                    aria-hidden="true"
-                    className="svg-icon iconArrowDownLg"
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                  >
-                    <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg> */}
+                <button className={`up ${isUpvoted ? 'upvote-active' : ''}`} onClick = {upvoteAns}>
+                 
                   <div class="upvote-triangle"></div>
                   <div className="upvote-count">{upvoteCnt}</div>
                 </button>
-                {/* <p className="vote-count">
-                  {questionData.data.upvotes.length +
-                    questionData.data.downvotes.length}
-                </p> */}
-                <button className="down" onClick = {downvoteAns}>
-                  {/* <svg
-                    aria-hidden="true"
-                    className="svg-icon iconArrowDownLg"
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                  >
-                    <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg> */}
-                  <div class="downvote-triangle"></div>
+               
+                <button className={`down ${isDownvoted ? 'downvote-active' : ''}`} onClick = {downvoteAns}>
+                  <div class={`downvote-triangle`}></div>
                   <div className="downvote-count">{downvoteCnt}</div>
                 </button>
               </div>

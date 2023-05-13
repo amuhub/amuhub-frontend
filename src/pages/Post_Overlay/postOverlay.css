@@ -75,6 +75,7 @@ img {
   position: relative;
 }
 
+
 .pop_up_img {
   min-height: 100%;
   background-color: #fff;
@@ -324,7 +325,13 @@ img {
   transform: scale(1.1);
 }
 
+.desktop-popup-hide{
+  display: none;
+  background-color: #fff;
+}
+
 @media (max-width: 900px) {
+  
   .pop-up-img-outer{
     width: 100%;
   }
@@ -339,7 +346,11 @@ img {
   .pop_up_img {
     display: flex;
     width: 100%;
+    align-items: flex-start;
     /* min-height: 100%; */
+  }
+  .pop_up_img img{
+    margin-top: 35px;
   }
   .pop_up_stats_outer {
     height: auto;
@@ -356,7 +367,9 @@ img {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     transition: all 0.5s;
   }
-
+  .desktop-popup-hide{
+    display: flex;
+  }
   .comment-section{
     border-top: none;
   }
