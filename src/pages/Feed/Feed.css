@@ -1,6 +1,7 @@
 .common-container {
   background-color: #f8f9fa;
   padding: 2rem 50px;
+  min-height: 90vh;
 }
 .grid-container {
   display: grid;

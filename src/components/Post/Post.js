@@ -11,12 +11,11 @@ import ShareIcon from "../../assets/share.svg";
 const Post = (props) => {
   const { data, defaultToggleOverlay } = props;
   const token = localStorage.getItem("token");
-  const [togglePostOverlay, setTogglePostOverlay] =
-    useState(defaultToggleOverlay);
+  const [togglePostOverlay, setTogglePostOverlay] = useState(defaultToggleOverlay);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
-  const [dropDown, setDropDown] = useState(true);
+  const [dropDown, setDropDown] = useState(false);
   const [deleteOverlay, setDeleteOverlay] = useState(false);
 
   useEffect(() => {
@@ -74,13 +73,6 @@ const Post = (props) => {
 
   return (
     <>
-      {deleteOverlay && (
-        <DeleteAlert
-          text="Are you sure you want to delete this post?"
-          overlayToggle={setDeleteOverlay}
-          deleteURL=""
-        />
-      )}
       <div className="post_container">
         <div className="post_header">
           <div className="user_info">

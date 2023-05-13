@@ -29,18 +29,31 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
   const [likeCnt, setLikeCnt] = useState(0);
   const [commentToggler, setCommentToggler] = useState(true);
   const [deleteOverlay, setDeleteOverlay] = useState(false);
-  const [deleteCommentId, setDeleteCommentId] = useState("");
+  const [deleteItemId, setDeleteItemId] = useState("");
   const [comments, setComments] = useState([]);
   const [commentsPending, setCommentsPending] = useState(true);
   const [commentPosted, setCommentPosted] = useState(false);
-  // const [comments, setComments] = useState([])
-
+  const [dropDown, setDropDown] = useState(false);
+  const [deleteUrl, setDeleteUrl] = useState("")
+  
   useEffect(() => {
     if (data) {
       setIsLiked(data.data.isLiked);
       setLikeCnt(data.data.likes.length);
     }
   }, [data]);
+
+  const deleteComment = (id)=>{
+    setDeleteItemId(id);
+    setDeleteUrl("feed/comment");
+    setDeleteOverlay(true);
+  }
+
+  const deletePost = (id) =>{
+    setDeleteItemId(id)
+    setDeleteOverlay(true);
+    setDeleteUrl("feed/delete");
+  }
 
   useEffect(() => {
     let fetchedComments = []; // Variable to store fetched comments
@@ -57,13 +70,10 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
         setComments(fetchedComments); // Update the comments state
         setCommentsPending(false);
         setCommentPosted(false);
-        console.log(fetchedComments); // Log the fetched comments
+        console.log("Comments   "+fetchedComments); // Log the fetched comments
       });
   }, [deleteOverlay, commentPosted]);
 
-  useEffect(() => {
-    console.log("jdjnjnfjdn   " + commentPosted);
-  }, [commentPosted]);
 
   const postComment = () => {
     const res = postToken(
@@ -74,7 +84,6 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     if (!res) console.log(res.error);
     setCommentInput("");
     setCommentPosted(true);
-    // window.location.reload(true);
   };
 
   const doLike = async (e) => {
@@ -95,11 +104,11 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     setCommentToggler(!commentToggler);
   };
 
-  const toggleOverlay = (id) => {
-    console.log(id);
-    setDeleteCommentId(id);
-    setDeleteOverlay(true);
-  };
+  // useEffect(() =>{
+  //   console.log("Delete Pst" + deletePostId);
+  // },[deletePostId])
+
+  
 
   return (
     <div>
@@ -107,8 +116,8 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
       {deleteOverlay && (
         <DeleteAlert
           overlayToggle={setDeleteOverlay}
-          deleteURL="feed/comment"
-          deleteItemId={deleteCommentId}
+          deleteURL={deleteUrl}
+          deleteItemId={deleteItemId}
         />
       )}
       {error && <NoContent text={"Something went wrong!"} />}
@@ -137,7 +146,20 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   />
                   <span className="username">{data.data.user.username}</span>
                 </div>
-                <i className="fas fa-ellipsis-h"></i>
+                <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+                  <i className="fas fa-ellipsis-h"></i>
+                  <div className="drop-down-wrapper">
+                    {dropDown && (
+                      <div className="drop-down">
+                       {isAuthenticated() === data.data.user.username && <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
+                          <img src={deleteIcon} alt="delete" />
+                          <p>Delete</p>
+                        </div>}
+                        <div className="drop-down-triangle"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
               <div
                 className="mobile_pop_up_header"
@@ -189,7 +211,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                         src={deleteIcon}
                         alt="delete"
                         className="delete-icon"
-                        onClick={() => toggleOverlay(comment._id)}
+                        onClick={() => deleteComment(comment._id)}
                       />
                     )}
                   </div>

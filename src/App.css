@@ -5,6 +5,7 @@
   max-width: 708px;
   margin: 0 auto;
   scrollbar-width: none;
+  width: 100%;
 }
 .wrapper > div {
   margin-block: 50px;
@@ -50,26 +51,16 @@
   /* color: #dadde4; */
 }
 .drop-down-item img{
-  width: 20px;
+  width: 16px;
 }
 .drop-down > .drop-down-item:hover{
   background-color: #e4e6e9;
   color: black;
 }
 .drop-down p{
-  font-size: 14px;
+  font-size: 13px;
 }
-/* .drop-down-triangle{
-  width: 10px;
-  height: 10px;
-  border: 1px solid #dbe;
-  transform: rotateZ(45deg);
-  background-color: #fff;
-  position: absolute;
-  top: -5px;
-  right: 5px;
-  z-index: 3;
-} */
+
 .drop-down-wrapper{
   z-index: 4;
 }

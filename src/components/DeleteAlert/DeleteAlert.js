@@ -4,19 +4,23 @@ import isAuthenticated from "../../utils/isAuth";
 import Button from "../Button/Button";
 import "./DeleteAlert.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const DeleteAlert = ({ text, overlayToggle, deleteItemId, deleteURL }) => {
   const username = isAuthenticated();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate()
 
   const apiRedirectMapping = {
-    "post/delete": `/profile/${username}`,
-    question: `/question/`,
-  };
+    "feed/delete": `/profile/${username}`,
+    "question" : `/profile/${username}`,
+    "answer/delete" : `/profile/${username}`
+
+  }
 
   const deleteItem = async () => {
     const url = `${baseUrl}/${deleteURL}/${deleteItemId}`;
-    const res = axios.delete(url, {
+    const res = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
         "x-auth-token": token,
@@ -24,7 +28,8 @@ const DeleteAlert = ({ text, overlayToggle, deleteItemId, deleteURL }) => {
     });
 
     if (!(deleteURL in apiRedirectMapping)) overlayToggle(false);
-    // else if(deleteURL === "post/delete") continue
+    else navigate(apiRedirectMapping[deleteURL])
+    
   };
 
   return (

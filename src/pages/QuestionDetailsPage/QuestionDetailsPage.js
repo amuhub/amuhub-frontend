@@ -11,9 +11,17 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
 import NoContent from "../../components/NoContent/NoContent";
+import isAuthenticated from "../../utils/isAuth";
+import deleteIcon from "../../assets/icons8-trash.svg";
+import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
+import { decodeToken } from "react-jwt";
+import ShareIcon from "../../assets/share.svg";
 
 const Answers = () => {
   const token = localStorage.getItem("token");
+  const decoded_token = decodeToken(token)
+  const user_id = decoded_token.user.id
+  console.log(user_id);
   const answerBox = () => {
     setTextArea(!textArea);
   };
@@ -25,11 +33,13 @@ const Answers = () => {
 
   const [htmlText, setHtmlText] = useState("");
 
-  const addAnswer = async () => {
-    console.log("add answer");
-  };
+
 
   const [textArea, setTextArea] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
+  const [deleteUrl, setDeleteUrl] = useState("")
+  const [deleteOverlay, setDeleteOverlay] = useState(false);
+  const [deleteItemId, setDeleteItemId] = useState("");
   const { id } = useParams();
 
   const {
@@ -43,6 +53,13 @@ const Answers = () => {
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/news?lang=en`
   );
+
+  const deleteQuestion = (id) =>{
+    
+    setDeleteItemId(id)
+    setDeleteOverlay(true);
+    setDeleteUrl("question");
+  }
   // ------------------start------------------
 
   const postAnswer = async (e) => {
@@ -64,6 +81,14 @@ const Answers = () => {
   // ------------------end------------------
 
   return (
+    <>
+    {deleteOverlay && (
+      <DeleteAlert
+        overlayToggle={setDeleteOverlay}
+        deleteURL={deleteUrl}
+        deleteItemId={deleteItemId}
+      />
+    )}
     <div className="common-container">
       <div className="answer-page grid-container">
         {!questionPending && questionData && (
@@ -98,10 +123,35 @@ const Answers = () => {
                 </button>
               </div>
               <div className="question-header">
-                <p
-                  className="question"
-                  dangerouslySetInnerHTML={{ __html: questionData.data.ques }}
-                ></p>
+                <div className="flex-row">
+                  <p
+                    className="question"
+                    dangerouslySetInnerHTML={{ __html: questionData.data.ques }}
+                  ></p>
+                  <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+                    <i className="fas fa-ellipsis-h"></i>
+                    <div className="drop-down-wrapper">
+                      {dropDown && (
+                        <div className="drop-down">
+                          {user_id=== questionData.data.user && 
+                            <div className="drop-down-item" onClick={() => deleteQuestion(questionData.data._id)}>
+                              <img src={deleteIcon} alt="delete" />
+                              <p>Delete</p>
+                            </div>}
+                            <div className="drop-down-item">
+                              <img src={ShareIcon} alt="delete" />
+                              <p>Share</p>
+                            </div>
+                            <div className="drop-down-item">
+                              <img src={deleteIcon} alt="delete" />
+                              <p>Report</p>
+                            </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="question_stats">
                   <div className="stats_list_a">
                     <Link to="" className="answers_count">
@@ -136,7 +186,14 @@ const Answers = () => {
                 />
               )}
               {questionData.data.answers.map((answer) => (
-                <Answer key={answer.id} data={answer} />
+                <Answer 
+                  key={answer.id}
+                  data={answer}
+                  setDeleteOverlay = {setDeleteOverlay}
+                  setDeleteItemId = {setDeleteItemId}
+                  setDeleteUrl = {setDeleteUrl}
+                  user_id = {user_id}
+                />
               ))}
             </div>
           </div>
@@ -152,6 +209,7 @@ const Answers = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

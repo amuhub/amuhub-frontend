@@ -68,6 +68,10 @@
   width: 100%;
   max-width: 650px;
 }
+.answer-form .btn{
+  width: 100%;
+  padding: 10px;
+}
 
 .divider{
   margin: 30px 0 45px 0;
@@ -77,4 +81,7 @@
 .divider p{
   color: black;
   font-size: 30px;
+}
+.question-header .three-dots{
+  align-self: flex-start;
 }

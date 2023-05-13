@@ -81,6 +81,8 @@ const NavAuth = ({ usertext, setHeight }) => {
 
   useDebounce(query, 500, searchProfile);
 
+  isAuthenticated()
+
   return (
     <>
       <div className={menu ? "nav-links-list-a active" : "nav-links-list-a"}>

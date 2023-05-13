@@ -5,9 +5,9 @@ const isAuthenticated = () => {
   if (token) {
     const decoded_token = decodeToken(token);
     const is_espired = isExpired(token);
-    if (!decoded_token && is_espired) {
+    if (!decoded_token || is_espired) {
       localStorage.removeItem("token");
-      return false;
+      window.location.href = "/login";
     } else {
       return decoded_token.user.username;
     }

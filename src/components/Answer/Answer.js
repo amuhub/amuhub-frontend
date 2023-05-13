@@ -1,7 +1,20 @@
 import "./Answer.css";
 import moment from "moment";
+import { useState } from "react";
+import deleteIcon from "../../assets/icons8-trash.svg";
+import ShareIcon from "../../assets/share.svg";
 
-const Answer = ({ data }) => {
+const Answer = ({ data, setDeleteItemId, setDeleteOverlay, setDeleteUrl, user_id }) => {
+
+  console.log(data);
+  const [dropDown, setDropDown] = useState(false);
+
+  const deleteAnswer = (id) =>{
+    
+    setDeleteItemId(id)
+    setDeleteOverlay(true);
+    setDeleteUrl("answer/delete");
+  }
   return (
     <div className="ques-container">
       <div className="upvote-downvote-panel">
@@ -32,7 +45,33 @@ const Answer = ({ data }) => {
         </button>
       </div>
       <div className="question-header">
-        <div dangerouslySetInnerHTML={{ __html: data.text }}></div>
+        <div className="flex-row">
+          <div dangerouslySetInnerHTML={{ __html: data.text }}></div>
+          <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+            <i className="fas fa-ellipsis-h"></i>
+            <div className="drop-down-wrapper">
+              {dropDown && (
+                <div className="drop-down">
+                {user_id === data.user._id && 
+                  <div className="drop-down-item" onClick={() => deleteAnswer(data._id)}>
+                    <img src={deleteIcon} alt="delete" />
+                    <p>Delete</p>
+                  </div>}
+                  <div className="drop-down-item">
+                    <img src={ShareIcon} alt="delete" />
+                    <p>Share</p>
+                  </div>
+                  <div className="drop-down-item">
+                    <img src={deleteIcon} alt="delete" />
+                    <p>Report</p>
+                  </div>
+                </div>
+              )}
+              
+            </div>
+          </div>
+        </div>
+        
         <div className="author-details">
           <div className="profile-div">
             <div className="profile-img">
