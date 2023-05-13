@@ -67,11 +67,11 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 90vh;
+  height: 500px;
   position: relative;
 }
 
@@ -90,15 +90,19 @@ img {
   background-color: #000;
 }
 
+.pop-up-img-outer{
+  width: 50%;
+}
 .pop_up_img img {
   width: 100%;
   max-height: 90%;
+
 }
 
 .pop_up_content {
   background-color: #fff;
-  width: 45%;
-  min-width: 500px;
+  width: 50%;
+  /* min-width: 500px; */
   min-height: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,6 +325,9 @@ img {
 }
 
 @media (max-width: 900px) {
+  .pop-up-img-outer{
+    width: 100%;
+  }
   .pop_up_header{
     display: none;
   }

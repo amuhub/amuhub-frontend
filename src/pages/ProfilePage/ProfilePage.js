@@ -68,14 +68,14 @@ const ProfilePage = () => {
               <div className="profile-section">
                 <div className="profile-img">
                   <img src={data.data.pic} alt="xy" />
-                  <div
+                  {isLoggedInUser && <div
                     className="img-edit-overlay"
                     onClick={() => setChangePicOverlay(true)}
                   >
                     <div className="edit-blue-bg">
                       <i className="far fa-edit"></i>
                     </div>
-                  </div>
+                  </div>}
                 </div>
                 <div className="profile-info-container">
                   <div className="profile-info">
@@ -103,11 +103,11 @@ const ProfilePage = () => {
                       )}
                     </div>
 
-                    <p className="bio">
+                    {<p className="bio">
                       {" "}
                       {data.data.bio ? (
                         data.data.bio
-                      ) : (
+                      ) : (isLoggedInUser && (
                         <Link
                           to=""
                           className="profile-add-links"
@@ -116,14 +116,15 @@ const ProfilePage = () => {
                         >
                           Add Bio
                         </Link>
-                      )}
-                    </p>
+                      ))
+                      }
+                    </p>}
                     <div className="location">
                       <p>
-                        <i className="fas fa-map-marker-alt"></i>
+                        {data.data.location && <i className="fas fa-map-marker-alt"></i>}
                         {data.data.location ? (
                           data.data.location
-                        ) : (
+                        ) : (isLoggedInUser && (
                           <Link
                             to=""
                             className="profile-add-links"
@@ -132,13 +133,13 @@ const ProfilePage = () => {
                           >
                             Add Location
                           </Link>
-                        )}
+                        ))}
                       </p>
                       <p>
-                        <i className="fas fa-graduation-cap"></i>
+                        {data.data.department && <i className="fas fa-graduation-cap"></i>}
                         {data.data.department ? (
                           data.data.department
-                        ) : (
+                        ) : (isLoggedInUser && (
                           <Link
                             to=""
                             className="profile-add-links"
@@ -146,7 +147,7 @@ const ProfilePage = () => {
                           >
                             Add Department
                           </Link>
-                        )}
+                        ))}
                       </p>
                     </div>
                   </div>
