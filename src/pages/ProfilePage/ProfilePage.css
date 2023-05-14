@@ -76,9 +76,9 @@
   text-align: center;
   font-size: 13px;
   border: 1px solid white;
-  border-radius: 5px;
   background-color: #2046a4;
   color: white;
+  border-radius: 25px;
 }
 .followed {
   background-color: white;
@@ -111,6 +111,13 @@
   background-color: #fff;
   align-self: start;
   padding: 30px;
+  
+}
+.mobile-tags-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  max-width: 550px;
+  display: none;
 }
 .tags-container .header {
   border-bottom: 1px solid rgb(223, 224, 234);
@@ -241,6 +248,15 @@
 
   .profile-options {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .desktop-tags-container{
+    display: none;
+  }
+  .mobile-tags-container{
+    display: block;
   }
 }
 

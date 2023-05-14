@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import HeroImg from "../../assets/hero.png"
 import "./Hero.css";
 
 const Hero = () => {
@@ -14,7 +15,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <img src={require("./images/hero-img.jpg")} alt="" />
+      <img src={HeroImg} alt="" />
     </div>
   );
 };

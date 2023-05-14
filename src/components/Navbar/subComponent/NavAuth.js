@@ -195,10 +195,9 @@ const NavAuth = ({ usertext, setHeight }) => {
               )}
               {notificationData.data.length === 0 && !notificationPending && (
                 <div className="notification-pending">
-                  <img src={sleepingbell}></img>
+                  <img src={sleepingbell} alt = "no-notification"></img>
                 </div>
               )}
-              <div className="triangle"></div>
             </div>
           )}
         </div>

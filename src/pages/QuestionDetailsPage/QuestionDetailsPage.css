@@ -65,18 +65,18 @@
 }
 
 .upvote-active .upvote-triangle{
-  border-bottom: 28px solid #eff10e;
-  color: black;
+  border-bottom: 28px solid rgb(81, 81, 255);
+  color: white;
 }
 .upvote-active .upvote-count{
-  color: black;
+  color: white;
 }
 .downvote-active .downvote-triangle{
-  border-top: 28px solid #eff10e;
-  color: black;
+  border-top: 28px solid rgb(81, 81, 255);
+  color: white;
 }
 .downvote-active .downvote-count{
-  color: black;
+  color: white;
 }
 
 /* .upvote-downvote-panel .up {

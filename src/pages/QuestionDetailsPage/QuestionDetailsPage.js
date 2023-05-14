@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import baseUrl from "../../utils/constants";
 import "./QuestionDetailsPage.css";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
 import NoContent from "../../components/NoContent/NoContent";
@@ -126,6 +125,7 @@ const Answers = () => {
     <>
       {deleteOverlay && (
         <DeleteAlert
+          text = "question"
           overlayToggle={setDeleteOverlay}
           deleteURL={deleteUrl}
           deleteItemId={deleteItemId}
@@ -141,35 +141,14 @@ const Answers = () => {
                     className={`up ${isUpvoted ? "upvote-active" : ""}`}
                     onClick={upvoteQues}
                   >
-                    {/* <svg
-                    aria-hidden="true"
-                    className="svg-icon iconArrowDownLg"
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                  >
-                    <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg> */}
                     <div class="upvote-triangle"></div>
                     <div className="upvote-count">{upvoteCnt}</div>
                   </button>
-                  {/* <p className="vote-count">
-                  {questionData.data.upvotes.length +
-                    questionData.data.downvotes.length}
-                </p> */}
+                  
                   <button
                     className={`down ${isDownvoted ? "downvote-active" : ""}`}
                     onClick={downvoteQues}
                   >
-                    {/* <svg
-                    aria-hidden="true"
-                    className="svg-icon iconArrowDownLg"
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                  >
-                    <path d="M2 11h32L18 27 2 11Z"></path>
-                  </svg> */}
                     <div class="downvote-triangle"></div>
                     <div className="downvote-count">{downvoteCnt}</div>
                   </button>
@@ -190,7 +169,7 @@ const Answers = () => {
                       <div className="drop-down-wrapper">
                         {dropDown && (
                           <div className="drop-down">
-                            {user_id === questionData.data.user && (
+                            {isAuthenticated() === questionData.data.user.username && (
                               <div
                                 className="drop-down-item"
                                 onClick={() =>

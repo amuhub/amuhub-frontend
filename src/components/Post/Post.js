@@ -5,21 +5,18 @@ import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
 import baseUrl from "../../utils/constants";
 import deleteIcon from "../../assets/icons8-trash.svg";
-import DeleteAlert from "../DeleteAlert/DeleteAlert";
 import ShareIcon from "../../assets/share.svg";
-import isAuthenticated from "../../utils/isAuth";
 
 const Post = (props) => {
   const { data, defaultToggleOverlay } = props;
   const token = localStorage.getItem("token");
-  const username = isAuthenticated();
   const [togglePostOverlay, setTogglePostOverlay] =
     useState(defaultToggleOverlay);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
   const [dropDown, setDropDown] = useState(false);
-  const [deleteOverlay, setDeleteOverlay] = useState(false);
+
 
   useEffect(() => {
     if (data) {

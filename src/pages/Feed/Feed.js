@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { useFetch, useFetchToken } from "../../utils/useFetch";
 import Post from "../../components/Post/Post";
 import News from "../../components/News/News";
