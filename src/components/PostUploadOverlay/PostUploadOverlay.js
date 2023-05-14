@@ -5,6 +5,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import uploadImageCloudinary from "../../utils/third_party_services/cloudinary";
 import baseUrl from "../../utils/constants";
 import "./PostUploadOverlay.css";
+import isAuthenticated from "../../utils/isAuth";
 
 const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [src, setSrc] = useState(null);
@@ -16,6 +17,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [caption, setCaption] = useState("");
 
   const token = localStorage.getItem("token");
+  const username = isAuthenticated()
 
   const selectImage = (file) => {
     const reader = new FileReader();
@@ -84,7 +86,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
       console.log(JSON.stringify({ path: result.secure_url, caption }));
       const data = await response.json();
       if (response.ok) {
-        // window.location.href = `/feed`;
+        window.location.href = `/profile/${username}/posts`;
       }
     } catch (error) {
       console.error(error);
@@ -126,7 +128,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
 
         <div className="crop-btns">
           <label htmlFor="inputFile">
-            Add Image
+            Select Image
             <input
               type="file"
               accept="image/*"
@@ -144,7 +146,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
         </div>
         {buttonDisplay && (
           <button className="btn save-btn" onClick={saveChanges}>
-            Save Changes
+            Upload
           </button>
         )}
       </div>

@@ -14,6 +14,7 @@ import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
 import { InfinitySpin } from "react-loader-spinner";
+import ShareIcon from "../../assets/share.svg";
 
 export default function PostOverlay({ postOverlaytoggler, postId }) {
   const token = localStorage.getItem("token");
@@ -104,11 +105,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     setCommentToggler(!commentToggler);
   };
 
-  // useEffect(() =>{
-  //   console.log("Delete Pst" + deletePostId);
-  // },[deletePostId])
-
-  
+ 
 
   return (
     <div>
@@ -127,7 +124,41 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
             <i className="fas fa-times"></i>
           </button>
           <div className="post_pop_up">
+            
+
             <div className="pop-up-img-outer">
+            <div className="pop_up_header desktop-popup-hide">
+                <div className="user_info">
+                  <img
+                    src={data.data.user.profile.pic}
+                    className="user_img"
+                    alt="user"
+                  />
+                  <span className="username">{data.data.user.username}</span>
+                </div>
+                <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+                  <i className="fas fa-ellipsis-h"></i>
+                  <div className="drop-down-wrapper">
+                    {dropDown && (
+                      <div className="drop-down">
+                       {isAuthenticated() === data.data.user.username && <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
+                          <img src={deleteIcon} alt="delete" />
+                          <p>Delete</p>
+                        </div>}
+                        <div className="drop-down-item">
+                          <img src={ShareIcon} alt="delete" />
+                          <p>Share</p>
+                        </div>
+                        <div className="drop-down-item">
+                          <img src={deleteIcon} alt="delete" />
+                          <p>Report</p>
+                        </div>
+                        <div className="drop-down-triangle"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
               <div className="pop_up_img">
                 <img src={data.data.photo} alt="" />
               </div>
@@ -151,10 +182,19 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   <div className="drop-down-wrapper">
                     {dropDown && (
                       <div className="drop-down">
-                       {isAuthenticated() === data.data.user.username && <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
+                       {isAuthenticated() === data.data.user.username && 
+                       <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
                           <img src={deleteIcon} alt="delete" />
                           <p>Delete</p>
                         </div>}
+                        <div className="drop-down-item">
+                          <img src={ShareIcon} alt="delete" />
+                          <p>Share</p>
+                        </div>
+                        <div className="drop-down-item">
+                          <img src={deleteIcon} alt="delete" />
+                          <p>Report</p>
+                        </div>
                         <div className="drop-down-triangle"></div>
                       </div>
                     )}

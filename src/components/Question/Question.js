@@ -2,15 +2,57 @@ import "./Question.css";
 import { Link } from "react-router-dom";
 import { fetchDate } from "../../utils/parseDate";
 import moment from "moment";
+import { useState } from "react";
+import postToken from "../../utils/postToken";
+import baseUrl from "../../utils/constants";
 
 const Question = (props) => {
   const { _id, user, ques, tag, answer_count, upvotes, downvotes, createdAt } =
     props.data;
   const { year, month_name, day_num } = fetchDate(createdAt);
+
+  const token = localStorage.getItem("token")
+  const [isUpvoted, setIsUpvoted] = useState(props.data.upvoted)
+  const [isDownvoted, setIsDownvoted] = useState(props.data.downvoted)
+  const [upvoteCnt, setUpvoteCnt] = useState(upvotes.length)
+  const [downvoteCnt, setDownvoteCnt] = useState(downvotes.length)
+
+  // console.log("HIII");
+  // console.log(props.data);
+
+  const upvoteQues = async () => {
+    const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token)
+    if(isUpvoted) setIsUpvoted(false)
+    else {
+      setIsUpvoted(true)
+      if(isDownvoted) setIsDownvoted(false) 
+    }
+    setUpvoteCnt(res.data.data.upvotes.length)
+    setDownvoteCnt(res.data.data.downvotes.length)
+    console.log(res.data.data);
+  }
+
+  const downvoteQues = async () => {
+    const res = await postToken(`${baseUrl}/question/downvote/${_id}`, {}, token)
+    if(isDownvoted) setIsDownvoted(false)
+    else {
+      setIsDownvoted(true)
+      if(isUpvoted) setIsUpvoted(false)
+    }
+    setUpvoteCnt(res.data.data.upvotes.length)
+    setDownvoteCnt(res.data.data.downvotes.length)
+    console.log(res.data.data);
+  }
+
+// Upvote Button
+// 1 - check initial state - true/false
+// if true - call upvote api and setUpvote state to false
+//if false - call upvote api and set upvote state to true and if downvote state is true set that to false
+
   return (
     <div className="question_container">
       <div className="question_header">
-        {/* <div className="user_img"></div> */}
+        
         <div className="question_info">
           <div>
             <p>
@@ -40,7 +82,7 @@ const Question = (props) => {
           </Link> */}
         </div>
         <div className="stats_list_b">
-          <Link to="" className="upvote">
+          <Link to="" className={`upvote ${isUpvoted ? 'isUpvotedDownvoted' : ''}`} onClick = {upvoteQues}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -49,9 +91,9 @@ const Question = (props) => {
             >
               <path d="M24 12l-12-8v5h-12v6h12v5z" />
             </svg>
-            <span>{upvotes.length}</span>
+            <span>{upvoteCnt}</span>
           </Link>
-          <Link to="" className="downvote">
+          <Link to="" className={`downvote ${isDownvoted ? 'isUpvotedDownvoted' : ''}`} onClick = {downvoteQues}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -60,7 +102,7 @@ const Question = (props) => {
             >
               <path d="M24 12l-12-8v5h-12v6h12v5z" />
             </svg>
-            <span>{downvotes.length}</span>
+            <span>{downvoteCnt}</span>
           </Link>
         </div>
       </div>
