@@ -9,6 +9,7 @@ import baseUrl from "../../utils/constants";
 import PostUploadOverlay from "../../components/PostUploadOverlay/PostUploadOverlay";
 import Error from "../../components/Error";
 import { useSearchParams } from "react-router-dom";
+import NoMore from "../../components/NoContent/NoMore";
 
 const Feed = () => {
   const token = localStorage.getItem("token");
@@ -58,6 +59,9 @@ const Feed = () => {
                     defaultToggleOverlay={viewItemId === post._id}
                   />
                 ))}
+              {!feedPending && !feedError && feed.data && (
+                <NoMore text="No more posts to show" />
+              )}
             </div>
 
             {pending && <InfinitySpin width="300" color="#6495ED" />}

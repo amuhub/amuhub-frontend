@@ -72,7 +72,7 @@ const NavAuth = ({ usertext, setHeight }) => {
           "Content-Type": "application/json",
           "x-auth-token": token,
         },
-      })
+      });
       if (res.ok) {
         const data = await res.json();
         console.log(data);
@@ -86,7 +86,7 @@ const NavAuth = ({ usertext, setHeight }) => {
 
   useDebounce(query, 500, searchProfile);
 
-  isAuthenticated()
+  isAuthenticated();
 
   return (
     <>

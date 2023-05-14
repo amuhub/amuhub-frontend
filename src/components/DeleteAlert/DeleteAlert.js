@@ -9,14 +9,13 @@ import { useNavigate } from "react-router-dom";
 const DeleteAlert = ({ text, overlayToggle, deleteItemId, deleteURL }) => {
   const username = isAuthenticated();
   const token = localStorage.getItem("token");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const apiRedirectMapping = {
     "feed/delete": `/profile/${username}`,
-    "question" : `/profile/${username}`,
-    "answer/delete" : `/profile/${username}`
-
-  }
+    question: `/profile/${username}`,
+    "answer/delete": `/profile/${username}`,
+  };
 
   const deleteItem = async () => {
     const url = `${baseUrl}/${deleteURL}/${deleteItemId}`;
@@ -28,8 +27,7 @@ const DeleteAlert = ({ text, overlayToggle, deleteItemId, deleteURL }) => {
     });
 
     if (!(deleteURL in apiRedirectMapping)) overlayToggle(false);
-    else navigate(apiRedirectMapping[deleteURL])
-    
+    else navigate(apiRedirectMapping[deleteURL]);
   };
 
   return (

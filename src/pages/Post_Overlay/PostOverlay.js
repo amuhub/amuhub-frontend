@@ -35,8 +35,8 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
   const [commentsPending, setCommentsPending] = useState(true);
   const [commentPosted, setCommentPosted] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const [deleteUrl, setDeleteUrl] = useState("")
-  
+  const [deleteUrl, setDeleteUrl] = useState("");
+
   useEffect(() => {
     if (data) {
       setIsLiked(data.data.isLiked);
@@ -44,17 +44,17 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     }
   }, [data]);
 
-  const deleteComment = (id)=>{
+  const deleteComment = (id) => {
     setDeleteItemId(id);
     setDeleteUrl("feed/comment");
     setDeleteOverlay(true);
-  }
+  };
 
-  const deletePost = (id) =>{
-    setDeleteItemId(id)
+  const deletePost = (id) => {
+    setDeleteItemId(id);
     setDeleteOverlay(true);
     setDeleteUrl("feed/delete");
-  }
+  };
 
   useEffect(() => {
     let fetchedComments = []; // Variable to store fetched comments
@@ -71,10 +71,9 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
         setComments(fetchedComments); // Update the comments state
         setCommentsPending(false);
         setCommentPosted(false);
-        console.log("Comments   "+fetchedComments); // Log the fetched comments
+        console.log("Comments   " + fetchedComments); // Log the fetched comments
       });
   }, [deleteOverlay, commentPosted]);
-
 
   const postComment = () => {
     const res = postToken(
@@ -105,8 +104,6 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     setCommentToggler(!commentToggler);
   };
 
- 
-
   return (
     <div>
       {pending && <div className="post_overlay"></div>}
@@ -124,10 +121,8 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
             <i className="fas fa-times"></i>
           </button>
           <div className="post_pop_up">
-            
-
             <div className="pop-up-img-outer">
-            <div className="pop_up_header desktop-popup-hide">
+              <div className="pop_up_header desktop-popup-hide">
                 <div className="user_info">
                   <img
                     src={data.data.user.profile.pic}
@@ -136,15 +131,23 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   />
                   <span className="username">{data.data.user.username}</span>
                 </div>
-                <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+                <div
+                  className="three-dots"
+                  onClick={() => setDropDown(!dropDown)}
+                >
                   <i className="fas fa-ellipsis-h"></i>
                   <div className="drop-down-wrapper">
                     {dropDown && (
                       <div className="drop-down">
-                       {isAuthenticated() === data.data.user.username && <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
-                          <img src={deleteIcon} alt="delete" />
-                          <p>Delete</p>
-                        </div>}
+                        {isAuthenticated() === data.data.user.username && (
+                          <div
+                            className="drop-down-item"
+                            onClick={() => deletePost(data.data._id)}
+                          >
+                            <img src={deleteIcon} alt="delete" />
+                            <p>Delete</p>
+                          </div>
+                        )}
                         <div className="drop-down-item">
                           <img src={ShareIcon} alt="delete" />
                           <p>Share</p>
@@ -177,16 +180,23 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   />
                   <span className="username">{data.data.user.username}</span>
                 </div>
-                <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
+                <div
+                  className="three-dots"
+                  onClick={() => setDropDown(!dropDown)}
+                >
                   <i className="fas fa-ellipsis-h"></i>
                   <div className="drop-down-wrapper">
                     {dropDown && (
                       <div className="drop-down">
-                       {isAuthenticated() === data.data.user.username && 
-                       <div className="drop-down-item" onClick={() => deletePost(data.data._id)}>
-                          <img src={deleteIcon} alt="delete" />
-                          <p>Delete</p>
-                        </div>}
+                        {isAuthenticated() === data.data.user.username && (
+                          <div
+                            className="drop-down-item"
+                            onClick={() => deletePost(data.data._id)}
+                          >
+                            <img src={deleteIcon} alt="delete" />
+                            <p>Delete</p>
+                          </div>
+                        )}
                         <div className="drop-down-item">
                           <img src={ShareIcon} alt="delete" />
                           <p>Share</p>

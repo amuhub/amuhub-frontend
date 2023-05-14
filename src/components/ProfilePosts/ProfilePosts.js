@@ -11,7 +11,7 @@ import { useSearchParams } from "react-router-dom";
 
 const ProfilePosts = () => {
   const { username } = useParams();
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   const { data, pending, error } = useFetchToken(
     `${baseUrl}/profile/` + username + "/posts",

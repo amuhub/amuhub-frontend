@@ -13,7 +13,7 @@ const SinglePost = () => {
   const { postId } = useParams();
   const token = localStorage.getItem("token");
 
-  if(!isAuthenticated()) window.location.href = "/login"
+  if (!isAuthenticated()) window.location.href = "/login";
 
   const { data, pending, error } = useFetchToken(
     `${baseUrl}/feed/post/${postId}`,

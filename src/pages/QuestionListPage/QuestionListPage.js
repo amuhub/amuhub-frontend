@@ -13,13 +13,12 @@ import Select from "react-select";
 import baseUrl from "../../utils/constants";
 import NoContent from "../../components/NoContent/NoContent";
 import isAuthenticated from "../../utils/isAuth";
-
-
+import NoMore from "../../components/NoContent/NoMore";
 
 const QuestionListPage = () => {
   const token = localStorage.getItem("token");
 
-  if(!isAuthenticated()) window.location.href = "/login"
+  if (!isAuthenticated()) window.location.href = "/login";
 
   const {
     data: tagdata,
@@ -108,8 +107,8 @@ const QuestionListPage = () => {
       </form>
       <div className="grid-container">
         {questionpending && <InfinitySpin width="300" color="#6495ED" />}
-        {!questionpending && !questiondata.data.length && (
-          <NoContent text={"You haven't asked any questions yet!"} />
+        {!questionpending && questiondata.data.length === 0 && (
+          <NoMore text="No Questions to show" />
         )}
         <div className="wrapper">
           {questiondata &&
