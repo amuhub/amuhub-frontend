@@ -110,19 +110,7 @@ const Answer = ({
           </div>
         </div>
 
-        <div className="author-details">
-          <div className="profile-div">
-            <div className="profile-img">
-              <img src={data.user.profile.pic}></img>
-            </div>
-            <p className="username">
-              <span className="answered-by">Answered By</span> {data.user.name}
-            </p>
-          </div>
-          <p className="answered-on">
-            Answered <span>{moment(data.createdAt).fromNow()}</span>
-          </p>
-        </div>
+        
       </div>
     </div>
   );

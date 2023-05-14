@@ -8,6 +8,11 @@ import phoneImg from "./images/illustration-phones.svg";
 import mobileImg1 from "./images/illustration-editor-mobile.svg";
 import mobileImg2 from "./images/illustration-laptop-mobile.svg";
 
+import Img1 from "../../assets/m1final.png"
+import Img2 from "../../assets/m2final.png"
+import Img3 from "../../assets/m3final.png"
+
+
 const AboutUS = () => {
   return (
     <div className="about-us-section" id="about-us">
@@ -25,8 +30,9 @@ const AboutUS = () => {
             </p>
           </div>
         </div>
-        <img src={deskImg1} alt="" className="desktop-img" />
-        <img src={mobileImg1} alt="" className="mobile-img" />
+        {/* <img src={deskImg1} alt="" className="desktop-img" /> */}
+        {/* <img src={mobileImg1} alt="" className="mobile-img" /> */}
+        <img src={Img1} alt="" className = "img-1"/>
       </div>
 
       <div className="about-us-item">
@@ -41,8 +47,9 @@ const AboutUS = () => {
             </p>
           </div>
         </div>
-        <img src={deskImg2} alt="" className="desktop-img" />
-        <img src={mobileImg2} alt="" className="mobile-img" />
+        {/* <img src={deskImg2} alt="" className="desktop-img" /> */}
+        {/* <img src={mobileImg2} alt="" className="mobile-img" /> */}
+        <img src={Img2} alt="" />
       </div>
 
       <div className="about-us-item">
@@ -57,7 +64,8 @@ const AboutUS = () => {
             </p>
           </div>
         </div>
-        <img src={phoneImg} alt="" />
+        {/* <img src={phoneImg} alt="" /> */}
+        <img src={Img3} alt=""/>
       </div>
     </div>
   );

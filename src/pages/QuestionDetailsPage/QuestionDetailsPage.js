@@ -15,6 +15,7 @@ import deleteIcon from "../../assets/icons8-trash.svg";
 import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import { decodeToken } from "react-jwt";
 import ShareIcon from "../../assets/share.svg";
+import moment from "moment";
 
 const Answers = () => {
   if (!isAuthenticated()) window.location.href = "/login";
@@ -51,6 +52,8 @@ const Answers = () => {
     pending: questionPending,
     error: questionError,
   } = useFetchToken(`${baseUrl}/question/${id}`, token);
+
+
 
   useEffect(() => {
     if (!questionPending && !questionError) {
@@ -135,67 +138,84 @@ const Answers = () => {
         <div className="answer-page grid-container">
           {!questionPending && questionData && (
             <div className="ques-ans-container">
-              <div className="ques-container">
-                <div className="upvote-downvote-panel">
-                  <button
-                    className={`up ${isUpvoted ? "upvote-active" : ""}`}
-                    onClick={upvoteQues}
-                  >
-                    <div class="upvote-triangle"></div>
-                    <div className="upvote-count">{upvoteCnt}</div>
-                  </button>
-
-                  <button
-                    className={`down ${isDownvoted ? "downvote-active" : ""}`}
-                    onClick={downvoteQues}
-                  >
-                    <div class="downvote-triangle"></div>
-                    <div className="downvote-count">{downvoteCnt}</div>
-                  </button>
-                </div>
-                <div className="question-header">
-                  <div className="flex-row">
-                    <p
-                      className="question"
-                      dangerouslySetInnerHTML={{
-                        __html: questionData.data.ques,
-                      }}
-                    ></p>
-                    <div
-                      className="three-dots"
-                      onClick={() => setDropDown(!dropDown)}
+              <div className="ques-container-outer">
+                <div className="ques-container-inner">
+                  <div className="upvote-downvote-panel">
+                    <button
+                      className={`up ${isUpvoted ? "upvote-active" : ""}`}
+                      onClick={upvoteQues}
                     >
-                      <i className="fas fa-ellipsis-h"></i>
-                      <div className="drop-down-wrapper">
-                        {dropDown && (
-                          <div className="drop-down">
-                            {isAuthenticated() ===
-                              questionData.data.user.username && (
-                              <div
-                                className="drop-down-item"
-                                onClick={() =>
-                                  deleteQuestion(questionData.data._id)
-                                }
-                              >
-                                <img src={deleteIcon} alt="delete" />
-                                <p>Delete</p>
+                      <div class="upvote-triangle"></div>
+                      <div className="upvote-count">{upvoteCnt}</div>
+                    </button>
+
+                    <button
+                      className={`down ${isDownvoted ? "downvote-active" : ""}`}
+                      onClick={downvoteQues}
+                    >
+                      <div class="downvote-triangle"></div>
+                      <div className="downvote-count">{downvoteCnt}</div>
+                    </button>
+                  </div>
+                  <div className="question-header">
+                    <div className="flex-row">
+                      <p
+                        className="question"
+                        dangerouslySetInnerHTML={{
+                          __html: questionData.data.ques,
+                        }}
+                      ></p>
+                      <div
+                        className="three-dots"
+                        onClick={() => setDropDown(!dropDown)}
+                      >
+                        <i className="fas fa-ellipsis-h"></i>
+                        <div className="drop-down-wrapper">
+                          {dropDown && (
+                            <div className="drop-down">
+                              {isAuthenticated() ===
+                                questionData.data.user.username && (
+                                <div
+                                  className="drop-down-item"
+                                  onClick={() =>
+                                    deleteQuestion(questionData.data._id)
+                                  }
+                                >
+                                  <img src={deleteIcon} alt="delete" />
+                                  <p>Delete</p>
+                                </div>
+                              )}
+                              <div className="drop-down-item">
+                                <img src={ShareIcon} alt="delete" />
+                                <p>Share</p>
                               </div>
-                            )}
-                            <div className="drop-down-item">
-                              <img src={ShareIcon} alt="delete" />
-                              <p>Share</p>
+                              <div className="drop-down-item">
+                                <img src={deleteIcon} alt="delete" />
+                                <p>Report</p>
+                              </div>
                             </div>
-                            <div className="drop-down-item">
-                              <img src={deleteIcon} alt="delete" />
-                              <p>Report</p>
-                            </div>
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div className="question_stats">
+                </div>
+                <div className="author-details">
+                  <div className="profile-div">
+                    <div className="profile-img">
+                      <img src={questionData.data.user.profile.pic} alt="profile" />
+                    </div>
+                    <p className="username">
+                      <span className="answered-by">Asked By</span>{" "}
+                      {questionData.data.user.username}
+                    </p>
+                  </div>
+                  <p className="answered-on">
+                    Asked{" "}
+                    <span>{moment(questionData.data.createdAt).fromNow()}</span>
+                  </p>
+                </div>
+                <div className="question_stats">
                     <div className="stats_list_a">
                       <Link to="" className="answers_count">
                         <i className="fas fa-comment-alt"></i>
@@ -217,7 +237,6 @@ const Answers = () => {
                     </div>
                     <input type="submit" value="Post Answer" className="btn" />
                   </form>
-                </div>
               </div>
               <div className="divider">
                 <p>Answers</p>

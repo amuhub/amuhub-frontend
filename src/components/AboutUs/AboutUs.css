@@ -11,6 +11,10 @@
 
 .about-us-item img {
   width: 50%;
+  margin: 0 auto;
+}
+.about-us-item  .img-1{
+  max-width: 200px;
 }
 
 .about-us-item .content {
