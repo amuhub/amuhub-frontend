@@ -125,7 +125,7 @@ const Answers = () => {
     <>
       {deleteOverlay && (
         <DeleteAlert
-          text = "question"
+          text="question"
           overlayToggle={setDeleteOverlay}
           deleteURL={deleteUrl}
           deleteItemId={deleteItemId}
@@ -144,7 +144,7 @@ const Answers = () => {
                     <div class="upvote-triangle"></div>
                     <div className="upvote-count">{upvoteCnt}</div>
                   </button>
-                  
+
                   <button
                     className={`down ${isDownvoted ? "downvote-active" : ""}`}
                     onClick={downvoteQues}
@@ -169,7 +169,8 @@ const Answers = () => {
                       <div className="drop-down-wrapper">
                         {dropDown && (
                           <div className="drop-down">
-                            {isAuthenticated() === questionData.data.user.username && (
+                            {isAuthenticated() ===
+                              questionData.data.user.username && (
                               <div
                                 className="drop-down-item"
                                 onClick={() =>

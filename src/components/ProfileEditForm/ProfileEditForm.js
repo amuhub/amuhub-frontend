@@ -5,11 +5,12 @@ import { useState, useEffect } from "react";
 import { useFetchToken } from "../../utils/useFetch";
 import baseUrl from "../../utils/constants";
 
-const ProfileEditForm = ({ onClick, loc, dept, desc }) => {
+const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
   const [location, setLocation] = useState(loc);
   const [department, setDepartment] = useState(dept);
   const [bio, setBio] = useState(desc);
-  const [interests, setInterests] = useState([]);
+  const [interests, setInterests] = useState(tags);
+  console.log("interests", interests);
 
   const token = localStorage.getItem("token");
   const {
@@ -22,6 +23,13 @@ const ProfileEditForm = ({ onClick, loc, dept, desc }) => {
   if (!tagpending) {
     tagdata.data.map((tag) => {
       options.push({ value: tag._id, label: tag.name });
+    });
+  }
+
+  var defaultValues = [];
+  if (interests) {
+    interests.map((tag) => {
+      defaultValues.push({ value: tag._id, label: tag.name });
     });
   }
 
@@ -123,6 +131,7 @@ const ProfileEditForm = ({ onClick, loc, dept, desc }) => {
               isClearable
               isMulti
               onChange={handleSelect}
+              defaultValue={defaultValues}
             />
           </div>
 
