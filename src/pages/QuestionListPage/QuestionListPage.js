@@ -107,10 +107,10 @@ const QuestionListPage = () => {
       </form>
       <div className="grid-container">
         {questionpending && <InfinitySpin width="300" color="#6495ED" />}
-        {!questionpending && questiondata.data.length === 0 && (
-          <NoMore text="No Questions to show" />
-        )}
         <div className="wrapper">
+          {!questionpending && questiondata.data.length === 0 && (
+            <NoMore text="No Questions to show" />
+          )}
           {questiondata &&
             questiondata.data.map((question) => (
               <Question key={question.id} data={question} />
