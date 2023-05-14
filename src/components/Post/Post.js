@@ -43,15 +43,13 @@ const Post = (props) => {
   };
 
   const doLike = async (e) => {
+    setIsLiked(!isLiked);
     const res = await postToken(
       `${baseUrl}/feed/togglelike/${data._id}`,
       {},
       token
     );
     if (res.status === 200) {
-      if (res.data.message === "Post liked") {
-        setIsLiked(true);
-      } else setIsLiked(false);
       setLikeCnt(res.data.data.likes.length);
     }
   };
