@@ -173,24 +173,26 @@ const ProfilePage = () => {
               </div>
 
               {!pending && !error && data.data && (
-            <div className="tags-container mobile-tags-container">
-              <div className="header">
-                <h1>Interests</h1>
-               {isLoggedInUser && <i className="far fa-edit" onClick={formToggle}></i>}
-              </div>
-              <div className="tags">
-                {data.data.interest.length ? (
-                  data.data.interest.map((tag, index) => (
-                    <Tag key={index} title={tag.name} />
-                  ))
-                ) : (
-                  <p style={{ margin: "0 auto", fontSize: "16px" }}>
-                    No Interest chosen yet!
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
+                <div className="tags-container mobile-tags-container">
+                  <div className="header">
+                    <h1>Interests</h1>
+                    {isLoggedInUser && (
+                      <i className="far fa-edit" onClick={formToggle}></i>
+                    )}
+                  </div>
+                  <div className="tags">
+                    {data.data.interest.length ? (
+                      data.data.interest.map((tag, index) => (
+                        <Tag key={index} title={tag.name} />
+                      ))
+                    ) : (
+                      <p style={{ margin: "0 auto", fontSize: "16px" }}>
+                        No Interest chosen yet!
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
 
               <div className="profile-links">
                 <NavLink to="answers" className="links">
@@ -213,7 +215,9 @@ const ProfilePage = () => {
             <div className="tags-container desktop-tags-container">
               <div className="header">
                 <h1>Interests</h1>
-               {isLoggedInUser && <i className="far fa-edit" onClick={formToggle}></i>}
+                {isLoggedInUser && (
+                  <i className="far fa-edit" onClick={formToggle}></i>
+                )}
               </div>
               <div className="tags">
                 {data.data.interest.length ? (

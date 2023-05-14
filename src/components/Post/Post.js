@@ -17,7 +17,6 @@ const Post = (props) => {
   const [likeCnt, setLikeCnt] = useState(0);
   const [dropDown, setDropDown] = useState(false);
 
-
   useEffect(() => {
     if (data) {
       setIsLiked(data.isLiked);

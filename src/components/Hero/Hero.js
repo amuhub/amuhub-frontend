@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import HeroImg from "../../assets/hero.png"
+import HeroImg from "../../assets/hero.png";
 import "./Hero.css";
 
 const Hero = () => {
