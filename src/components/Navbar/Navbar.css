@@ -444,7 +444,7 @@ nav {
   }
 }
 
-@media (max-width: 450px){
+@media (max-width: 500px){
   .notification-icon-outer{
     margin-left: 0;
   }
@@ -466,14 +466,6 @@ nav {
     margin-top: 8px;
     cursor: pointer;
   }
-  /* .burger_btn{
-    display: none;
-  }
-  .burger_btn{
-    
-    display: none;
-    gap: 20px;
-  } */
   .profile-img{
     display: none;
   }
