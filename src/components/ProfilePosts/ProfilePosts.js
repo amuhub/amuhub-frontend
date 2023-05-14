@@ -30,7 +30,7 @@ const ProfilePosts = () => {
       )}
       {error && <div>{error}</div>}
       {!pending && !data.data.length && (
-        <NoContent text={"You don't have any posts yet !"} />
+        <NoContent text={"No posts yet !"} />
       )}
       <div className="post-grid">
         {!pending &&

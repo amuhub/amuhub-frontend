@@ -68,6 +68,7 @@ img {
   display: -ms-flexbox;
   display: flex;
   max-width: 1000px;
+  width: 100%;
   margin: auto;
   border-radius: 8px;
   overflow: hidden;

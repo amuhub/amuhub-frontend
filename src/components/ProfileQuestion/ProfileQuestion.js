@@ -23,7 +23,7 @@ const ProfileQuestion = () => {
       )}
       {error && <div>{error}</div>}
       {!pending && !data.data.length && (
-        <NoContent text={"You haven't asked any questions yet!"} />
+        <NoContent text={"No questions yet!"} />
       )}
       {!pending &&
         data &&

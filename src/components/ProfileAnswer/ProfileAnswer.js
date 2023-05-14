@@ -23,7 +23,7 @@ const ProfileAnswer = () => {
       )}
       {error && <div>{error}</div>}
       {!pending && !data.data.length && (
-        <NoContent text={"You haven't answered any questions yet!"} />
+        <NoContent text={"No answers yet!"} />
       )}
       {!pending &&
         data &&

@@ -109,6 +109,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
       {pending && <div className="post_overlay"></div>}
       {deleteOverlay && (
         <DeleteAlert
+        text = "post"
           overlayToggle={setDeleteOverlay}
           deleteURL={deleteUrl}
           deleteItemId={deleteItemId}
