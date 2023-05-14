@@ -12,8 +12,9 @@ import isAuthenticated from "../../utils/isAuth";
 const Post = (props) => {
   const { data, defaultToggleOverlay } = props;
   const token = localStorage.getItem("token");
-  const username = isAuthenticated()
-  const [togglePostOverlay, setTogglePostOverlay] = useState(defaultToggleOverlay);
+  const username = isAuthenticated();
+  const [togglePostOverlay, setTogglePostOverlay] =
+    useState(defaultToggleOverlay);
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
@@ -58,12 +59,11 @@ const Post = (props) => {
     }
   };
 
-
   return (
     <>
       <div className="post_container">
         <div className="post_header">
-          <Link to = {`/profile/${data.user.username}`} >
+          <Link to={`/profile/${data.user.username}`}>
             <div className="user_info">
               <img src={data.user.profile.pic} className="user_img" alt="" />
               <span className="username">{data.user.username}</span>

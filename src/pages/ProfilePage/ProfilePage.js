@@ -13,7 +13,6 @@ import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
 
 const ProfilePage = () => {
-
   const { username } = useParams();
   const [formToggler, setFormToggler] = useState(false);
   const [socialToggler, setSocialToggler] = useState(false);
@@ -22,7 +21,7 @@ const ProfilePage = () => {
   const [changePicOverlay, setChangePicOverlay] = useState(false);
   const isLoggedInUser = isAuthenticated() === username;
 
-  if(!isAuthenticated()) window.location.href = "/login"
+  if (!isAuthenticated()) window.location.href = "/login";
 
   const formToggle = () => {
     setFormToggler(!formToggler);
@@ -56,8 +55,6 @@ const ProfilePage = () => {
   );
   console.log("profile data", data);
 
-  
-
   return (
     <>
       <div className="common-container">
@@ -68,14 +65,16 @@ const ProfilePage = () => {
               <div className="profile-section">
                 <div className="profile-img">
                   <img src={data.data.pic} alt="xy" />
-                  {isLoggedInUser && <div
-                    className="img-edit-overlay"
-                    onClick={() => setChangePicOverlay(true)}
-                  >
-                    <div className="edit-blue-bg">
-                      <i className="far fa-edit"></i>
+                  {isLoggedInUser && (
+                    <div
+                      className="img-edit-overlay"
+                      onClick={() => setChangePicOverlay(true)}
+                    >
+                      <div className="edit-blue-bg">
+                        <i className="far fa-edit"></i>
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
                 <div className="profile-info-container">
                   <div className="profile-info">
@@ -103,51 +102,56 @@ const ProfilePage = () => {
                       )}
                     </div>
 
-                    {<p className="bio">
-                      {" "}
-                      {data.data.bio ? (
-                        data.data.bio
-                      ) : (isLoggedInUser && (
-                        <Link
-                          to=""
-                          className="profile-add-links"
-                          onClick={formToggle}
-                          style={{ display: "inline-block" }}
-                        >
-                          Add Bio
-                        </Link>
-                      ))
-                      }
-                    </p>}
+                    {
+                      <p className="bio">
+                        {" "}
+                        {data.data.bio
+                          ? data.data.bio
+                          : isLoggedInUser && (
+                              <Link
+                                to=""
+                                className="profile-add-links"
+                                onClick={formToggle}
+                                style={{ display: "inline-block" }}
+                              >
+                                Add Bio
+                              </Link>
+                            )}
+                      </p>
+                    }
                     <div className="location">
                       <p>
-                        {data.data.location && <i className="fas fa-map-marker-alt"></i>}
-                        {data.data.location ? (
-                          data.data.location
-                        ) : (isLoggedInUser && (
-                          <Link
-                            to=""
-                            className="profile-add-links"
-                            onClick={formToggle}
-                            style={{ display: "inline-block" }}
-                          >
-                            Add Location
-                          </Link>
-                        ))}
+                        {data.data.location && (
+                          <i className="fas fa-map-marker-alt"></i>
+                        )}
+                        {data.data.location
+                          ? data.data.location
+                          : isLoggedInUser && (
+                              <Link
+                                to=""
+                                className="profile-add-links"
+                                onClick={formToggle}
+                                style={{ display: "inline-block" }}
+                              >
+                                Add Location
+                              </Link>
+                            )}
                       </p>
                       <p>
-                        {data.data.department && <i className="fas fa-graduation-cap"></i>}
-                        {data.data.department ? (
-                          data.data.department
-                        ) : (isLoggedInUser && (
-                          <Link
-                            to=""
-                            className="profile-add-links"
-                            onClick={formToggle}
-                          >
-                            Add Department
-                          </Link>
-                        ))}
+                        {data.data.department && (
+                          <i className="fas fa-graduation-cap"></i>
+                        )}
+                        {data.data.department
+                          ? data.data.department
+                          : isLoggedInUser && (
+                              <Link
+                                to=""
+                                className="profile-add-links"
+                                onClick={formToggle}
+                              >
+                                Add Department
+                              </Link>
+                            )}
                       </p>
                     </div>
                   </div>

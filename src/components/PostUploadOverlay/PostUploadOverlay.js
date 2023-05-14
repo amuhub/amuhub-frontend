@@ -17,7 +17,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [caption, setCaption] = useState("");
 
   const token = localStorage.getItem("token");
-  const username = isAuthenticated()
+  const username = isAuthenticated();
 
   const selectImage = (file) => {
     const reader = new FileReader();

@@ -18,15 +18,12 @@ import { decodeToken } from "react-jwt";
 import ShareIcon from "../../assets/share.svg";
 
 const Answers = () => {
+  if (!isAuthenticated()) window.location.href = "/login";
 
-  if(!isAuthenticated()) window.location.href = "/login"
-  
   const token = localStorage.getItem("token");
-  const decoded_token = decodeToken(token)
-  const user_id = decoded_token.user.id
+  const decoded_token = decodeToken(token);
+  const user_id = decoded_token.user.id;
   console.log(user_id);
-
-  
 
   const answerBox = () => {
     setTextArea(!textArea);
@@ -39,20 +36,17 @@ const Answers = () => {
 
   const [htmlText, setHtmlText] = useState("");
 
-
-
   const [textArea, setTextArea] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const [deleteUrl, setDeleteUrl] = useState("")
+  const [deleteUrl, setDeleteUrl] = useState("");
   const [deleteOverlay, setDeleteOverlay] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState("");
   const { id } = useParams();
-  const [isUpvoted, setIsUpvoted] = useState(false)
-  const [isDownvoted, setIsDownvoted] = useState(false)
-  const [upvoteCnt, setUpvoteCnt] = useState(0)
-  const [downvoteCnt, setDownvoteCnt] = useState(0)
+  const [isUpvoted, setIsUpvoted] = useState(false);
+  const [isDownvoted, setIsDownvoted] = useState(false);
+  const [upvoteCnt, setUpvoteCnt] = useState(0);
+  const [downvoteCnt, setDownvoteCnt] = useState(0);
 
-  
   const {
     data: questionData,
     pending: questionPending,
@@ -75,36 +69,39 @@ const Answers = () => {
     `https://api.amu.ac.in/api/v1/news?lang=en`
   );
 
-  const deleteQuestion = (id) =>{
-    
-    setDeleteItemId(id)
+  const deleteQuestion = (id) => {
+    setDeleteItemId(id);
     setDeleteOverlay(true);
     setDeleteUrl("question");
-  }
+  };
 
   const upvoteQues = async () => {
-    const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token)
-    if(isUpvoted) setIsUpvoted(false)
+    const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token);
+    if (isUpvoted) setIsUpvoted(false);
     else {
-      setIsUpvoted(true)
-      if(isDownvoted) setIsDownvoted(false) 
+      setIsUpvoted(true);
+      if (isDownvoted) setIsDownvoted(false);
     }
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
 
   const downvoteQues = async () => {
-    const res = await postToken(`${baseUrl}/question/downvote/${id}`, {}, token)
-    if(isDownvoted) setIsDownvoted(false)
+    const res = await postToken(
+      `${baseUrl}/question/downvote/${id}`,
+      {},
+      token
+    );
+    if (isDownvoted) setIsDownvoted(false);
     else {
-      setIsDownvoted(true)
-      if(isUpvoted) setIsUpvoted(false)
+      setIsDownvoted(true);
+      if (isUpvoted) setIsUpvoted(false);
     }
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
   // ------------------start------------------
 
   const postAnswer = async (e) => {
@@ -127,21 +124,24 @@ const Answers = () => {
 
   return (
     <>
-    {deleteOverlay && (
-      <DeleteAlert
-        overlayToggle={setDeleteOverlay}
-        deleteURL={deleteUrl}
-        deleteItemId={deleteItemId}
-      />
-    )}
-    <div className="common-container">
-      <div className="answer-page grid-container">
-        {!questionPending && questionData && (
-          <div className="ques-ans-container">
-            <div className="ques-container">
-              <div className="upvote-downvote-panel">
-                <button className={`up ${isUpvoted ? 'upvote-active' : ''}`} onClick = {upvoteQues}>
-                  {/* <svg
+      {deleteOverlay && (
+        <DeleteAlert
+          overlayToggle={setDeleteOverlay}
+          deleteURL={deleteUrl}
+          deleteItemId={deleteItemId}
+        />
+      )}
+      <div className="common-container">
+        <div className="answer-page grid-container">
+          {!questionPending && questionData && (
+            <div className="ques-ans-container">
+              <div className="ques-container">
+                <div className="upvote-downvote-panel">
+                  <button
+                    className={`up ${isUpvoted ? "upvote-active" : ""}`}
+                    onClick={upvoteQues}
+                  >
+                    {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"
                     width="36"
@@ -150,15 +150,18 @@ const Answers = () => {
                   >
                     <path d="M2 11h32L18 27 2 11Z"></path>
                   </svg> */}
-                  <div class="upvote-triangle"></div>
-                  <div className="upvote-count">{upvoteCnt}</div>
-                </button>
-                {/* <p className="vote-count">
+                    <div class="upvote-triangle"></div>
+                    <div className="upvote-count">{upvoteCnt}</div>
+                  </button>
+                  {/* <p className="vote-count">
                   {questionData.data.upvotes.length +
                     questionData.data.downvotes.length}
                 </p> */}
-                <button className={`down ${isDownvoted ? 'downvote-active' : ''}`} onClick = {downvoteQues}>
-                  {/* <svg
+                  <button
+                    className={`down ${isDownvoted ? "downvote-active" : ""}`}
+                    onClick={downvoteQues}
+                  >
+                    {/* <svg
                     aria-hidden="true"
                     className="svg-icon iconArrowDownLg"
                     width="36"
@@ -167,26 +170,37 @@ const Answers = () => {
                   >
                     <path d="M2 11h32L18 27 2 11Z"></path>
                   </svg> */}
-                  <div class="downvote-triangle"></div>
-                  <div className="downvote-count">{downvoteCnt}</div>
-                </button>
-              </div>
-              <div className="question-header">
-                <div className="flex-row">
-                  <p
-                    className="question"
-                    dangerouslySetInnerHTML={{ __html: questionData.data.ques }}
-                  ></p>
-                  <div className="three-dots" onClick={() => setDropDown(!dropDown)}>
-                    <i className="fas fa-ellipsis-h"></i>
-                    <div className="drop-down-wrapper">
-                      {dropDown && (
-                        <div className="drop-down">
-                          {user_id=== questionData.data.user && 
-                            <div className="drop-down-item" onClick={() => deleteQuestion(questionData.data._id)}>
-                              <img src={deleteIcon} alt="delete" />
-                              <p>Delete</p>
-                            </div>}
+                    <div class="downvote-triangle"></div>
+                    <div className="downvote-count">{downvoteCnt}</div>
+                  </button>
+                </div>
+                <div className="question-header">
+                  <div className="flex-row">
+                    <p
+                      className="question"
+                      dangerouslySetInnerHTML={{
+                        __html: questionData.data.ques,
+                      }}
+                    ></p>
+                    <div
+                      className="three-dots"
+                      onClick={() => setDropDown(!dropDown)}
+                    >
+                      <i className="fas fa-ellipsis-h"></i>
+                      <div className="drop-down-wrapper">
+                        {dropDown && (
+                          <div className="drop-down">
+                            {user_id === questionData.data.user && (
+                              <div
+                                className="drop-down-item"
+                                onClick={() =>
+                                  deleteQuestion(questionData.data._id)
+                                }
+                              >
+                                <img src={deleteIcon} alt="delete" />
+                                <p>Delete</p>
+                              </div>
+                            )}
                             <div className="drop-down-item">
                               <img src={ShareIcon} alt="delete" />
                               <p>Share</p>
@@ -195,69 +209,69 @@ const Answers = () => {
                               <img src={deleteIcon} alt="delete" />
                               <p>Report</p>
                             </div>
-                        </div>
-                      )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className="question_stats">
-                  <div className="stats_list_a">
-                    <Link to="" className="answers_count">
-                      <i className="fas fa-comment-alt"></i>
-                      {questionData.data.answers.length} <span>answers</span>
+
+                  <div className="question_stats">
+                    <div className="stats_list_a">
+                      <Link to="" className="answers_count">
+                        <i className="fas fa-comment-alt"></i>
+                        {questionData.data.answers.length} <span>answers</span>
+                      </Link>
+                    </div>
+                    <Link to="#" className="btn" onClick={answerBox}>
+                      Answer
                     </Link>
                   </div>
-                  <Link to="#" className="btn" onClick={answerBox}>
-                    Answer
-                  </Link>
+                  <form
+                    onSubmit={postAnswer}
+                    className={
+                      textArea ? "answer-form activeAnswerForm" : "answer-form"
+                    }
+                  >
+                    <div className="input-div">
+                      <RichTextEditor onChangeOfEditor={richHtml} />
+                    </div>
+                    <input type="submit" value="Post Answer" className="btn" />
+                  </form>
                 </div>
-                <form
-                  onSubmit={postAnswer}
-                  className={
-                    textArea ? "answer-form activeAnswerForm" : "answer-form"
-                  }
-                >
-                  <div className="input-div">
-                    <RichTextEditor onChangeOfEditor={richHtml} />
-                  </div>
-                  <input type="submit" value="Post Answer" className="btn" />
-                </form>
+              </div>
+              <div className="divider">
+                <p>Answers</p>
+              </div>
+              <div className="wrapper">
+                {!questionPending && !questionData.data.answers.length && (
+                  <NoContent
+                    text={"This question does not have any answers yet!"}
+                  />
+                )}
+                {questionData.data.answers.map((answer) => (
+                  <Answer
+                    key={answer.id}
+                    data={answer}
+                    setDeleteOverlay={setDeleteOverlay}
+                    setDeleteItemId={setDeleteItemId}
+                    setDeleteUrl={setDeleteUrl}
+                    user_id={user_id}
+                  />
+                ))}
               </div>
             </div>
-            <div className="divider">
-              <p>Answers</p>
-            </div>
-            <div className="wrapper">
-              {!questionPending && !questionData.data.answers.length && (
-                <NoContent
-                  text={"This question does not have any answers yet!"}
-                />
-              )}
-              {questionData.data.answers.map((answer) => (
-                <Answer 
-                  key={answer.id}
-                  data={answer}
-                  setDeleteOverlay = {setDeleteOverlay}
-                  setDeleteItemId = {setDeleteItemId}
-                  setDeleteUrl = {setDeleteUrl}
-                  user_id = {user_id}
-                />
+          )}
+
+          {pending && <InfinitySpin width="300" color="#6495ED" />}
+
+          <div className="event-container">
+            {data &&
+              data.data.map((singleEvent) => (
+                <News key={singleEvent.id} data={singleEvent} />
               ))}
-            </div>
           </div>
-        )}
-
-        {pending && <InfinitySpin width="300" color="#6495ED" />}
-
-        <div className="event-container">
-          {data &&
-            data.data.map((singleEvent) => (
-              <News key={singleEvent.id} data={singleEvent} />
-            ))}
         </div>
       </div>
-    </div>
     </>
   );
 };

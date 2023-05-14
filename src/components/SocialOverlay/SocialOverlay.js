@@ -21,7 +21,7 @@ const SocialOverlay = ({ setSocialToggler, overlayID, username }) => {
       </button>
       <div className="social-container">
         <p className="social-title">{overlayID}</p>
-        
+
         {!pending &&
           data &&
           data.data.map((item) => (

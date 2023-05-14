@@ -6,62 +6,79 @@ import ShareIcon from "../../assets/share.svg";
 import baseUrl from "../../utils/constants";
 import postToken from "../../utils/postToken";
 
-const Answer = ({ data, setDeleteItemId, setDeleteOverlay, setDeleteUrl, user_id }) => {
-
+const Answer = ({
+  data,
+  setDeleteItemId,
+  setDeleteOverlay,
+  setDeleteUrl,
+  user_id,
+}) => {
   console.log("this is answer");
   console.log(data);
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const [dropDown, setDropDown] = useState(false);
-  const [isUpvoted, setIsUpvoted] = useState(data.upvoted)
-  const [isDownvoted, setIsDownvoted] = useState(data.downvoted)
-  const [upvoteCnt, setUpvoteCnt] = useState(data.upvotes.length)
-  const [downvoteCnt, setDownvoteCnt] = useState(data.downvotes.length)
+  const [isUpvoted, setIsUpvoted] = useState(data.upvoted);
+  const [isDownvoted, setIsDownvoted] = useState(data.downvoted);
+  const [upvoteCnt, setUpvoteCnt] = useState(data.upvotes.length);
+  const [downvoteCnt, setDownvoteCnt] = useState(data.downvotes.length);
 
-  const deleteAnswer = (id) =>{
-    
-    setDeleteItemId(id)
+  const deleteAnswer = (id) => {
+    setDeleteItemId(id);
     setDeleteOverlay(true);
     setDeleteUrl("answer/delete");
-  }
+  };
 
   const upvoteAns = async () => {
-    const res = await postToken(`${baseUrl}/answer/upvote/${data._id}`, {}, token)
-    if(isUpvoted) setIsUpvoted(false)
+    const res = await postToken(
+      `${baseUrl}/answer/upvote/${data._id}`,
+      {},
+      token
+    );
+    if (isUpvoted) setIsUpvoted(false);
     else {
-      setIsUpvoted(true)
-      if(isDownvoted) setIsDownvoted(false) 
+      setIsUpvoted(true);
+      if (isDownvoted) setIsDownvoted(false);
     }
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
 
   const downvoteAns = async () => {
-    const res = await postToken(`${baseUrl}/answer/downvote/${data._id}`, {}, token)
-    if(isDownvoted) setIsDownvoted(false)
+    const res = await postToken(
+      `${baseUrl}/answer/downvote/${data._id}`,
+      {},
+      token
+    );
+    if (isDownvoted) setIsDownvoted(false);
     else {
-      setIsDownvoted(true)
-      if(isUpvoted) setIsUpvoted(false)
+      setIsDownvoted(true);
+      if (isUpvoted) setIsUpvoted(false);
     }
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
 
   return (
     <div className="ques-container">
       <div className="upvote-downvote-panel">
-                <button className={`up ${isUpvoted ? 'upvote-active' : ''}`} onClick = {upvoteAns}>
-                 
-                  <div class="upvote-triangle"></div>
-                  <div className="upvote-count">{upvoteCnt}</div>
-                </button>
-               
-                <button className={`down ${isDownvoted ? 'downvote-active' : ''}`} onClick = {downvoteAns}>
-                  <div class={`downvote-triangle`}></div>
-                  <div className="downvote-count">{downvoteCnt}</div>
-                </button>
-              </div>
+        <button
+          className={`up ${isUpvoted ? "upvote-active" : ""}`}
+          onClick={upvoteAns}
+        >
+          <div class="upvote-triangle"></div>
+          <div className="upvote-count">{upvoteCnt}</div>
+        </button>
+
+        <button
+          className={`down ${isDownvoted ? "downvote-active" : ""}`}
+          onClick={downvoteAns}
+        >
+          <div class={`downvote-triangle`}></div>
+          <div className="downvote-count">{downvoteCnt}</div>
+        </button>
+      </div>
       <div className="question-header">
         <div className="flex-row">
           <div dangerouslySetInnerHTML={{ __html: data.text }}></div>
@@ -70,11 +87,15 @@ const Answer = ({ data, setDeleteItemId, setDeleteOverlay, setDeleteUrl, user_id
             <div className="drop-down-wrapper">
               {dropDown && (
                 <div className="drop-down">
-                {user_id === data.user._id && 
-                  <div className="drop-down-item" onClick={() => deleteAnswer(data._id)}>
-                    <img src={deleteIcon} alt="delete" />
-                    <p>Delete</p>
-                  </div>}
+                  {user_id === data.user._id && (
+                    <div
+                      className="drop-down-item"
+                      onClick={() => deleteAnswer(data._id)}
+                    >
+                      <img src={deleteIcon} alt="delete" />
+                      <p>Delete</p>
+                    </div>
+                  )}
                   <div className="drop-down-item">
                     <img src={ShareIcon} alt="delete" />
                     <p>Share</p>
@@ -85,11 +106,10 @@ const Answer = ({ data, setDeleteItemId, setDeleteOverlay, setDeleteUrl, user_id
                   </div>
                 </div>
               )}
-              
             </div>
           </div>
         </div>
-        
+
         <div className="author-details">
           <div className="profile-div">
             <div className="profile-img">

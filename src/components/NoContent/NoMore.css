@@ -1,0 +1,28 @@
+.no-more-container {
+font-size: 16px;
+text-align: center;
+position: relative;
+}
+
+.no-more-image {
+width: 20%;
+height: auto;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+animation: zoomInOut 2s infinite alternate;
+}
+
+@keyframes zoomInOut {
+0% {
+    transform: translate(-50%, -50%) scale(1);
+}
+50% {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+100% {
+    transform: translate(-50%, -50%) scale(1);
+}
+}
+  

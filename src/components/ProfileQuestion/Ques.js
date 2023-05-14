@@ -18,29 +18,33 @@ const Ques = (props) => {
   } = props.quesItem;
   const { year, month_name, day_num } = fetchDate(createdAt);
 
-  const token = localStorage.getItem("token")
-  const [isUpvoted, setIsUpvoted] = useState(props.quesItem.upvoted)
-  const [isDownvoted, setIsDownvoted] = useState(props.quesItem.downvoted)
-  const [upvoteCnt, setUpvoteCnt] = useState(upvotes.length)
-  const [downvoteCnt, setDownvoteCnt] = useState(downvotes.length)
+  const token = localStorage.getItem("token");
+  const [isUpvoted, setIsUpvoted] = useState(props.quesItem.upvoted);
+  const [isDownvoted, setIsDownvoted] = useState(props.quesItem.downvoted);
+  const [upvoteCnt, setUpvoteCnt] = useState(upvotes.length);
+  const [downvoteCnt, setDownvoteCnt] = useState(downvotes.length);
 
   const upvoteQues = async () => {
-    setIsUpvoted(true)
-    setIsDownvoted(false)
-    const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token)
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setIsUpvoted(true);
+    setIsDownvoted(false);
+    const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token);
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
 
   const downvoteQues = async () => {
-    setIsDownvoted(true)
-    setIsUpvoted(false)
-    const res = await postToken(`${baseUrl}/question/downvote/${_id}`, {}, token)
-    setUpvoteCnt(res.data.data.upvotes.length)
-    setDownvoteCnt(res.data.data.downvotes.length)
+    setIsDownvoted(true);
+    setIsUpvoted(false);
+    const res = await postToken(
+      `${baseUrl}/question/downvote/${_id}`,
+      {},
+      token
+    );
+    setUpvoteCnt(res.data.data.upvotes.length);
+    setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
-  }
+  };
 
   return (
     <div className="question_container">
@@ -74,7 +78,11 @@ const Ques = (props) => {
           </Link> */}
         </div>
         <div className="stats_list_b">
-        <Link to="" className={`upvote ${isUpvoted ? 'isUpvotedDownvoted' : ''}`} onClick = {upvoteQues}>
+          <Link
+            to=""
+            className={`upvote ${isUpvoted ? "isUpvotedDownvoted" : ""}`}
+            onClick={upvoteQues}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -85,7 +93,11 @@ const Ques = (props) => {
             </svg>
             <span>{upvoteCnt}</span>
           </Link>
-          <Link to="" className={`downvote ${isDownvoted ? 'isUpvotedDownvoted' : ''}`} onClick = {downvoteQues}>
+          <Link
+            to=""
+            className={`downvote ${isDownvoted ? "isUpvotedDownvoted" : ""}`}
+            onClick={downvoteQues}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
