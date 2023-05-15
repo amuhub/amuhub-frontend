@@ -10,6 +10,7 @@ import moment from "moment";
 import { useEffect } from "react";
 import postToken from "../../utils/postToken";
 import deleteIcon from "../../assets/icons8-trash.svg";
+import reportIcon from "../../assets/flag.png";
 import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
@@ -154,7 +155,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                           <p>Share</p>
                         </div>
                         <div className="drop-down-item">
-                          <img src={deleteIcon} alt="delete" />
+                          <img src={reportIcon} alt="delete" />
                           <p>Report</p>
                         </div>
                         <div className="drop-down-triangle"></div>
@@ -203,7 +204,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                           <p>Share</p>
                         </div>
                         <div className="drop-down-item">
-                          <img src={deleteIcon} alt="delete" />
+                          <img src={reportIcon} alt="delete" />
                           <p>Report</p>
                         </div>
                         <div className="drop-down-triangle"></div>

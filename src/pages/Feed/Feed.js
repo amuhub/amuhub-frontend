@@ -48,6 +48,7 @@ const Feed = () => {
             <Button text="Create New Post" onClick={displayOverlay} />
           </div>
           <div className="grid-container">
+            {feedPending && <InfinitySpin width="300" color="#6495ED" />}
             <div className="wrapper">
               {!feedPending &&
                 !feedError &&

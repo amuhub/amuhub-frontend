@@ -51,22 +51,6 @@ const AboutUS = () => {
         {/* <img src={mobileImg2} alt="" className="mobile-img" /> */}
         <img src={Img2} alt="" />
       </div>
-
-      <div className="about-us-item">
-        <div className="content">
-          <div className="content-inner">
-            <h1>Lightweight</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-              possimus explicabo est alias eveniet maxime quaerat, dicta
-              voluptatum deserunt cum asperiores perferendis tenetur nesciunt ex
-              id culpa ducimus corrupti dolorum.
-            </p>
-          </div>
-        </div>
-        {/* <img src={phoneImg} alt="" /> */}
-        <img src={Img3} alt=""/>
-      </div>
     </div>
   );
 };
