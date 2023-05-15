@@ -23,7 +23,6 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
     `${baseUrl}/feed/post/${postId}`,
     token
   );
-  if (!pending) console.log(data);
 
   const [isLiked, setIsLiked] = useState("");
   const [commentInput, setCommentInput] = useState("");
@@ -71,7 +70,6 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
         setComments(fetchedComments); // Update the comments state
         setCommentsPending(false);
         setCommentPosted(false);
-        console.log("Comments   " + fetchedComments); // Log the fetched comments
       });
   }, [deleteOverlay, commentPosted]);
 

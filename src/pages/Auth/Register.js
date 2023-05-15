@@ -5,6 +5,7 @@ import { useState } from "react";
 import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 
 const Register = () => {
   const [username, setusername] = useState("");
@@ -13,6 +14,7 @@ const Register = () => {
   const [password, setpassword] = useState("");
   const [error, seterror] = useState("");
   const [msg, setmsg] = useState(false);
+  const [load, setLoad] = useState(false)
 
   if (isAuthenticated()) {
     window.location.href = "/";
@@ -20,6 +22,7 @@ const Register = () => {
 
   async function registerUser(event) {
     event.preventDefault();
+    setLoad(true)
     const user = { username, name, email, password };
     const response = await fetch(`${baseUrl}/auth/register`, {
       method: "POST",
@@ -29,7 +32,6 @@ const Register = () => {
 
     const resp = await response.json();
     if (resp.data != null) {
-      console.log(resp.data);
       window.location.href = "/login";
     } else {
       setmsg(true);
@@ -99,8 +101,10 @@ const Register = () => {
                 name="password"
               />
             </div>
-
-            <input type="submit" value="Register" className="btn btn-block" />
+            <button className="btn btn-block" onClick={registerUser}>
+              {load ? <ButtonLoader/> : `Register`}
+            </button>
+            {/* <input type="submit" value="Register" className="btn btn-block" /> */}
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">

@@ -17,11 +17,11 @@ const ProfilePosts = () => {
     `${baseUrl}/profile/` + username + "/posts",
     token
   );
-  console.log("profile posts", data);
+  
 
   const [searchParams] = useSearchParams();
   const viewItemId = searchParams.get("open");
-  console.log(viewItemId);
+  
 
   return (
     <div>

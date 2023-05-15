@@ -33,7 +33,7 @@ const Ques = (props) => {
     }
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
+    
   };
 
   const downvoteQues = async () => {
@@ -49,7 +49,7 @@ const Ques = (props) => {
     }
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
+
   };
 
   return (

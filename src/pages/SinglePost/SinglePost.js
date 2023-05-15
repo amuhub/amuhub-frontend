@@ -19,7 +19,7 @@ const SinglePost = () => {
     `${baseUrl}/feed/post/${postId}`,
     token
   );
-  console.log("post overlay", data);
+
 
   const [isLiked, setIsLiked] = useState("");
   const [comment, setComment] = useState("");
@@ -29,7 +29,6 @@ const SinglePost = () => {
     if (data) {
       setIsLiked(data.data.isLiked);
       setLikeCnt(data.data.likes.length);
-      console.log(isLiked);
     }
   }, [data]);
 

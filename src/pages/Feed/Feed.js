@@ -17,7 +17,7 @@ const Feed = () => {
 
   const [searchParams] = useSearchParams();
   const viewItemId = searchParams.get("open");
-  console.log(viewItemId);
+  
 
   const displayOverlay = () => {
     setPostUploadOverlay(true);
@@ -28,14 +28,13 @@ const Feed = () => {
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/news?lang=en`
   );
-  if (!pending) console.log(data);
 
   const {
     data: feed,
     pending: feedPending,
     error: feedError,
   } = useFetchToken(`${baseUrl}/feed/feed`, token);
-  if (!feedPending) console.log(feed);
+
 
   return (
     <>

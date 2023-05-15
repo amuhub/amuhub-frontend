@@ -75,7 +75,6 @@ const NavAuth = ({ usertext, setHeight }) => {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
         setSearchData(data.data);
         setSearchResultsDisplay(true);
       }

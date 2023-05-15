@@ -35,7 +35,7 @@ const ProfilePage = () => {
         },
       })
       .then((res) => {
-        console.log("toggle follow");
+        
       })
       .catch((err) => {
         console.log(err.message);
@@ -53,7 +53,6 @@ const ProfilePage = () => {
     `${baseUrl}/profile/` + username,
     token
   );
-  console.log("profile data", data);
 
   return (
     <>
