@@ -16,6 +16,7 @@ import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
 import { InfinitySpin } from "react-loader-spinner";
 import ShareIcon from "../../assets/share.svg";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader"
 
 export default function PostOverlay({ postOverlaytoggler, postId }) {
   const token = localStorage.getItem("token");
@@ -36,6 +37,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
   const [commentPosted, setCommentPosted] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [deleteUrl, setDeleteUrl] = useState("");
+  const [load, setLoad] = useState(false)
 
   useEffect(() => {
     if (data) {
@@ -75,12 +77,14 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
   }, [deleteOverlay, commentPosted]);
 
   const postComment = () => {
+    setLoad(true)
     const res = postToken(
       `${baseUrl}/feed/comment/${data.data._id}`,
       { text: commentInput },
       token
     );
     if (!res) console.log(res.error);
+    setLoad(false)
     setCommentInput("");
     setCommentPosted(true);
   };
@@ -108,7 +112,6 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
       {pending && <div className="post_overlay"></div>}
       {deleteOverlay && (
         <DeleteAlert
-          text="post"
           overlayToggle={setDeleteOverlay}
           deleteURL={deleteUrl}
           deleteItemId={deleteItemId}
@@ -298,7 +301,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                     onClick={postComment}
                     disabled={!commentInput}
                   >
-                    Post
+                    {load ? <ButtonLoader/> : 'Post'}
                   </button>
                 </div>
               </div>

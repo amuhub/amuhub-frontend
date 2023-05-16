@@ -1,31 +1,10 @@
-/* .profile-img-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px 60px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: center;
-} */
-/* .profile-pic-form {
-  max-width: 500px;
-  padding: 30px;
-  background-color: white;
-  border-radius: 10px;
-} */
+
 
 #inputFile {
   display: none;
 }
 
-.crop-btns label {
+/* .crop-btns label {
   text-transform: capitalize;
   padding: 8px 16px;
   background-color: blue;
@@ -34,7 +13,7 @@
   color: white;
   cursor: pointer;
   font-size: 12px;
-}
+} */
 
 .ReactCrop__image {
   width: 100%;
@@ -45,6 +24,7 @@
   justify-content: center;
   gap: 15px;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .generated-profile-pic {
@@ -55,11 +35,7 @@
   margin: 20px 0;
 }
 
-.save-btn {
-  display: block;
-  background-color: #28a745;
-  margin: 0 auto;
-}
+
 .post-form-control {
   margin-top: 30px;
 }
@@ -77,4 +53,12 @@
   border-bottom: 2px solid #edebeb;
   border-radius: 1px;
   padding: 5px 0 7px 0;
+}
+
+.profile-pic-form-text{
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+ 
 }

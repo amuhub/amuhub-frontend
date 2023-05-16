@@ -132,7 +132,6 @@ const Answers = () => {
    
       {deleteOverlay && (
         <DeleteAlert
-          text="question"
           overlayToggle={setDeleteOverlay}
           deleteURL={deleteUrl}
           deleteItemId={deleteItemId}

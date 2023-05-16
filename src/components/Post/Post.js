@@ -7,6 +7,7 @@ import baseUrl from "../../utils/constants";
 import deleteIcon from "../../assets/icons8-trash.svg";
 import reportIcon from "../../assets/flag.png";
 import ShareIcon from "../../assets/share.svg";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 
 const Post = (props) => {
   const { data, defaultToggleOverlay } = props;
@@ -17,6 +18,7 @@ const Post = (props) => {
   const [comment, setComment] = useState("");
   const [likeCnt, setLikeCnt] = useState(0);
   const [dropDown, setDropDown] = useState(false);
+  const [load, setLoad] = useState(false)
 
   useEffect(() => {
     if (data) {
@@ -32,12 +34,14 @@ const Post = (props) => {
   };
 
   const postComment = () => {
+    setLoad(true)
     const res = postToken(
       `${baseUrl}/feed/comment/${data._id}`,
       { text: comment },
       token
     );
     if (!res) console.log(res.error);
+    setLoad(false)
     setComment("");
     setTogglePostOverlay(true);
   };
@@ -124,7 +128,7 @@ const Post = (props) => {
             onClick={postComment}
             disabled={!comment}
           >
-            Post
+            {load ? <ButtonLoader/> : 'Post'}
           </button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import "./ProfileImgOverlay.css";
 import uploadImageCloudinary from "../../utils/third_party_services/cloudinary";
 import baseUrl from "../../utils/constants";
+import ButtonLoader from '../ButtonLoader/ButtonLoader'
 
 function ProfileImgOverlay({ setChangePicOverlay, username }) {
   const [src, setSrc] = useState(null);
@@ -12,6 +13,7 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
   const [output, setOutput] = useState(null);
   const [fileitem, setfileitem] = useState(null);
   const [buttonDisplay, setButtonDisplay] = useState(false);
+  const [load, setLoad] = useState(false)
 
   const token = localStorage.getItem("token");
 
@@ -78,7 +80,8 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
   };
 
   const saveChanges = async () => {
-    setChangePicOverlay(false);
+    setLoad(true)
+    // setChangePicOverlay(false);
     const result = await uploadImageCloudinary(fileitem);
     if (!result && !result.secure_url) {
       console.log("Error uploading image to Cloudinary");
@@ -108,6 +111,7 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
         <i className="fas fa-times"></i>
       </button>
       <div className="profile-pic-form">
+      <p className="profile-pic-form-text">Select Image and Crop</p>
         {!src && (
           <div className="selected-image">
             <h2>Choose Image</h2>
@@ -125,8 +129,8 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
         )}
 
         <div className="crop-btns">
-          <label htmlFor="inputFile">
-            Add Image
+          <label htmlFor="inputFile" className="btn">
+            Select Image
             <input
               type="file"
               accept="image/*"
@@ -148,7 +152,7 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
         ></div>
         {buttonDisplay && (
           <button className="btn save-btn" onClick={saveChanges}>
-            Save Changes
+            {load ? <ButtonLoader/> : 'Save Changes'}
           </button>
         )}
       </div>

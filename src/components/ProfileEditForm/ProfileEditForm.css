@@ -69,10 +69,10 @@
   border-radius: 4px;
 } */
 .btn-blue {
-  background-color: rgb(81, 81, 255);
+  background-color: #2046a4;
 }
 .btn-blue:hover {
-  background-color: rgb(38, 38, 235);
+  opacity: 0.9;
 }
 .btn-red {
   background-color: rgb(255, 37, 37);

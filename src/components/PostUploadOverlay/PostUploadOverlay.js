@@ -6,6 +6,7 @@ import uploadImageCloudinary from "../../utils/third_party_services/cloudinary";
 import baseUrl from "../../utils/constants";
 import "./PostUploadOverlay.css";
 import isAuthenticated from "../../utils/isAuth";
+import ButtonLoader from '../ButtonLoader/ButtonLoader'
 
 const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [src, setSrc] = useState(null);
@@ -15,6 +16,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const [fileitem, setfileitem] = useState(null);
   const [buttonDisplay, setButtonDisplay] = useState(false);
   const [caption, setCaption] = useState("");
+  const [load, setLoad] = useState(false)
 
   const token = localStorage.getItem("token");
   const username = isAuthenticated();
@@ -67,7 +69,8 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   };
 
   const saveChanges = async () => {
-    setPostUploadOverlay(false);
+    setLoad(true)
+    // setPostUploadOverlay(false);
     const result = await uploadImageCloudinary(fileitem);
     if (!result && !result.secure_url) {
       console.log("Error uploading image to Cloudinary");
@@ -98,6 +101,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
       </button>
       <div className="profile-pic-form">
         <>
+        <p className="profile-pic-form-text">Select Image and Crop</p>
           {!src && (
             <div className="selected-image">
               <h2>Choose Image</h2>
@@ -125,7 +129,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
         </>
 
         <div className="crop-btns">
-          <label htmlFor="inputFile">
+          <label htmlFor="inputFile" className="btn">
             Select Image
             <input
               type="file"
@@ -138,15 +142,17 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
           </label>
           {src && (
             <button onClick={cropImageNow} className="btn">
-              Preview
+              Apply
+            </button>
+          )}
+
+          {buttonDisplay && (
+            <button className="btn save-btn" onClick={saveChanges}>
+              {load ? <ButtonLoader/> :'Upload'}
             </button>
           )}
         </div>
-        {buttonDisplay && (
-          <button className="btn save-btn" onClick={saveChanges}>
-            Upload
-          </button>
-        )}
+        
       </div>
     </div>
   );

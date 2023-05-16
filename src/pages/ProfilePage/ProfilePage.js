@@ -93,7 +93,7 @@ const ProfilePage = () => {
                       {isLoggedInUser && (
                         <Link
                           to="#"
-                          className={`btn btn-sec`}
+                          className={`btn-blue btn-sec`}
                           onClick={formToggle}
                         >
                           Edit Profile

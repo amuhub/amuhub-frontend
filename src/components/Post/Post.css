@@ -6,6 +6,10 @@
   background-color: #fff;
 }
 
+.post_container .lds-ring div{
+  border-color: #000 transparent transparent transparent;
+}
+
 .post_header {
   display: -webkit-box;
   display: -ms-flexbox;

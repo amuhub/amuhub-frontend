@@ -136,7 +136,7 @@ const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
               value="Save Changes"
               className="btn btn-block"
             />
-            <button class="btn btn-red" onClick={onClick}>
+            <button class="btn btn-red btn-block" onClick={onClick}>
               Cancel
             </button>
           </div>
