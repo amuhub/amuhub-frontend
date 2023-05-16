@@ -11,12 +11,13 @@ import postToken from "../../utils/postToken";
 import RichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 import Select from "react-select";
 import baseUrl from "../../utils/constants";
-import NoContent from "../../components/NoContent/NoContent";
 import isAuthenticated from "../../utils/isAuth";
 import NoMore from "../../components/NoContent/NoMore";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 
 const QuestionListPage = () => {
   const token = localStorage.getItem("token");
+  const [load, setLoad] = useState(false)
 
   if (!isAuthenticated()) window.location.href = "/login";
 
@@ -31,7 +32,7 @@ const QuestionListPage = () => {
     pending: questionpending,
     error: questionerror,
   } = useFetchToken(`${baseUrl}/question/interests/tags/`, token);
-  // console.log(tagdata);
+
 
   const [tags, setTags] = useState();
   var options = [];
@@ -59,6 +60,7 @@ const QuestionListPage = () => {
   };
 
   const submitQues = async (e) => {
+    setLoad(true)
     e.preventDefault();
     const body = {
       ques: htmlText,
@@ -67,8 +69,9 @@ const QuestionListPage = () => {
 
     const res = await postToken(`${baseUrl}/question/`, body, token);
     const data = await res.json;
-    console.log(data);
+
     if (res) {
+      setLoad(true)
       window.location.reload();
     } else {
       console.log("error");
@@ -87,23 +90,29 @@ const QuestionListPage = () => {
         className={textArea ? "answer-form activeAnswerForm" : "answer-form"}
       >
         <div className="form-control">
-          <Select
-            options={options}
-            isClearable
-            onChange={handleSelect}
-            placeholder="Select Tag"
-          />
+          <div className="select-div" style={{position : "relative", zIndex : 5}}>
+            <Select
+              options={options}
+              isClearable
+              onChange={handleSelect}
+              placeholder="Select Tag"
+              // styles={{
+              //   control: (baseStyles, state) => ({
+              //     ...baseStyles,
+              //     borderColor: state.isFocused ? 'grey' : 'red',
+              //     zIndex : 5,
+              //   }),
+              // }}
+            />
+          </div>
         </div>
         <div className="input-div" style={{ margin: "20px 0" }}>
           <RichTextEditor onChangeOfEditor={richHtml} />
         </div>
 
-        <input
-          type="submit"
-          value="Post Question"
-          className="btn btn-block"
-          style={{ padding: "14px 25px" }}
-        />
+        <button className="btn btn-block" onClick = {submitQues}>
+            { load ? <ButtonLoader/> : `Post Answer`}
+        </button>
       </form>
       <div className="grid-container">
         {questionpending && <InfinitySpin width="300" color="#6495ED" />}

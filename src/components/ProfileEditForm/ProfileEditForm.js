@@ -10,7 +10,6 @@ const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
   const [department, setDepartment] = useState(dept);
   const [bio, setBio] = useState(desc);
   const [interests, setInterests] = useState(tags);
-  console.log("interests", interests);
 
   const token = localStorage.getItem("token");
   const {
@@ -46,7 +45,6 @@ const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
       department,
       interest: interests,
     };
-    console.log("body", data);
 
     try {
       const response = await fetch(`${baseUrl}/profile/edit/`, {
@@ -63,7 +61,7 @@ const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
       }
 
       const responseData = await response.json();
-      console.log(responseData);
+      
       onClick();
       window.location.reload();
     } catch (error) {
@@ -71,9 +69,6 @@ const ProfileEditForm = ({ onClick, username, loc, dept, desc, tags }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(interests);
-  }, [interests]);
 
   return (
     <div className="form-overlay">

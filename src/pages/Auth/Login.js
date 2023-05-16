@@ -2,17 +2,18 @@ import Title from "../../components/Title/Title";
 import errorIcon from "../../assets/form/icon-error.svg";
 import "./form.css";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [error, seterror] = useState("");
   const [msg, setmsg] = useState(false);
-  // const navigate = useNavigate();
+  const [load, setLoad] = useState(false)
+
 
   if (isAuthenticated()) {
     window.location.href = "/";
@@ -20,6 +21,7 @@ const Login = () => {
 
   async function loginUser(event) {
     event.preventDefault();
+    setLoad(true)
     const user = { username, password };
     const response = await fetch(`${baseUrl}/auth/login`, {
       method: "POST",
@@ -29,14 +31,12 @@ const Login = () => {
 
     const resp = await response.json();
     if (resp.data != null) {
-      console.log("null nhi hai");
       localStorage.setItem("token", resp.data.token);
       window.location.href = "/";
     } else {
       setmsg(true);
       seterror(resp.message);
     }
-    console.log(resp);
   }
 
   return (
@@ -81,11 +81,10 @@ const Login = () => {
                 name="password"
               />
             </div>
-            <input
-              type="submit"
-              value="Sign in"
-              className="btn btn-block btn-lg"
-            />
+            
+            <button className="btn btn-block btn-lg" onClick={loginUser}>
+              {load ? <ButtonLoader/> : `Sign in`}
+            </button>
             <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">

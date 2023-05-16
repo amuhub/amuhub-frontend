@@ -17,6 +17,7 @@ import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import { decodeToken } from "react-jwt";
 import ShareIcon from "../../assets/share.svg";
 import moment from "moment";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 
 const Answers = () => {
   if (!isAuthenticated()) window.location.href = "/login";
@@ -24,7 +25,6 @@ const Answers = () => {
   const token = localStorage.getItem("token");
   const decoded_token = decodeToken(token);
   const user_id = decoded_token.user.id;
-  console.log(user_id);
 
   const answerBox = () => {
     setTextArea(!textArea);
@@ -32,7 +32,7 @@ const Answers = () => {
 
   const richHtml = (text) => {
     setHtmlText(text);
-    console.log(htmlText);
+   
   };
 
   const [htmlText, setHtmlText] = useState("");
@@ -47,6 +47,7 @@ const Answers = () => {
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [upvoteCnt, setUpvoteCnt] = useState(0);
   const [downvoteCnt, setDownvoteCnt] = useState(0);
+  const [load, setLoad] = useState(false)
 
   const {
     data: questionData,
@@ -65,8 +66,7 @@ const Answers = () => {
     }
   }, [questionData, questionPending, questionError]);
 
-  console.log("this is question data");
-  console.log(questionData);
+ 
 
   const { data, pending, error } = useFetch(
     `https://api.amu.ac.in/api/v1/news?lang=en`
@@ -87,7 +87,7 @@ const Answers = () => {
     const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token);
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
+   
   };
 
   const downvoteQues = async () => {
@@ -103,11 +103,12 @@ const Answers = () => {
     );
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
+    
   };
   // ------------------start------------------
 
   const postAnswer = async (e) => {
+    setLoad(true)
     e.preventDefault();
     const body = {
       ques: id,
@@ -116,8 +117,9 @@ const Answers = () => {
 
     const res = await postToken(`${baseUrl}/answer/`, body, token);
     const data = await res.json;
-    console.log(data);
+
     if (res) {
+      setLoad(false)
       window.location.reload();
     } else {
       console.log("error");
@@ -127,6 +129,7 @@ const Answers = () => {
 
   return (
     <>
+   
       {deleteOverlay && (
         <DeleteAlert
           text="question"
@@ -228,7 +231,6 @@ const Answers = () => {
                     </Link>
                   </div>
                   <form
-                    onSubmit={postAnswer}
                     className={
                       textArea ? "answer-form activeAnswerForm" : "answer-form"
                     }
@@ -236,7 +238,9 @@ const Answers = () => {
                     <div className="input-div">
                       <RichTextEditor onChangeOfEditor={richHtml} />
                     </div>
-                    <input type="submit" value="Post Answer" className="btn" />
+                    <button className="btn" onClick = {postAnswer}>
+                      { load ? <ButtonLoader/> : `Post Answer`}
+                    </button>
                   </form>
               </div>
               <div className="divider">

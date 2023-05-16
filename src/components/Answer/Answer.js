@@ -14,8 +14,6 @@ const Answer = ({
   setDeleteUrl,
   user_id,
 }) => {
-  console.log("this is answer");
-  console.log(data);
   const token = localStorage.getItem("token");
   const [dropDown, setDropDown] = useState(false);
   const [isUpvoted, setIsUpvoted] = useState(data.upvoted);
@@ -42,7 +40,6 @@ const Answer = ({
     }
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
   };
 
   const downvoteAns = async () => {
@@ -58,7 +55,6 @@ const Answer = ({
     }
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
   };
 
   return (

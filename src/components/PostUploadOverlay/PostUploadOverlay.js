@@ -69,7 +69,6 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
   const saveChanges = async () => {
     setPostUploadOverlay(false);
     const result = await uploadImageCloudinary(fileitem);
-    console.log(result);
     if (!result && !result.secure_url) {
       console.log("Error uploading image to Cloudinary");
       return;
@@ -83,7 +82,6 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
         },
         body: JSON.stringify({ photo: result.secure_url, caption: caption }), // send Cloudinary URL as JSON data
       });
-      console.log(JSON.stringify({ path: result.secure_url, caption }));
       const data = await response.json();
       if (response.ok) {
         window.location.href = `/profile/${username}/posts`;

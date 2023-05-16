@@ -14,7 +14,6 @@ const ProfileAnswer = () => {
     `${baseUrl}/profile/` + username + "/answers",
     token
   );
-  console.log(data);
 
   return (
     <div>

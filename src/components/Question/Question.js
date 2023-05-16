@@ -17,8 +17,6 @@ const Question = (props) => {
   const [upvoteCnt, setUpvoteCnt] = useState(upvotes.length);
   const [downvoteCnt, setDownvoteCnt] = useState(downvotes.length);
 
-  // console.log("HIII");
-  // console.log(props.data);
 
   const upvoteQues = async () => {
     if (isUpvoted) setIsUpvoted(false);
@@ -29,7 +27,7 @@ const Question = (props) => {
     const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token);
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
+
   };
 
   const downvoteQues = async () => {
@@ -45,13 +43,8 @@ const Question = (props) => {
     );
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
-    console.log(res.data.data);
   };
 
-  // Upvote Button
-  // 1 - check initial state - true/false
-  // if true - call upvote api and setUpvote state to false
-  //if false - call upvote api and set upvote state to true and if downvote state is true set that to false
 
   return (
     <div className="question_container">
