@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import postToken from "../../utils/postToken";
 import baseUrl from "../../utils/constants";
 import deleteIcon from "../../assets/icons8-trash.svg";
+import reportIcon from "../../assets/flag.png";
 import ShareIcon from "../../assets/share.svg";
 
 const Post = (props) => {
@@ -74,7 +75,7 @@ const Post = (props) => {
                     <p>Share</p>
                   </div>
                   <div className="drop-down-item">
-                    <img src={deleteIcon} alt="delete" />
+                    <img src={reportIcon} alt="delete" />
                     <p>Report</p>
                   </div>
                   <div className="drop-down-triangle"></div>

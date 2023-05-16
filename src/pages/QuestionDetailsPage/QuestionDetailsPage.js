@@ -12,6 +12,7 @@ import postToken from "../../utils/postToken";
 import NoContent from "../../components/NoContent/NoContent";
 import isAuthenticated from "../../utils/isAuth";
 import deleteIcon from "../../assets/icons8-trash.svg";
+import reportIcon from "../../assets/flag.png";
 import DeleteAlert from "../../components/DeleteAlert/DeleteAlert";
 import { decodeToken } from "react-jwt";
 import ShareIcon from "../../assets/share.svg";
@@ -78,28 +79,28 @@ const Answers = () => {
   };
 
   const upvoteQues = async () => {
-    const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token);
     if (isUpvoted) setIsUpvoted(false);
     else {
       setIsUpvoted(true);
       if (isDownvoted) setIsDownvoted(false);
     }
+    const res = await postToken(`${baseUrl}/question/upvote/${id}`, {}, token);
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
   };
 
   const downvoteQues = async () => {
-    const res = await postToken(
-      `${baseUrl}/question/downvote/${id}`,
-      {},
-      token
-    );
     if (isDownvoted) setIsDownvoted(false);
     else {
       setIsDownvoted(true);
       if (isUpvoted) setIsUpvoted(false);
     }
+    const res = await postToken(
+      `${baseUrl}/question/downvote/${id}`,
+      {},
+      token
+    );
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
@@ -190,7 +191,7 @@ const Answers = () => {
                                 <p>Share</p>
                               </div>
                               <div className="drop-down-item">
-                                <img src={deleteIcon} alt="delete" />
+                                <img src={reportIcon} alt="delete" />
                                 <p>Report</p>
                               </div>
                             </div>

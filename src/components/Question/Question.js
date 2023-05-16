@@ -21,28 +21,28 @@ const Question = (props) => {
   // console.log(props.data);
 
   const upvoteQues = async () => {
-    const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token);
     if (isUpvoted) setIsUpvoted(false);
     else {
       setIsUpvoted(true);
       if (isDownvoted) setIsDownvoted(false);
     }
+    const res = await postToken(`${baseUrl}/question/upvote/${_id}`, {}, token);
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
   };
 
   const downvoteQues = async () => {
-    const res = await postToken(
-      `${baseUrl}/question/downvote/${_id}`,
-      {},
-      token
-    );
     if (isDownvoted) setIsDownvoted(false);
     else {
       setIsDownvoted(true);
       if (isUpvoted) setIsUpvoted(false);
     }
+    const res = await postToken(
+      `${baseUrl}/question/downvote/${_id}`,
+      {},
+      token
+    );
     setUpvoteCnt(res.data.data.upvotes.length);
     setDownvoteCnt(res.data.data.downvotes.length);
     console.log(res.data.data);
