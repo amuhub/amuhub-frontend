@@ -111,7 +111,7 @@ const QuestionListPage = () => {
         </div>
 
         <button className="btn btn-block" onClick = {submitQues}>
-            { load ? <ButtonLoader/> : `Post Answer`}
+            { load ? <ButtonLoader/> : `Post Question`}
         </button>
       </form>
       <div className="grid-container">

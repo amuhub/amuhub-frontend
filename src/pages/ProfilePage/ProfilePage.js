@@ -78,7 +78,7 @@ const ProfilePage = () => {
                 <div className="profile-info-container">
                   <div className="profile-info">
                     <div className="info-inner">
-                      <p className="profile-name">{data.data.username}</p>
+                      <p className="profile-name">{data.data.name}</p>
                       {!isLoggedInUser && (
                         <Link
                           to="#"
