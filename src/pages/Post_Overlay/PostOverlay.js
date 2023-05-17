@@ -228,11 +228,13 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
 
               <div className="comment-section">
                 <div className="comment">
-                  <img
-                    className="commenter_img"
-                    src={data.data.user.profile.pic}
-                    alt="user"
-                  />
+                  <Link to = {`/profile/${data.data.user.username}`} >
+                    <img
+                      className="commenter_img"
+                      src={data.data.user.profile.pic}
+                      alt="user"
+                    />
+                  </Link>
                   <div className="comment_body">
                     <p>
                       <span className="commenter_username">
@@ -249,11 +251,13 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                 )}
                 {comments.map((comment) => (
                   <div className="comment">
+                    <Link to = {`/profile/${comment.user.username}`} >
                     <img
                       className="commenter_img"
                       src={comment.user.profile.pic}
                       alt="user"
                     />
+                    </Link>
                     <div className="comment_body">
                       <p>
                         <span className="commenter_username">
