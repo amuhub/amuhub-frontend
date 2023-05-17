@@ -36,6 +36,7 @@ const Login = () => {
     } else {
       setmsg(true);
       seterror(resp.message);
+      setLoad(false)
     }
   }
 

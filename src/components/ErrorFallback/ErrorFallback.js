@@ -2,6 +2,11 @@ import React from "react";
 import servererror from "../../assets/servererror.png";
 
 const ErrorFallback = ({ error }) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    localStorage.removeItem("token");
+  }
+  
   return (
     <div>
       <img

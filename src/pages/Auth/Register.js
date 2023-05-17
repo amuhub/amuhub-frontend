@@ -36,6 +36,7 @@ const Register = () => {
     } else {
       setmsg(true);
       seterror(resp.message);
+      setLoad(false)
     }
   }
 
