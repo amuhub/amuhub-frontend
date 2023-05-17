@@ -108,7 +108,7 @@ const PostUploadOverlay = ({ hideOverlay, setPostUploadOverlay }) => {
             </div>
           )}
           {src && (
-            <div>
+            <div className="crop-img-container">
               <ReactCrop
                 src={src}
                 onImageLoaded={setImage}

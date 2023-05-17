@@ -71,11 +71,24 @@
 .generated-profile-pic > * {
   margin: 20px 0;
 }
+.crop-img-container{
+  height : 400px;
+  max-width : 400px;
+  overflow-y : scroll;
+  display: flex;
+  align-items : center;
+  justify-content : center;
+  background-color :#000;
+  margin : 0 auto;
+}
+.crop-img-container > div{
+  margin: auto 0;
+}
 
 .save-btn {
   display: block;
   background-color: #28a745;
-  margin: 0 auto;
+ 
   min-width: 120px;
 }
 

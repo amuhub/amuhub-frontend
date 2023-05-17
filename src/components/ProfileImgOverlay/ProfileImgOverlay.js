@@ -118,15 +118,15 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
           </div>
         )}
         {src && (
-          <div>
-            <ReactCrop
-              src={src}
-              onImageLoaded={setImage}
-              crop={crop}
-              onChange={setCrop}
-            />
-          </div>
-        )}
+            <div className="crop-img-container">
+              <ReactCrop
+                src={src}
+                onImageLoaded={setImage}
+                crop={crop}
+                onChange={setCrop}
+              />
+            </div>
+          )}
 
         <div className="crop-btns">
           <label htmlFor="inputFile" className="btn">

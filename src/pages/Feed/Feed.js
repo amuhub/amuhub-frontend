@@ -64,9 +64,10 @@ const Feed = () => {
               )}
             </div>
 
-            {pending && <InfinitySpin width="300" color="#6495ED" />}
+            
 
             <div className="event-container">
+            {pending && <InfinitySpin width="300" color="#6495ED" />}
               {data &&
                 data.data.map((singleEvent) => (
                   <News key={singleEvent.id} data={singleEvent} />

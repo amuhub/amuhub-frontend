@@ -18,15 +18,17 @@ const QuesAns = ({ answerItem }) => {
         <div className="question-header">
           <div dangerouslySetInnerHTML={{ __html: answerItem.text }}></div>
           <div className="author-details">
-            <div className="profile-div">
-              <div className="profile-img">
-                <img src={answerItem.askedByProfile.pic} alt="profile" />
+            <Link to = {`/profile/${answerItem.askedByUser.username}`}>
+              <div className="profile-div">
+                <div className="profile-img">
+                  <img src={answerItem.askedByProfile.pic} alt="profile" />
+                </div>
+                <p className="username">
+                  <span className="answered-by">Asked By</span>{" "}
+                  {answerItem.askedByUser.username}
+                </p>
               </div>
-              <p className="username">
-                <span className="answered-by">Asked By</span>{" "}
-                {answerItem.askedByUser.username}
-              </p>
-            </div>
+            </Link>
             <p className="answered-on">
               Asked{" "}
               <span>{`${day_num} ${month_name}, ${year} ${finalHour}:${finalMin} ${AMPM}`}</span>

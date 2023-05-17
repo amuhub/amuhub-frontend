@@ -19,6 +19,7 @@ import ShareIcon from "../../assets/share.svg";
 import moment from "moment";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 
+
 const Answers = () => {
   if (!isAuthenticated()) window.location.href = "/login";
 
@@ -139,6 +140,7 @@ const Answers = () => {
       )}
       <div className="common-container">
         <div className="answer-page grid-container">
+        {questionPending && <InfinitySpin width="300" color="#6495ED" />}
           {!questionPending && questionData && (
             <div className="ques-ans-container">
               <div className="ques-container-outer">
@@ -204,15 +206,17 @@ const Answers = () => {
                   </div>
                 </div>
                 <div className="author-details">
-                  <div className="profile-div">
-                    <div className="profile-img">
-                      <img src={questionData.data.user.profile.pic} alt="profile" />
+                  <Link to = {`/profile/${questionData.data.user.username}`}>
+                    <div className="profile-div">
+                      <div className="profile-img">
+                        <img src={questionData.data.user.profile.pic} alt="profile" />
+                      </div>
+                      <p className="username">
+                        <span className="answered-by">Asked By</span>{" "}
+                        {questionData.data.user.username}
+                      </p>
                     </div>
-                    <p className="username">
-                      <span className="answered-by">Asked By</span>{" "}
-                      {questionData.data.user.username}
-                    </p>
-                  </div>
+                  </Link>
                   <p className="answered-on">
                     Asked{" "}
                     <span>{moment(questionData.data.createdAt).fromNow()}</span>
@@ -265,9 +269,9 @@ const Answers = () => {
             </div>
           )}
 
-          {pending && <InfinitySpin width="300" color="#6495ED" />}
 
           <div className="event-container">
+          {pending && <InfinitySpin width="300" color="#6495ED" />}
             {data &&
               data.data.map((singleEvent) => (
                 <News key={singleEvent.id} data={singleEvent} />

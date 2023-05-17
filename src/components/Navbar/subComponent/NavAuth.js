@@ -159,7 +159,7 @@ const NavAuth = ({ usertext, setHeight }) => {
         {/* <Button text='Ask Question' /> */}
         <div className="notification-icon-outer">
           <div
-            className="notification-icon"
+            className={`notification-icon ${notificationPending ? "notification-inactive" : ""}` }
             onClick={() => setNotificationDisplay(!notificationDisplay)}
           >
             <svg

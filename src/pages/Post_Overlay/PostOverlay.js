@@ -126,14 +126,16 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
           <div className="post_pop_up">
             <div className="pop-up-img-outer">
               <div className="pop_up_header desktop-popup-hide">
-                <div className="user_info">
-                  <img
-                    src={data.data.user.profile.pic}
-                    className="user_img"
-                    alt="user"
-                  />
-                  <span className="username">{data.data.user.username}</span>
-                </div>
+                <Link to = {`/profile/${data.data.user.username}`}>
+                  <div className="user_info">
+                    <img
+                      src={data.data.user.profile.pic}
+                      className="user_img"
+                      alt="user"
+                    />
+                    <span className="username">{data.data.user.username}</span>
+                  </div>
+                </Link>
                 <div
                   className="three-dots"
                   onClick={() => setDropDown(!dropDown)}
@@ -175,6 +177,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
               }`}
             >
               <div className="pop_up_header">
+              <Link to = {`/profile/${data.data.user.username}`}>
                 <div className="user_info">
                   <img
                     src={data.data.user.profile.pic}
@@ -183,6 +186,7 @@ export default function PostOverlay({ postOverlaytoggler, postId }) {
                   />
                   <span className="username">{data.data.user.username}</span>
                 </div>
+                </Link>
                 <div
                   className="three-dots"
                   onClick={() => setDropDown(!dropDown)}

@@ -290,6 +290,9 @@ nav {
   margin-top: 8px;
   cursor: pointer;
 }
+.notification-inactive{
+  pointer-events: none;
+}
 /* .notification-icon svg{
   fill: red;
 } */
