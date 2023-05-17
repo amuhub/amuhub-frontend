@@ -38,7 +38,7 @@ const AboutUS = () => {
       <div className="about-us-item">
         <div className="content">
           <div className="content-inner">
-            <h1>Lightweight</h1>
+            <h1>Lightweights</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
               possimus explicabo est alias eveniet maxime quaerat, dicta
