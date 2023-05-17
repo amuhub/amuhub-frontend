@@ -21,13 +21,10 @@ const AboutUS = () => {
       <div className="about-us-item">
         <div className="content">
           <div className="content-inner">
-            <h1>Lightweight</h1>
+            <h1>Your Social Platform for AMU</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-              possimus explicabo est alias eveniet maxime quaerat, dicta
-              voluptatum deserunt cum asperiores perferendis tenetur nesciunt ex
-              id culpa ducimus corrupti dolorum.
-            </p>
+            Welcome to AMUHUB, your social platform designed exclusively for AMU personnels. Connect, engage, and share with students, teachers, alumni, and more. Seek answers, explore updates, and join the vibrant AMU community. Join us today and unlock the power of connection at AMUHUB.
+            </p>  
           </div>
         </div>
         {/* <img src={deskImg1} alt="" className="desktop-img" /> */}
@@ -38,12 +35,9 @@ const AboutUS = () => {
       <div className="about-us-item">
         <div className="content">
           <div className="content-inner">
-            <h1>Lightweights</h1>
+            <h1>Engage with the AMU Community</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-              possimus explicabo est alias eveniet maxime quaerat, dicta
-              voluptatum deserunt cum asperiores perferendis tenetur nesciunt ex
-              id culpa ducimus corrupti dolorum.
+            At AMUHUB, stay connected with the AMU community easily. Engage with like-minded individuals, exchange knowledge, and stay updated with AMU. Join us now and experience the power of connection through AMUHUB.
             </p>
           </div>
         </div>
