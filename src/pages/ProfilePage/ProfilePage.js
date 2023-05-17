@@ -26,8 +26,9 @@ const ProfilePage = () => {
   const formToggle = () => {
     setFormToggler(!formToggler);
   };
-  const useToggleFollow = () => {
-    axios
+
+  const useToggleFollow = async () => {
+    const res = await axios
       .get(`${baseUrl}/profile/follow/${username}`, {
         headers: {
           "Content-Type": "application/json",
@@ -35,12 +36,11 @@ const ProfilePage = () => {
         },
       })
       .then((res) => {
-        
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
       });
-    window.location.reload();
   };
 
   const socialToggle = (e) => {
