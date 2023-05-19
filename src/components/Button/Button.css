@@ -26,3 +26,12 @@
 .btn:hover {
   opacity: 0.85;
 }
+
+@media (max-width : 500px){
+  .btn{
+    font-size: 12px;
+  }
+  nav .btn{
+    font-size: 16px;
+  }
+}

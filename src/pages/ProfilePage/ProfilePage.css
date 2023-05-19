@@ -230,20 +230,7 @@
   .img-edit-overlay i {
     font-size: 18px;
   }
-  /* .follow-btn{
-        display: block;
-        margin-left: 0;
-        font-size: 12px;
-        width: 100%;
-        max-width: 300px;
-        padding-block: 2px;
-        margin: 5px 0;
-        
-    } */
-  /* .profile-info .info-inner{
-        align-items: start;
-        flex-direction: column;
-    } */
+  
 
   .profile-options {
     margin-top: 0;
@@ -284,4 +271,17 @@
   .profile-section .profile-img{
     display: flex;
   }
+}
+
+@media (max-width: 500px){
+  .profile-container .profile-section{
+    gap: 15px;
+  }
+  .profile-section .profile-img{
+    width: 60px;
+    height: 60px;
+  }
+  /* .profile-info .info-inner{
+    justify-content: space-between;
+  } */
 }

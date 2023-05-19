@@ -15,6 +15,7 @@
   justify-content: center;
 }
 .profile-pic-form {
+  position: relative;
   width: 100%;
   max-width: 500px;
   padding: 30px;
@@ -72,9 +73,8 @@
   margin: 20px 0;
 }
 .crop-img-container{
-  height : 400px;
+  max-height : 400px;
   max-width : 400px;
-  overflow-y : scroll;
   display: flex;
   align-items : center;
   justify-content : center;
@@ -90,6 +90,10 @@
   background-color: #28a745;
  
   min-width: 120px;
+}
+.close-svg{
+  width: 25px;
+  cursor: pointer;
 }
 
 @media (max-width: 500px){

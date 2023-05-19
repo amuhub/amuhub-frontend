@@ -11,6 +11,7 @@ import baseUrl from "../../utils/constants";
 import ProfileImgOverlay from "../../components/ProfileImgOverlay/ProfileImgOverlay";
 import isAuthenticated from "../../utils/isAuth";
 import axios from "axios";
+import { useRef } from 'react';
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -20,12 +21,22 @@ const ProfilePage = () => {
   const token = localStorage.getItem("token");
   const [changePicOverlay, setChangePicOverlay] = useState(false);
   const isLoggedInUser = isAuthenticated() === username;
+  const [width, setWidth] = React.useState(window.innerWidth);
 
   if (!isAuthenticated()) window.location.href = "/login";
 
   const formToggle = () => {
     setFormToggler(!formToggler);
   };
+
+  const updateWidthAndHeight = () => {
+    setWidth(window.innerWidth);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", updateWidthAndHeight);
+    return () => window.removeEventListener("resize", updateWidthAndHeight);
+  });
 
   const useToggleFollow = async () => {
     const res = await axios
@@ -96,7 +107,7 @@ const ProfilePage = () => {
                           className={`btn-blue btn-sec`}
                           onClick={formToggle}
                         >
-                          Edit Profile
+                          {width > 400 ? "Edit Profile" : "Edit"}
                         </Link>
                       )}
                     </div>

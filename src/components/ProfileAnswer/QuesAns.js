@@ -16,7 +16,7 @@ const QuesAns = ({ answerItem }) => {
           ></p>
         </Link>
         <div className="question-header">
-          <div dangerouslySetInnerHTML={{ __html: answerItem.text }}></div>
+          <div dangerouslySetInnerHTML={{ __html: answerItem.text }} style = {{"font-size" : "12px"}}></div>
           <div className="author-details">
             <Link to = {`/profile/${answerItem.askedByUser.username}`}>
               <div className="profile-div">

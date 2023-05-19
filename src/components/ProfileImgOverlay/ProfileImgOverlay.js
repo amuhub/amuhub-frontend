@@ -5,6 +5,7 @@ import "./ProfileImgOverlay.css";
 import uploadImageCloudinary from "../../utils/third_party_services/cloudinary";
 import baseUrl from "../../utils/constants";
 import ButtonLoader from '../ButtonLoader/ButtonLoader'
+import cross from "../../assets/cross-25.svg"
 
 function ProfileImgOverlay({ setChangePicOverlay, username }) {
   const [src, setSrc] = useState(null);
@@ -44,13 +45,7 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
     // scale the canvas by the device pixel ratio
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 
-    // // create a circular path
-    // ctx.beginPath();
-    // ctx.arc(size/2, size/2, size/2, 0, 2*Math.PI);
-    // ctx.closePath();
-    // ctx.clip();
-
-    // draw the cropped image onto the canvas
+   
     ctx.drawImage(
       image,
       crop.x * scaleX,
@@ -107,11 +102,16 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
 
   return (
     <div className="profile-img-overlay">
-      <button className="close-btn" onClick={() => setChangePicOverlay(false)}>
-        <i className="fas fa-times"></i>
-      </button>
       <div className="profile-pic-form">
-      <p className="profile-pic-form-text">Select Image and Crop</p>
+      <div style = {{
+        "display" : "flex",
+        "gap" : "20px",
+        "justify-content" : "space-between"
+      }}>
+        <p className="profile-pic-form-text">Select Image and Crop</p>
+        <img src = {cross} alt = "cross" className="close-svg" onClick={() => setChangePicOverlay(false)}/>
+      </div>
+     
         {!src && (
           <div className="selected-image">
             <h2>Choose Image</h2>
@@ -142,7 +142,7 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
           </label>
           {src && (
             <button onClick={cropImageNow} className="btn">
-              Preview
+              Crop
             </button>
           )}
           {buttonDisplay && (
@@ -151,10 +151,10 @@ function ProfileImgOverlay({ setChangePicOverlay, username }) {
           </button>
           )}
         </div>
-        <div
+        {/* <div
           dangerouslySetInnerHTML={{ __html: output }}
           className="generated-profile-pic"
-        ></div>
+        ></div> */}
       </div>
     </div>
   );
