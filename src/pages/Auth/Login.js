@@ -33,7 +33,7 @@ const Login = () => {
     const resp = await response.json();
     if (resp.data != null) {
       localStorage.setItem("token", resp.data.token);
-      window.location.href = "/";
+      window.location.href = `/profile/${username}`;
     } else {
       setmsg(true);
       seterror(resp.message);
