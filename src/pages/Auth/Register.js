@@ -6,7 +6,7 @@ import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
-import formImg from "../../assets/form/amu.png"
+import formImg from "../../assets/form/login-new.jpg"
 
 const Register = () => {
   const [username, setusername] = useState("");

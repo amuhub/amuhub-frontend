@@ -9,7 +9,7 @@ import Img2 from "../../assets/m2final.png"
 const AboutUS = () => {
   return (
     <div className="about-us-section" id="about-us">
-      <Title text="About Us" />
+      <Title text="About AMUHUB" />
 
       <div className="about-us-item">
         <div className="content">

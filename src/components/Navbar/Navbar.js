@@ -8,6 +8,7 @@ import { isExpired, decodeToken } from "react-jwt";
 import baseUrl from "../../utils/constants";
 import useDebounce from "../../utils/debounceHook";
 import ProfileOverview from "../ProfileOverview/ProfileOverview";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [auth, setauth] = useState(false);
@@ -83,9 +84,11 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed-nav">
-        <h1 className="nav_logo">
-          amu<span>hub</span>
-        </h1>
+        <Link to = "/">
+          <h1 className="nav_logo">
+            amu<span>hub</span>
+          </h1>
+        </Link>
         {auth ? (
           <NavAuth usertext={usertext} setHeight={setHeight} />
         ) : (

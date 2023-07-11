@@ -6,7 +6,7 @@ import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
-import formImg from "../../assets/form/amu.png"
+import formImg from "../../assets/form/login-new.jpg"
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className="form-body">
       <div className="form-container-outer">
-        <Title text="Login In" />
+        <Title text="Sign In" />
         <div className="form-container-inner">
           <div className="sign-in-img">
             <img
