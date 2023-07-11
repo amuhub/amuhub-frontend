@@ -15,8 +15,6 @@ const Answer = ({
   setDeleteUrl,
   user_id,
 }) => {
-  console.log("this is answer data : ");
-  console.log(data);
   const token = localStorage.getItem("token");
   const [dropDown, setDropDown] = useState(false);
   const [isUpvoted, setIsUpvoted] = useState(data.upvoted);

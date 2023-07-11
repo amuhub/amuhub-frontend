@@ -56,9 +56,6 @@ const Answers = () => {
     error: questionError,
   } = useFetchToken(`${baseUrl}/question/${id}`, token);
 
-  console.log("this is question data : ");
-  console.log(questionData);
-
 
 
   useEffect(() => {
