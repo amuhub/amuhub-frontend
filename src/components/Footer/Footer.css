@@ -17,7 +17,28 @@
 
 .footer .logo {
   width: 250px;
+}
+.footer-links{
+  display: flex;
+  gap: 20px;
+  color: white;
+}
+.footer-links li{
+  list-style-type: none;
+}
+.footer-links li a{
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.footer-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 50px;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .footer_soc_links {
@@ -57,6 +78,14 @@
 
 .attribute span:hover {
   opacity: 0.5;
+}
+@media (max-width: 900px){
+  .footer-inner{
+    width: fit-content;
+  }
+  .footer-links,.search-container{
+    display: none;
+  }
 }
 @media (max-width: 450px){
   .footer{

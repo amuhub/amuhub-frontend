@@ -35,7 +35,7 @@ function App() {
             <Route path="/question" element={<QuestionListPage />} />
             <Route path="/question/:id" element={<QuestionDetailsPage />} />
             <Route path="/profile/:username" element={<ProfilePage />}>
-              <Route index element={<ProfileAnswer />} />
+              <Route index element={<ProfileQuestion />} />
               <Route path="answers" element={<ProfileAnswer />} />
               <Route path="questions" element={<ProfileQuestion />} />
               <Route path="posts" element={<ProfilePosts />} />

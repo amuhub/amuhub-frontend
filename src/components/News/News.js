@@ -7,7 +7,6 @@ const News = (props) => {
   const { day_num, day } = fetchDate(data.date);
   return (
     <div className="event-component">
-      <h1 className="upcoming-event">AMU News</h1>
       <div className="event-component-header">
         <h1 className="event-title">{data.title}</h1>
         <h1 className="start-event">

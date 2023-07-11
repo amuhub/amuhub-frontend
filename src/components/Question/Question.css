@@ -114,6 +114,7 @@
 }
 .question{
   color: black;
+  font-weight: bold;
 }
 @media (max-width: 610px) {
   .question_stats .stats_list_a a span {

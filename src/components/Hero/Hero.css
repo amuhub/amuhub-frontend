@@ -2,15 +2,20 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /* height: 90vh; */
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px);
   padding: 5vh 2rem 0;
-  max-width: 1300px;
   margin: 0 auto;
   margin-bottom: 100px;
+  background-image: url("../../../public/compsc.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0,0,0,0.6);
+  background-blend-mode: multiply;
 }
 
 .hero .text-container {
-  width: 45%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,6 +25,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  text-align: center;
+  color: white;
+  width: 60%;
 }
 
 .hero .hero-content {
@@ -27,8 +35,7 @@
 }
 
 .hero h1 {
-  font-size: 3.5rem;
-  color: #19212e;
+  font-size: 5rem;
   line-height: 1;
   -webkit-animation: x-axis-bounce 0.9s;
   animation: x-axis-bounce 0.9s;
@@ -40,9 +47,8 @@
 }
 
 .hero p {
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin: 1.5rem 0;
-  color: #837f7f;
   -webkit-animation: slide-in 1.5s linear;
   animation: slide-in 1.5s linear;
 }
@@ -50,11 +56,14 @@
 .hero .btn {
   -webkit-animation: slide-in 2.3s linear;
   animation: slide-in 2.3s linear;
-  padding: 15px 25px;
+  padding: 22px 33px;
+  margin: 0 auto;
+  font-size: 20px;
 }
 
-.hero img {
-  width: 55%;
+
+.hero .btn{
+  width: fit-content;
 }
 
 @-webkit-keyframes x-axis-bounce {
@@ -156,29 +165,11 @@
 }
 
 @media (max-width: 800px) {
-  .hero {
-    height: auto;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    margin-top: 5rem;
-    padding: 0 2rem;
-  }
-  .hero .text-container {
+  .hero .text-container{
     width: 100%;
-    text-align: center;
-    margin: 2rem 0;
   }
-  .hero img {
-    width: 100%;
-    margin-top: 2rem;
-  }
-  .hero .hero-content h1 {
-    font-size: 2.5rem;
-    color: #19212e;
+  .hero .btn {
+    padding: 18px 25px;
+    font-size: 13px;
   }
 }

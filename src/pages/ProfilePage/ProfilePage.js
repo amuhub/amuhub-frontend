@@ -205,11 +205,11 @@ const ProfilePage = () => {
               )}
 
               <div className="profile-links">
-                <NavLink to="answers" className="links">
-                  Answers
-                </NavLink>
                 <NavLink to="questions" className="links">
                   Questions
+                </NavLink>
+                <NavLink to="answers" className="links">
+                  Answers
                 </NavLink>
                 <NavLink to="posts" className="links">
                   Posts

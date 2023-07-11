@@ -6,6 +6,15 @@
   border-top: 1px solid #d8dee9;
   padding-top: 20px;
 }
+.answer-container-outer-answer{
+  background-color: #fff;
+  padding: 30px 20px;
+  border: 1px solid #d8dee9;
+}
+.answer-container-outer-answer .ques-container{
+  border: none;
+  padding: 0;
+}
 .author-details .profile-img {
   width: 35px;
   height: 35px;

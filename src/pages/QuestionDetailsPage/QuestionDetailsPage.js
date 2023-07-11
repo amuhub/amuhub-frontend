@@ -56,6 +56,9 @@ const Answers = () => {
     error: questionError,
   } = useFetchToken(`${baseUrl}/question/${id}`, token);
 
+  console.log("this is question data : ");
+  console.log(questionData);
+
 
 
   useEffect(() => {
@@ -271,6 +274,7 @@ const Answers = () => {
 
 
           <div className="event-container">
+          <h1 className="upcoming-event">Amu News</h1>
           {pending && <InfinitySpin width="300" color="#6495ED" />}
             {data &&
               data.data.map((singleEvent) => (

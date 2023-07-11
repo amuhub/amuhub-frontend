@@ -6,6 +6,7 @@ import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
+import formImg from "../../assets/form/amu.png"
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -47,7 +48,7 @@ const Login = () => {
         <div className="form-container-inner">
           <div className="sign-in-img">
             <img
-              src={require("../../assets/form/12-removebg-preview.png")}
+              src={formImg}
               className="signin"
               alt=""
             />
@@ -86,7 +87,7 @@ const Login = () => {
             <button className="btn btn-block btn-lg" onClick={loginUser}>
               {load ? <ButtonLoader/> : `Sign in`}
             </button>
-            <div className="horizontal-rule"></div>
+            {/* <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">
                 <Link href="#">
@@ -103,7 +104,7 @@ const Login = () => {
                   <i className="fab fa-google-plus-g"></i>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </form>
         </div>
       </div>

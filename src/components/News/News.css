@@ -7,8 +7,11 @@
 
 .upcoming-event {
   font-size: 24px;
-  margin-bottom: 30px;
-  /* font-weight: 400; */
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 10px;
+    /* font-weight: 400; */
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2)
 }
 .event-component-header {
   display: flex;

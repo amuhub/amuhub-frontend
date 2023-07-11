@@ -6,6 +6,7 @@ import isAuthenticated from "../../utils/isAuth";
 import baseUrl from "../../utils/constants";
 import { Link } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
+import formImg from "../../assets/form/amu.png"
 
 const Register = () => {
   const [username, setusername] = useState("");
@@ -47,7 +48,7 @@ const Register = () => {
         <div className="form-container-inner">
           <div className="sign-in-img">
             <img
-              src={require("../../assets/form/12-removebg-preview.png")}
+              src={formImg}
               className="signup"
               alt=""
             />
@@ -106,7 +107,7 @@ const Register = () => {
               {load ? <ButtonLoader/> : `Register`}
             </button>
             {/* <input type="submit" value="Register" className="btn btn-block" /> */}
-            <div className="horizontal-rule"></div>
+            {/* <div className="horizontal-rule"></div>
             <ul className="soc-media">
               <li className="fb">
                 <Link href="#">
@@ -123,7 +124,7 @@ const Register = () => {
                   <i className="fab fa-google-plus-g"></i>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </form>
         </div>
       </div>

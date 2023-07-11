@@ -1,16 +1,9 @@
 import "./AboutUs.css";
 import Title from "../Title/Title";
 
-import deskImg1 from "./images/illustration-editor-desktop.svg";
-import deskImg2 from "./images/illustration-laptop-desktop.svg";
-import phoneImg from "./images/illustration-phones.svg";
-
-import mobileImg1 from "./images/illustration-editor-mobile.svg";
-import mobileImg2 from "./images/illustration-laptop-mobile.svg";
 
 import Img1 from "../../assets/m1final.png"
 import Img2 from "../../assets/m2final.png"
-import Img3 from "../../assets/m3final.png"
 
 
 const AboutUS = () => {

@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="contact-img">
           <img src={require("./images/12-removebg-preview.png")} alt="" />
         </div>
-        <form>
+        <form className="contact-form">
           <div className="input-div">
             <input
               type="text"

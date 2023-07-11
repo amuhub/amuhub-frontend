@@ -31,39 +31,26 @@ img {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  align-items: center;
+  padding:  0 70px 70px 70px;
+  gap: 70px;
+}
+.sign-in-img{
+  width: 50%;
+  align-self: center;
+  display: flex;
+  align-items: center;
 }
 
-.signin {
-  padding: 40px 0;
-}
-.signup {
-  padding: 0;
-}
 
 form {
   width: 60%;
-  padding: 70px;
+  
   font-size: 13px;
   background-color: #fff;
 }
 
-form .input-div-error {
-  width: 100%;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-}
 
-form .input-div-error p {
-  color: #ff7a7a;
-  display: inline;
-}
-
-form .input-div-error img {
-  width: 20px;
-  height: 20px;
-  display: inline;
-}
 
 form .input-div {
   position: relative;
@@ -80,16 +67,6 @@ form .input-div p {
   display: block;
 }
 
-form .input-div img {
-  width: 20px;
-  height: 20px;
-  display: block;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 30px;
-}
 
 form .input-div:last-child {
   margin-bottom: 0px;
@@ -138,7 +115,7 @@ form .horizontal-rule {
 }
 
 form .horizontal-rule::before {
-  content: "OR USE";
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -232,6 +209,9 @@ form .error input {
     text-align: center;
   }
   .form-container-inner form {
+    width: 100%;
+  }
+  .sign-in-img{
     width: 100%;
   }
 }

@@ -1,6 +1,8 @@
 import Button from "../Button/Button";
 import HeroImg from "../../assets/hero.png";
 import "./Hero.css";
+import isAuthenticated from "../../utils/isAuth";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -8,14 +10,22 @@ const Hero = () => {
       <div className="text-container">
         <div className="hero-content">
           <div className="hero-title-wrapper">
-            <h1>Have a doubt?</h1>
+            <h1>Have a query?</h1>
           </div>
           <p>
-            Ask away all your queries and get answers from all around the world.
+            Ask away all your questions and get answers from all around the world.
           </p>
+          {isAuthenticated() && (
+                        <Link
+                          to="/question"
+                          className="btn"
+                        >
+                          Ask a Question
+                        </Link>
+                      )}
         </div>
       </div>
-      <img src={HeroImg} alt="" />
+      {/* <img src={HeroImg} alt="" /> */}
     </div>
   );
 };
