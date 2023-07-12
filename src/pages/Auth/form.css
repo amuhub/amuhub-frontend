@@ -15,6 +15,11 @@ img {
   padding: 40px 30px;
 }
 
+.form-body .nav_logo{
+  margin: 30px 0;
+  text-align: center;
+}
+
 .form-container-outer {
   max-width: 1000px;
   border-radius: 3px;

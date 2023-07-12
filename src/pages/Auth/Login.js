@@ -44,7 +44,9 @@ const Login = () => {
   return (
     <div className="form-body">
       <div className="form-container-outer">
-        <Title text="Sign In" />
+        <h1 className="nav_logo">
+          amu<span>hub</span>
+        </h1>
         <div className="form-container-inner">
           <div className="sign-in-img">
             <img
